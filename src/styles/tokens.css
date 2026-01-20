@@ -1,0 +1,32 @@
+:root {
+    --h1-font-family: 'Inter', Arial, Helvetica, sans-serif;
+    --h1-font-weight: 300;
+    --h1-font-size: 96px;
+
+    --p-font-size: 28px;
+    --p-font-weight: 200;
+}
+
+/* Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+    :root {
+        --h1-font-size: 36px;
+        --p-font-size: 16px;
+    }
+}
+
+/* Tablet (max-width: 768px) */
+@media (max-width: 768px) and (min-width: 481px) {
+    :root {
+        --h1-font-size: 56px;
+        --p-font-size: 20px;
+    }
+}
+
+/* Small Desktop (max-width: 1324px) */
+@media (max-width: 1324px) and (min-width: 769px) {
+    :root {
+        --h1-font-size: 72px;
+        --p-font-size: 24px;
+    }
+}

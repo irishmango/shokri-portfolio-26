@@ -1,66 +1,94 @@
-import Image from "next/image";
+"use client"
+
+import { useState, useEffect } from "react";
 import styles from "./page.module.css";
+import en from "../locales/en.json";
+import de from "../locales/de.json";
+import CaseStudiesPage from "./case-studies/page";
+
+type Translations = typeof en;
+
+const translations: Record<"en" | "de", Translations> = { en, de };
 
 export default function Home() {
+  const [activeSection, setActiveSection] = useState("profile");
+  const [language, setLanguage] = useState<"en" | "de">("en");
+  const [viewport, setViewport] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    const updateViewport = () => {
+      setViewport({ width: window.innerWidth, height: window.innerHeight });
+    };
+    updateViewport();
+    window.addEventListener("resize", updateViewport);
+    return () => window.removeEventListener("resize", updateViewport);
+  }, []);
+
+  const t = translations[language];
+
+  const renderContent = () => {
+    switch (activeSection) {
+      case "profile":
+        return <div className={styles.profile}>{t.profile.content}</div>;
+      case "casestudies":
+        return <CaseStudiesPage />;
+      case "cv":
+        return <div>CV content goes here.</div>;
+      case "contact":
+        return <div>Contact content goes here.</div>;
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className={styles.main}>
+      <section className={styles.page}>
+        <div className={styles.headerContainer}>
+          <div className={styles.header}>
+            <h1 className={styles.title}>SHOKRI FRANCIS RAOOF</h1>
+            <h3>TECHNICAL PRODUCT OWNER</h3>
+          </div>
+          <div className={styles.avatar}></div>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+
+      <nav className={styles.nav}>
+        <a
+          href="#profile"
+          className={`${styles.navItem} ${activeSection === "profile" ? styles.navItemActive : ""}`}
+          onClick={() => setActiveSection("profile")}
+        >
+          PROFILE
+        </a>
+        <a
+          href="#casestudies"
+          className={`${styles.navItem} ${activeSection === "casestudies" ? styles.navItemActive : ""}`}
+          onClick={() => setActiveSection("casestudies")}
+        >
+          CASE STUDIES
+        </a>
+        <a
+          href="#cv"
+          className={`${styles.navItem} ${activeSection === "cv" ? styles.navItemActive : ""}`}
+          onClick={() => setActiveSection("cv")}
+        >
+          CV
+        </a>
+        <a
+          href="#contact"
+          className={`${styles.navItem} ${activeSection === "contact" ? styles.navItemActive : ""}`}
+          onClick={() => setActiveSection("contact")}
+        >
+          CONTACT
+        </a>
+      </nav>
+
+      <section className={styles.content}>{renderContent()}</section>
+
+      <div className={styles.viewportDebug}>
+        {viewport.width} x {viewport.height}
+      </div>
+    </main>
   );
 }

@@ -1,0 +1,20 @@
+.caseStudiesNav {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--foreground);
+    border-left: 1px solid var(--foreground);
+    border-right: 1px solid var(--foreground);
+    width: 100%;
+}
+
+.navTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    transform: rotate(-90deg);
+    border: 1px solid var(--foreground);
+}
