@@ -7,3 +7,75 @@
     justify-content: flex-start;
     align-self: stretch;
 }
+
+.studySwitcher {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 2rem 0 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.switcherButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--foreground);
+    color: var(--foreground);
+    cursor: pointer;
+    text-align: center;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: all 0.2s ease;
+}
+
+.switcherButton:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.switcherButtonActive {
+    background: var(--foreground);
+    color: var(--background);
+}
+
+.switcherButtonActive:hover {
+    background: var(--foreground);
+    color: var(--background);
+}
+
+@media (max-width: 640px) {
+    .studySwitcher {
+        padding: 1.5rem 0.5rem 0 0.5rem;
+        justify-content: center;
+        gap: 0.4rem;
+    }
+
+    .switcherButton {
+        flex: 1;
+        max-width: 33%;
+        padding: 0.4rem 0.3rem;
+        font-size: 0.65rem;
+        letter-spacing: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .studySwitcher {
+        padding: 1rem 0.25rem 0 0.25rem;
+        gap: 0.25rem;
+    }
+
+    .switcherButton {
+        padding: 0.35rem 0.2rem;
+        font-size: 0.58rem;
+    }
+}

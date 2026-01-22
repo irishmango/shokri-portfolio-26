@@ -42,13 +42,15 @@ export default function ContactPage() {
           <LocationIcon />
           <span>Berlin / Dublin</span>
         </div>
-        <div className={styles.contactItem}>
-          <EmailIcon />
-          <a href="mailto:shokrifrancis.r@gmail.com">shokrifrancis.r@gmail.com</a>
-        </div>
-        <div className={styles.contactItem}>
-          <PhoneIcon />
-          <a href="tel:+491717486242">+49 171 748 6242</a>
+        <div className={styles.contactRow}>
+          <div className={styles.contactItem}>
+            <EmailIcon />
+            <a href="mailto:shokrifrancis.r@gmail.com">shokrifrancis.r@gmail.com</a>
+          </div>
+          <div className={styles.contactItem}>
+            <PhoneIcon />
+            <a href="tel:+491717486242">+49 171 748 6242</a>
+          </div>
         </div>
         <div className={styles.contactSocials}>
           <a href="https://www.linkedin.com/in/shokri-francis-raoof-2b3b5535/" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
