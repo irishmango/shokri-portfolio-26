@@ -1,8 +1,76 @@
-.caseStudyContent {
+.caseStudyWrapper {
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
   padding: 0 2rem 2rem 2rem;
+  position: relative;
+}
+
+.tableOfContents {
+  position: fixed;
+  top: 50%;
+  left: 2rem;
+  transform: translateY(-50%);
+  width: 200px;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 1rem;
+  z-index: 100;
+}
+
+.tocTitle {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  opacity: 0.5;
+  margin: 0 0 1rem 0;
+  font-weight: 500;
+}
+
+.tocList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.tocItem {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  font-weight: 300;
+}
+
+.tocLink {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0;
+  padding-left: 0.75rem;
+  color: var(--foreground);
+  text-decoration: none;
+  opacity: 0.5;
+  transition: opacity 0.2s, border-color 0.2s;
+  border: none;
+  border-left: 1px solid transparent;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.tocLink:hover {
+  opacity: 0.9;
+}
+
+.tocLinkActive {
+  opacity: 1;
+  border-left: 1px solid var(--foreground);
+}
+
+.caseStudyContent {
+  width: 100%;
   color: var(--foreground);
   animation: fadeIn 0.4s ease;
 }
@@ -458,9 +526,183 @@
   font-weight: 400;
 }
 
+/* Floating Action Button for mobile */
+.tocFab {
+  display: none;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--foreground);
+  color: var(--background);
+  border: none;
+  cursor: pointer;
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tocFab:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.tocFab:active {
+  transform: scale(0.95);
+}
+
+.tocFabIcon {
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+/* Mobile TOC Overlay */
+.tocOverlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 300;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.tocOverlayVisible {
+  opacity: 1;
+}
+
+/* Mobile TOC Bottom Sheet */
+.tocMobile {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--background);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 301;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 1.5rem;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.tocMobileVisible {
+  transform: translateY(0);
+}
+
+.tocMobileHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.tocMobileTitle {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+  margin: 0;
+  font-weight: 500;
+}
+
+.tocMobileClose {
+  background: none;
+  border: none;
+  color: var(--foreground);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.tocMobileClose:hover {
+  opacity: 1;
+}
+
+.tocMobileList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.tocMobileItem {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.tocMobileLink {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  color: var(--foreground);
+  text-decoration: none;
+  opacity: 0.6;
+  transition: opacity 0.2s, background 0.2s;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: inherit;
+  border-radius: 4px;
+}
+
+.tocMobileLink:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tocMobileLinkActive {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: 500;
+}
+
+@media (max-width: 1400px) {
+  .tableOfContents {
+    display: none;
+  }
+
+  .tocFab {
+    display: flex;
+  }
+
+  .tocOverlay {
+    display: block;
+    pointer-events: none;
+  }
+
+  .tocOverlayVisible {
+    pointer-events: auto;
+  }
+
+  .tocMobile {
+    display: block;
+  }
+}
+
 @media (max-width: 640px) {
-  .caseStudyContent {
+  .caseStudyWrapper {
     padding: 0 1.5rem 1.5rem 1.5rem;
+  }
+
+  .caseStudyContent {
+    /* removed padding override - handled by wrapper */
   }
 
   .title {

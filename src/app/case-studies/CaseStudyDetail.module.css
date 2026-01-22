@@ -150,6 +150,16 @@
     padding: 1.5rem;
   }
 
+  .studyNav {
+    gap: 0.5rem;
+  }
+
+  .studyNavItem {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.02em;
+  }
+
   .title {
     font-size: 1.75rem;
   }
@@ -160,5 +170,12 @@
 
   .overview {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .studyNavItem {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.65rem;
   }
 }

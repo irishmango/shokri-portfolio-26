@@ -1,6 +1,15 @@
 "use client";
 
+import { useState, useEffect, useCallback } from "react";
 import styles from "./CaseStudyContent.module.css";
+
+// Helper to generate slug from title
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
 
 // Case study content data
 const caseStudyContent: Record<string, CaseStudyData> = {
@@ -233,9 +242,199 @@ const caseStudyContent: Record<string, CaseStudyData> = {
           }
         ],
         closingNote: "Across all decisions, the guiding question was: \"Does this increase clarity of responsibility, or does it quietly shift it?\" When the answer was unclear, the decision defaulted toward restraint."
+      },
+      {
+        title: "Constraints & Risk Management",
+        content: "From the outset, DocNotes was treated as a healthcare-adjacent system operating under heightened risk, even as an early-stage MVP. Rather than treating risk as a future concern, constraints were made explicit design inputs that shaped scope, workflows, and technical decisions.",
+        principles: [
+          {
+            name: "Regulatory & Scope Constraints",
+            description: "DocNotes is intentionally positioned outside regulated medical record systems. The product does not store official patient records, does not submit, sync, or modify data in EHRs, does not generate diagnoses, recommendations, or clinical decisions, and all exports require explicit clinician action. These constraints reduce regulatory exposure while keeping the product usable within real clinical workflows."
+          },
+          {
+            name: "Human Accountability Boundaries",
+            description: "AI assistance introduces ambiguity around authorship and responsibility if not carefully constrained. AI is restricted to rewriting clinician-provided text, all AI output requires explicit review and approval, no document becomes final without a deliberate approval action, and amendments preserve history rather than overwriting prior records. This ensures that clinical responsibility never silently shifts to the system."
+          },
+          {
+            name: "Data Protection & Privacy",
+            description: "Patient-identifiable information was treated as a primary risk surface. Key measures included application-level protection of sensitive patient identifiers, minimization of stored data to essential fields only, no background syncing or secondary data use, and optional incognito workflows for session-only use. These decisions prioritize data minimization and exposure reduction over convenience."
+          },
+          {
+            name: "Security & Operational Logging",
+            description: "Rather than implementing broad activity surveillance, DocNotes focuses on security and operational traceability. Logged events include authentication events, access attempts, AI generation requests, and document approvals and exports. Importantly, audit logs never contain plaintext patient names and are designed for operational safety and misuse detection, not monitoring clinicians."
+          },
+          {
+            name: "Failure Modes & Safe Degradation",
+            description: "AI systems are inherently probabilistic and can fail unpredictably. DocNotes is designed so that AI failures are visible, not silent, failed generations do not block manual workflows, clinicians can always proceed without AI assistance, and the system remains usable even when AI is unavailable. This prevents AI reliability from becoming a single point of failure."
+          }
+        ],
+        closingNote: "Across all constraints, the guiding principle was: Reduce harm and ambiguity before optimizing for speed or convenience. In a healthcare-adjacent context, clarity, restraint, and explicit boundaries are more valuable than feature completeness."
+      },
+      {
+        title: "Delivery & Execution",
+        content: "DocNotes was delivered through incremental, risk-aware execution, with an emphasis on sequencing decisions rather than maximizing feature count. As a solo Product Owner, I treated delivery artifacts as tools for scope control and learning, not ceremony.",
+        principles: [
+          {
+            name: "Roadmap & Sequencing",
+            description: "The roadmap focused on reducing uncertainty early, rather than delivering a broad feature set. Initial milestones prioritized establishing a safe core workflow (draft → review → approval), defining non-negotiable boundaries around AI usage, validating that the product remained usable without automation, and introducing auditability and data protection before expansion. This sequencing ensured that later features were built on a stable and defensible foundation, rather than retrofitted onto unsafe assumptions."
+          },
+          {
+            name: "Backlog & Prioritization",
+            description: "Work was managed through a lightweight backlog that emphasized clear problem statements, explicit acceptance criteria, and scope boundaries and non-goals. Backlog items were ordered to isolate higher-risk changes (AI, authentication, data handling), keep iterations small and reversible, and avoid coupling unrelated concerns. This allowed steady progress while maintaining confidence in system behavior."
+          },
+          {
+            name: "Acceptance-Criteria–Driven Delivery",
+            description: "To keep implementation aligned with product intent, individual backlog items were written with clear acceptance criteria. A typical ticket included the user problem being addressed, preconditions and constraints, explicit success criteria, and out-of-scope clarifications. This helped prevent scope creep and ensured that \"done\" meant meeting product intent, not just shipping code."
+          },
+          {
+            name: "Managing Risk While Building Solo",
+            description: "Certain areas of the product carried disproportionate risk: patient-identifiable data, AI-assisted content generation, and approval and audit flows. These changes were handled in small, isolated increments and validated against acceptance criteria before being merged into the main system. The goal was not process fidelity, but reducing the cost of mistakes."
+          }
+        ],
+        bullets: [
+          "Maintain momentum without accumulating hidden risk",
+          "Make trade-offs visible early",
+          "Iterate safely in a healthcare-adjacent context",
+          "Treat \"how we ship\" as a product decision, not just an engineering one"
+        ],
+        note: "This delivery approach allowed me to achieve these outcomes while working solo on a healthcare-adjacent product."
+      },
+      {
+        title: "Outcomes & Learnings",
+        content: "Because DocNotes is a private, invite-only MVP, outcomes are primarily qualitative and focused on workflow behavior rather than growth metrics. The most meaningful learnings came from observing how clinicians interact with structure, friction, and AI assistance in practice.",
+        decisions: [
+          {
+            title: "Workflow Clarity Matters More Than Automation",
+            decision: "Clinicians responded positively to the clear separation between drafts and approved documents.",
+            why: "Even though this introduced additional steps, the explicit state transitions provided meaningful benefits:",
+            whyBullets: [
+              "Reduced ambiguity about what \"counts\" as the record",
+              "Increased confidence when using AI-assisted rewriting",
+              "Made later amendments feel safer and more intentional"
+            ],
+            tradeoffs: [],
+            outcomes: [
+              "In clinical contexts, clarity of responsibility outweighs speed"
+            ]
+          },
+          {
+            title: "AI Is Most Useful When It Is Constrained",
+            decision: "AI-assisted rewriting was most valuable when applied to clinician-written text, scoped to formatting and structure, and easy to discard without penalty.",
+            why: "Attempts to make AI more proactive or \"helpful\" quickly reduced trust.",
+            tradeoffs: [],
+            outcomes: [
+              "Validated the decision to treat AI as a supporting tool, not a source of authority"
+            ]
+          },
+          {
+            title: "Explicit Friction Can Increase Trust",
+            decision: "Features like manual approval, immutable records, and visible audit events introduced friction.",
+            why: "That friction was interpreted as intentional and reassuring, not burdensome. This was especially true once clinicians understood why those steps existed.",
+            tradeoffs: [],
+            outcomes: [
+              "Deliberate friction can build confidence in healthcare-adjacent contexts"
+            ]
+          },
+          {
+            title: "Failure Handling Is as Important as Success",
+            decision: "AI failures (e.g. unusable rewrites, interruptions, or timeouts) surfaced early in testing.",
+            why: "Designing the system so that failures were visible, manual workflows always remained available, and AI was never required to proceed prevented frustration and preserved trust.",
+            tradeoffs: [],
+            outcomes: [
+              "Reinforced the importance of designing around failure modes, not just ideal paths"
+            ]
+          },
+          {
+            title: "Scope Discipline Prevents Downstream Risk",
+            decision: "Several feature ideas were deliberately deferred or excluded.",
+            why: "Ideas like automatic syncing with clinical systems, background patient data ingestion, and AI-generated content beyond rewriting were resisted early.",
+            whyBullets: [
+              "Avoided unclear accountability",
+              "Avoided expanded regulatory exposure",
+              "Avoided complex rollback scenarios"
+            ],
+            tradeoffs: [],
+            outcomes: [
+              "Validated the value of explicit non-goals as a delivery tool"
+            ]
+          },
+          {
+            title: "Product Responsibility Increases After Launch",
+            decision: "Once real users began interacting with the system, the nature of the work shifted.",
+            why: "Prioritization became more conservative, reliability mattered more than new features, and \"edge cases\" stopped being theoretical.",
+            tradeoffs: [],
+            outcomes: [
+              "Shipping is not the finish line, especially in healthcare-adjacent products"
+            ]
+          }
+        ],
+        closingNote: "These outcomes and learnings shaped not just DocNotes, but my understanding of what responsible product development looks like in high-stakes contexts."
+      },
+      {
+        title: "What I'd Do Differently",
+        content: "Building DocNotes clarified several areas where earlier decisions could have reduced friction or surfaced risk sooner. None of these are regrets — they reflect how product responsibility evolves once real constraints and usage patterns become visible.",
+        principles: [
+          {
+            name: "Validate Workflow Language Earlier",
+            description: "While the core workflow proved sound, some terminology around drafts, approvals, and amendments required explanation. If starting again, I would test naming and state labels earlier with clinicians, validate whether concepts like \"approval\" and \"amendment\" map cleanly to different specialties, and iterate on language before locking workflow states. This would have reduced onboarding friction without changing the underlying structure."
+          },
+          {
+            name: "Introduce Explicit Boundaries Even Sooner",
+            description: "Many scope decisions were correct, but some boundaries could have been enforced earlier to avoid revisiting them later. In hindsight, I would formalize non-goals sooner and reference them more often during delivery, explicitly document why certain features were excluded (not just deferred), and use constraints as a more visible prioritization tool. This would have reduced second-guessing and made trade-offs clearer earlier."
+          },
+          {
+            name: "Test Failure Scenarios More Aggressively",
+            description: "AI failure modes became more obvious once workflows were exercised end-to-end. Next time, I would simulate degraded AI behavior earlier (timeouts, unusable output), test \"AI unavailable\" scenarios as first-class cases, and design fallback states before optimizing happy paths. This would have accelerated confidence in system reliability."
+          },
+          {
+            name: "Separate \"Build\" and \"Operate\" Earlier",
+            description: "As the product moved closer to real usage, the nature of the work shifted from building features to operating a system. If starting again, I would introduce operational checklists earlier, define post-launch responsibilities before launch (not after), and treat reliability and observability as part of the MVP definition. This would have smoothed the transition from development to ownership."
+          }
+        ],
+        closingNote: "All of these adjustments point to the same learning: In healthcare-adjacent products, clarity and restraint compound faster than feature velocity. The earlier those constraints are made explicit, the easier it becomes to ship responsibly."
+      },
+      {
+        title: "What's Next",
+        content: "DocNotes is currently in a private beta phase, with the primary goal of validating workflows, boundaries, and reliability in real clinical use. Future development is intentionally framed around earned complexity, not expansion for its own sake.",
+        principles: [
+          {
+            name: "Validate the Core Workflow Across Repeated Use",
+            description: "Before adding functionality, the next priority is to observe how the draft → approval → amendment workflow holds up over time, identify where friction reinforces accountability versus where it becomes noise, and validate that the mental model works across different documentation styles. Only once this workflow proves consistently understandable does further abstraction make sense."
+          },
+          {
+            name: "Improve Onboarding and Shared Mental Models",
+            description: "Early usage shows that clarity of intent matters as much as interface usability. Next steps focus on making workflow states (draft, approved, amended) self-explanatory, embedding product boundaries and non-goals directly into onboarding, and reducing the need for external explanation without simplifying responsibility. This is treated as a product communication problem, not a feature gap."
+          },
+          {
+            name: "Expand AI Assistance Carefully — If It Earns It",
+            description: "AI support may evolve, but only under strict conditions: clinician authorship must remain explicit, failures must stay visible and non-blocking, and added assistance must reduce cognitive load without shifting responsibility. Potential expansion is limited to formatting and structuring support — not inference, interpretation, or automation of clinical judgment."
+          },
+          {
+            name: "Prepare for a German-Language Version (DACH), If Validation Holds",
+            description: "If the core workflow proves stable and valuable, a natural next step would be to explore a German-language version for the DACH market. This would be driven by clinician demand rather than geographic ambition, the need for precise, domain-appropriate language, and alignment with existing EU data protection expectations. Localization would be treated as a product and safety concern, not a simple translation exercise."
+          },
+          {
+            name: "Strengthen Operational Readiness as Usage Grows",
+            description: "As real usage increases, operational needs will expand. Potential next steps include clearer separation between operational monitoring and user-visible audit trails, better tooling around failure analysis and recovery, and preparing for compliance discussions only if institutional use becomes a real requirement. These steps would be driven by observed needs, not assumptions."
+          }
+        ],
+        closingNote: "At this stage, the most valuable work is not scaling features, but reinforcing boundaries, validating responsibility models, and ensuring the product earns its next level of complexity. Growth is treated as a consequence of trust, not a goal in itself."
+      },
+      {
+        title: "Technical Context",
+        content: "This section provides high-level technical context for readers interested in how the product was implemented. It is included for completeness and is not required to understand the product decisions above.",
+        bullets: [
+          "Web-based application with authenticated, user-scoped workspaces",
+          "Explicit separation of draft, approved, and amended document states",
+          "AI-assisted rewriting using third-party language models, with human review required for all outputs",
+          "Application-level protection of sensitive patient identifiers before persistence, designed to reduce accidental exposure through logs or operational tooling",
+          "Security and operational logging for authentication events, access attempts, AI generation requests, approvals, and exports",
+          "Data stored and processed within the EU"
+        ],
+        subsection: "Stack (for context):"
       }
     ],
-    technologies: []
+    technologies: ["TypeScript", "React", "Server-side APIs", "Relational Database", "Third-party AI Services"]
   },
   arfin: {
     title: "Arfin",
@@ -345,11 +544,73 @@ interface CaseStudyContentProps {
 
 export default function CaseStudyContent({ studyId }: CaseStudyContentProps) {
   const study = caseStudyContent[studyId];
+  const [activeSection, setActiveSection] = useState<string>("");
+  const [isMobileTocOpen, setIsMobileTocOpen] = useState(false);
+
+  // Generate section IDs for TOC
+  const sectionIds = study?.sections.map((section) => ({
+    id: slugify(section.title),
+    title: section.title,
+  })) ?? [];
+
+  const handleScroll = useCallback(() => {
+    const sectionElements = sectionIds.map(({ id }) =>
+      document.getElementById(id)
+    ).filter(Boolean) as HTMLElement[];
+
+    if (sectionElements.length === 0) return;
+
+    // Check if we're near the bottom of the page
+    const scrolledToBottom =
+      window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100;
+
+    // If near bottom, highlight the last section
+    if (scrolledToBottom && sectionIds.length > 0) {
+      setActiveSection(sectionIds[sectionIds.length - 1].id);
+      return;
+    }
+
+    // Find the section closest to the top of the viewport
+    let currentSection = "";
+    const offset = 100; // Offset from top to trigger active state
+
+    for (const element of sectionElements) {
+      const rect = element.getBoundingClientRect();
+      if (rect.top <= offset) {
+        currentSection = element.id;
+      }
+    }
+
+    setActiveSection(currentSection);
+  }, [sectionIds]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Initial check
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
+  const scrollToSection = (id: string, closeMobile = false) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 20;
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementPosition - offset,
+        behavior: "smooth",
+      });
+      if (closeMobile) {
+        setIsMobileTocOpen(false);
+      }
+    }
+  };
 
   if (!study) {
     return (
-      <div className={styles.caseStudyContent}>
-        <p>Case study not found.</p>
+      <div className={styles.caseStudyWrapper}>
+        <div className={styles.caseStudyContent}>
+          <p>Case study not found.</p>
+        </div>
       </div>
     );
   }
@@ -357,7 +618,25 @@ export default function CaseStudyContent({ studyId }: CaseStudyContentProps) {
   const hasMetadata = study.role || study.context || study.users || study.status || study.platform || study.duration || study.team;
 
   return (
-    <div className={styles.caseStudyContent}>
+    <div className={styles.caseStudyWrapper}>
+      {sectionIds.length > 0 && (
+        <nav className={styles.tableOfContents}>
+          <h4 className={styles.tocTitle}>Contents</h4>
+          <ul className={styles.tocList}>
+            {sectionIds.map(({ id, title }) => (
+              <li key={id} className={styles.tocItem}>
+                <button
+                  onClick={() => scrollToSection(id)}
+                  className={`${styles.tocLink} ${activeSection === id ? styles.tocLinkActive : ""}`}
+                >
+                  {title}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+      <div className={styles.caseStudyContent}>
       <header className={styles.header}>
         <h2 className={styles.title}>{study.title}</h2>
         <p className={styles.subtitle}>{study.subtitle}</p>
@@ -421,7 +700,7 @@ export default function CaseStudyContent({ studyId }: CaseStudyContentProps) {
       {study.sections.length > 0 && (
         <div className={styles.sections}>
           {study.sections.map((section, index) => (
-            <div key={index} className={styles.section}>
+            <div key={index} id={slugify(section.title)} className={styles.section}>
               <h3 className={styles.sectionTitle}>{section.title}</h3>
 
               {section.content && (
@@ -580,6 +859,50 @@ export default function CaseStudyContent({ studyId }: CaseStudyContentProps) {
           </div>
         </div>
       )}
+      </div>
+
+      {/* Mobile FAB */}
+      {sectionIds.length > 0 && (
+        <button
+          className={styles.tocFab}
+          onClick={() => setIsMobileTocOpen(true)}
+          aria-label="Open table of contents"
+        >
+          <span className={styles.tocFabIcon}>☰</span>
+        </button>
+      )}
+
+      {/* Mobile TOC Overlay */}
+      <div
+        className={`${styles.tocOverlay} ${isMobileTocOpen ? styles.tocOverlayVisible : ""}`}
+        onClick={() => setIsMobileTocOpen(false)}
+      />
+
+      {/* Mobile TOC Bottom Sheet */}
+      <nav className={`${styles.tocMobile} ${isMobileTocOpen ? styles.tocMobileVisible : ""}`}>
+        <div className={styles.tocMobileHeader}>
+          <h4 className={styles.tocMobileTitle}>Contents</h4>
+          <button
+            className={styles.tocMobileClose}
+            onClick={() => setIsMobileTocOpen(false)}
+            aria-label="Close table of contents"
+          >
+            ×
+          </button>
+        </div>
+        <ul className={styles.tocMobileList}>
+          {sectionIds.map(({ id, title }) => (
+            <li key={id} className={styles.tocMobileItem}>
+              <button
+                onClick={() => scrollToSection(id, true)}
+                className={`${styles.tocMobileLink} ${activeSection === id ? styles.tocMobileLinkActive : ""}`}
+              >
+                {title}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   );
 }
