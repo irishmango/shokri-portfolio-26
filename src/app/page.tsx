@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 import en from "../locales/en.json";
 import de from "../locales/de.json";
 import CaseStudiesPage from "./case-studies/page";
+import { ContactSection } from "../components/contact";
 
 type Translations = typeof en;
 
@@ -33,27 +34,29 @@ export default function Home() {
       case "casestudies":
         return <CaseStudiesPage />;
       case "cv":
-        return <div>CV content goes here.</div>;
+        return <div className={styles.cvSection}>CV content goes here.</div>;
       case "contact":
-        return <div>Contact content goes here.</div>;
+        return <ContactSection />;
       default:
         return null;
     }
   };
 
+  const isCompact = activeSection === "cv";
+
   return (
     <main className={styles.main}>
       <section className={styles.page}>
-        <div className={styles.headerContainer}>
+        <div className={`${styles.headerContainer} ${isCompact ? styles.headerCompact : ""}`}>
           <div className={styles.header}>
-            <h1 className={styles.title}>SHOKRI FRANCIS RAOOF</h1>
-            <h3>TECHNICAL PRODUCT OWNER</h3>
+            <h1 className={`${styles.title} ${isCompact ? styles.titleCompact : ""}`}>SHOKRI FRANCIS RAOOF</h1>
+            <h3 className={`${styles.subtitle} ${isCompact ? styles.subtitleCompact : ""}`}>TECHNICAL PRODUCT OWNER</h3>
           </div>
           <div className={styles.avatar}></div>
         </div>
       </section>
 
-      <nav className={styles.nav}>
+      <nav className={`${styles.nav} ${isCompact ? styles.navCompact : ""}`}>
         <a
           href="#profile"
           className={`${styles.navItem} ${activeSection === "profile" ? styles.navItemActive : ""}`}

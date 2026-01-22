@@ -1,0 +1,55 @@
+.contactPage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.8rem;
+  color: var(--foreground);
+}
+
+.contactItem a {
+  color: var(--foreground);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.contactItem a:hover {
+  opacity: 0.7;
+}
+
+.contactSocials {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--foreground);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.socialLink:hover {
+  opacity: 0.7;
+  transform: scale(1.1);
+}

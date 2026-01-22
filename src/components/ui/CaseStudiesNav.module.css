@@ -1,20 +1,153 @@
 .caseStudiesNav {
-    display: flex;
-    flex-direction: row;
-    gap: 1.5rem;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding-bottom: 0.5rem;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid var(--foreground);
-    border-left: 1px solid var(--foreground);
-    border-right: 1px solid var(--foreground);
-    width: 100%;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 50vh;
+  border-bottom: 1px solid var(--foreground);
+  border-left: 1px solid var(--foreground);
+  border-right: 1px solid var(--foreground);
 }
 
-.navTitle {
-    font-size: 1.25rem;
-    font-weight: 600;
-    transform: rotate(-90deg);
-    border: 1px solid var(--foreground);
+
+.navItems {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navItemWrapper {
+  flex: 1;
+  display: flex;
+}
+
+.navItemWrapper:not(:last-child) {
+  border-right: 1px solid var(--foreground);
+}
+
+.navItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 1.5rem;
+  background: transparent;
+  border: none;
+  color: var(--foreground);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  text-align: center;
+  min-height: 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.navItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.name {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.subtitle {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.125rem;
+}
+
+.defaultContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.defaultContent.hidden {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+.previewContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.previewContent.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.previewDescription {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--foreground);
+  margin: 0;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .sideLabel {
+    width: 36px;
+    min-width: 36px;
+  }
+
+  .sideLabelText {
+    font-size: 0.625rem;
+  }
+
+  .navItem {
+    padding: 1rem;
+    min-height: 80px;
+  }
+
+  .name {
+    font-size: 0.875rem;
+  }
+
+  .subtitle {
+    font-size: 0.625rem;
+  }
+
+  .previewContent {
+    padding: 1rem;
+  }
+
+  .previewDescription {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
 }
