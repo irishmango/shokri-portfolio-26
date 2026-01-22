@@ -9,10 +9,10 @@ const caseStudyContent: Record<string, CaseStudyData> = {
     subtitle: "Clinical Documentation Workspace",
     overview: "A clinical documentation workspace for solo clinicians, designed to support drafting, reviewing, approving, and exporting notes with strict human control and auditability.",
     disclaimer: "DocNotes is intentionally not an EHR and does not replace existing clinical systems. It operates alongside them via explicit copy-paste workflows, prioritizing clinician control and accountability over automation.",
-    role: "Product Owner / Software Engineer (solo)",
+    role: "Product Owner / Software Engineer",
     context: "Healthcare-adjacent, EU-focused",
     users: "Solo clinicians",
-    status: "Private, invite-only MVP / pilot",
+    status: "Beta / pilot",
     platform: "Web",
     sections: [
       {
