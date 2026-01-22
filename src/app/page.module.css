@@ -49,6 +49,14 @@
   margin-bottom: 0.25rem;
 }
 
+.titleBreak {
+  display: block;
+}
+
+.titleBreakHidden {
+  display: none;
+}
+
 .subtitle {
   transition: font-size 0.4s ease;
 }

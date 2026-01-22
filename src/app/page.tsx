@@ -49,7 +49,9 @@ export default function Home() {
       <section className={styles.page}>
         <div className={`${styles.headerContainer} ${isCompact ? styles.headerCompact : ""}`}>
           <div className={styles.header}>
-            <h1 className={`${styles.title} ${isCompact ? styles.titleCompact : ""}`}>SHOKRI FRANCIS RAOOF</h1>
+            <h1 className={`${styles.title} ${isCompact ? styles.titleCompact : ""}`}>
+              SHOKRI FRANCIS<br className={`${styles.titleBreak} ${isCompact ? styles.titleBreakHidden : ""}`} /> RAOOF
+            </h1>
             <h3 className={`${styles.subtitle} ${isCompact ? styles.subtitleCompact : ""}`}>TECHNICAL PRODUCT OWNER</h3>
           </div>
           <div className={styles.avatar}></div>

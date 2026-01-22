@@ -13,15 +13,15 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 4rem;
+  gap: 2.5rem;
   flex-wrap: wrap;
 }
 
 .contactItem {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  font-size: 1.8rem;
+  gap: 0.5rem;
+  font-size: 0.9rem;
   color: var(--foreground);
 }
 
@@ -38,7 +38,7 @@
 .contactSocials {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .socialLink {
