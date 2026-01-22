@@ -637,228 +637,228 @@ export default function CaseStudyContent({ studyId }: CaseStudyContentProps) {
         </nav>
       )}
       <div className={styles.caseStudyContent}>
-      <header className={styles.header}>
-        <h2 className={styles.title}>{study.title}</h2>
-        <p className={styles.subtitle}>{study.subtitle}</p>
-      </header>
+        <header className={styles.header}>
+          <h2 className={styles.title}>{study.title}</h2>
+          <p className={styles.subtitle}>{study.subtitle}</p>
+        </header>
 
-      {hasMetadata && (
-        <div className={styles.meta}>
-          {study.role && (
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>Role</span>
-              <span className={styles.metaValue}>{study.role}</span>
-            </div>
-          )}
-          {study.context && (
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>Context</span>
-              <span className={styles.metaValue}>{study.context}</span>
-            </div>
-          )}
-          {study.users && (
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>Users</span>
-              <span className={styles.metaValue}>{study.users}</span>
-            </div>
-          )}
-          {study.status && (
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>Status</span>
-              <span className={styles.metaValue}>{study.status}</span>
-            </div>
-          )}
-          {study.platform && (
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>Platform</span>
-              <span className={styles.metaValue}>{study.platform}</span>
-            </div>
-          )}
-          {study.duration && (
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>Duration</span>
-              <span className={styles.metaValue}>{study.duration}</span>
-            </div>
-          )}
-          {study.team && (
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>Team</span>
-              <span className={styles.metaValue}>{study.team}</span>
-            </div>
-          )}
-        </div>
-      )}
+        {hasMetadata && (
+          <div className={styles.meta}>
+            {study.role && (
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>Role</span>
+                <span className={styles.metaValue}>{study.role}</span>
+              </div>
+            )}
+            {study.context && (
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>Context</span>
+                <span className={styles.metaValue}>{study.context}</span>
+              </div>
+            )}
+            {study.users && (
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>Users</span>
+                <span className={styles.metaValue}>{study.users}</span>
+              </div>
+            )}
+            {study.status && (
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>Status</span>
+                <span className={styles.metaValue}>{study.status}</span>
+              </div>
+            )}
+            {study.platform && (
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>Platform</span>
+                <span className={styles.metaValue}>{study.platform}</span>
+              </div>
+            )}
+            {study.duration && (
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>Duration</span>
+                <span className={styles.metaValue}>{study.duration}</span>
+              </div>
+            )}
+            {study.team && (
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>Team</span>
+                <span className={styles.metaValue}>{study.team}</span>
+              </div>
+            )}
+          </div>
+        )}
 
-      {study.overview && <p className={styles.overview}>{study.overview}</p>}
+        {study.overview && <p className={styles.overview}>{study.overview}</p>}
 
-      {study.disclaimer && (
-        <div className={styles.disclaimer}>
-          <p>{study.disclaimer}</p>
-        </div>
-      )}
+        {study.disclaimer && (
+          <div className={styles.disclaimer}>
+            <p>{study.disclaimer}</p>
+          </div>
+        )}
 
-      {study.sections.length > 0 && (
-        <div className={styles.sections}>
-          {study.sections.map((section, index) => (
-            <div key={index} id={slugify(section.title)} className={styles.section}>
-              <h3 className={styles.sectionTitle}>{section.title}</h3>
+        {study.sections.length > 0 && (
+          <div className={styles.sections}>
+            {study.sections.map((section, index) => (
+              <div key={index} id={slugify(section.title)} className={styles.section}>
+                <h3 className={styles.sectionTitle}>{section.title}</h3>
 
-              {section.content && (
-                <p className={styles.sectionContent}>{section.content}</p>
-              )}
+                {section.content && (
+                  <p className={styles.sectionContent}>{section.content}</p>
+                )}
 
-              {section.subsection && (
-                <p className={styles.subsection}>{section.subsection}</p>
-              )}
+                {section.subsection && (
+                  <p className={styles.subsection}>{section.subsection}</p>
+                )}
 
-              {section.bullets && section.bullets.length > 0 && (
-                <ul className={styles.bulletList}>
-                  {section.bullets.map((bullet, bulletIndex) => (
-                    <li key={bulletIndex}>{bullet}</li>
-                  ))}
-                </ul>
-              )}
+                {section.bullets && section.bullets.length > 0 && (
+                  <ul className={styles.bulletList}>
+                    {section.bullets.map((bullet, bulletIndex) => (
+                      <li key={bulletIndex}>{bullet}</li>
+                    ))}
+                  </ul>
+                )}
 
-              {section.twoColumn && (
-                <div className={styles.twoColumn}>
-                  <div className={styles.column}>
-                    <h4 className={styles.columnHeading}>{section.twoColumn.left.heading}</h4>
-                    <ul className={styles.columnList}>
-                      {section.twoColumn.left.items.map((item, itemIndex) => (
-                        <li key={itemIndex}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className={styles.column}>
-                    <h4 className={styles.columnHeading}>{section.twoColumn.right.heading}</h4>
-                    <ul className={styles.columnList}>
-                      {section.twoColumn.right.items.map((item, itemIndex) => (
-                        <li key={itemIndex}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              )}
-
-              {section.principles && section.principles.length > 0 && (
-                <div className={styles.principlesList}>
-                  {section.principles.map((principle, principleIndex) => (
-                    <div key={principleIndex} className={styles.principle}>
-                      <div className={styles.principleNumber}>{principleIndex + 1}</div>
-                      <div className={styles.principleContent}>
-                        <h4 className={styles.principleName}>{principle.name}</h4>
-                        <p className={styles.principleDescription}>{principle.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {section.workflowSteps && section.workflowSteps.length > 0 && (
-                <div className={styles.workflowSteps}>
-                  {section.workflowSteps.map((step, stepIndex) => (
-                    <div key={stepIndex} className={styles.workflowStep}>
-                      <div className={styles.stepNumber}>{stepIndex + 1}</div>
-                      <div className={styles.stepContent}>
-                        <h4 className={styles.stepName}>{step.name}</h4>
-                        <p className={styles.stepDescription}>{step.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {section.workflowDiagram && (
-                <div className={styles.workflowDiagram}>
-                  {section.workflowDiagram.placeholder ? (
-                    <div className={styles.diagramPlaceholder}>
-                      <div className={styles.placeholderFlow}>
-                        {section.workflowDiagram.steps.map((step, stepIndex) => (
-                          <span key={stepIndex} className={styles.flowStep}>
-                            {step}
-                            {stepIndex < section.workflowDiagram!.steps.length - 1 && (
-                              <span className={styles.flowArrow}>→</span>
-                            )}
-                          </span>
+                {section.twoColumn && (
+                  <div className={styles.twoColumn}>
+                    <div className={styles.column}>
+                      <h4 className={styles.columnHeading}>{section.twoColumn.left.heading}</h4>
+                      <ul className={styles.columnList}>
+                        {section.twoColumn.left.items.map((item, itemIndex) => (
+                          <li key={itemIndex}>{item}</li>
                         ))}
-                      </div>
+                      </ul>
                     </div>
-                  ) : null}
-                </div>
-              )}
+                    <div className={styles.column}>
+                      <h4 className={styles.columnHeading}>{section.twoColumn.right.heading}</h4>
+                      <ul className={styles.columnList}>
+                        {section.twoColumn.right.items.map((item, itemIndex) => (
+                          <li key={itemIndex}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                )}
 
-              {section.decisions && section.decisions.length > 0 && (
-                <div className={styles.decisionsList}>
-                  {section.decisions.map((decision, decisionIndex) => (
-                    <div key={decisionIndex} className={styles.decision}>
-                      <div className={styles.decisionHeader}>
-                        <span className={styles.decisionNumber}>{decisionIndex + 1}</span>
-                        <h4 className={styles.decisionTitle}>{decision.title}</h4>
-                      </div>
-                      <div className={styles.decisionBody}>
-                        <div className={styles.decisionRow}>
-                          <span className={styles.decisionLabel}>Decision</span>
-                          <p className={styles.decisionText}>{decision.decision}</p>
+                {section.principles && section.principles.length > 0 && (
+                  <div className={styles.principlesList}>
+                    {section.principles.map((principle, principleIndex) => (
+                      <div key={principleIndex} className={styles.principle}>
+                        <div className={styles.principleNumber}>{principleIndex + 1}</div>
+                        <div className={styles.principleContent}>
+                          <h4 className={styles.principleName}>{principle.name}</h4>
+                          <p className={styles.principleDescription}>{principle.description}</p>
                         </div>
-                        <div className={styles.decisionRow}>
-                          <span className={styles.decisionLabel}>Why</span>
-                          <div>
-                            <p className={styles.decisionText}>{decision.why}</p>
-                            {decision.whyBullets && decision.whyBullets.length > 0 && (
-                              <ul className={styles.decisionBullets}>
-                                {decision.whyBullets.map((bullet, bulletIndex) => (
-                                  <li key={bulletIndex}>{bullet}</li>
-                                ))}
-                              </ul>
-                            )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {section.workflowSteps && section.workflowSteps.length > 0 && (
+                  <div className={styles.workflowSteps}>
+                    {section.workflowSteps.map((step, stepIndex) => (
+                      <div key={stepIndex} className={styles.workflowStep}>
+                        <div className={styles.stepNumber}>{stepIndex + 1}</div>
+                        <div className={styles.stepContent}>
+                          <h4 className={styles.stepName}>{step.name}</h4>
+                          <p className={styles.stepDescription}>{step.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {section.workflowDiagram && (
+                  <div className={styles.workflowDiagram}>
+                    {section.workflowDiagram.placeholder ? (
+                      <div className={styles.diagramPlaceholder}>
+                        <div className={styles.placeholderFlow}>
+                          {section.workflowDiagram.steps.map((step, stepIndex) => (
+                            <span key={stepIndex} className={styles.flowStep}>
+                              {step}
+                              {stepIndex < section.workflowDiagram!.steps.length - 1 && (
+                                <span className={styles.flowArrow}>→</span>
+                              )}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    ) : null}
+                  </div>
+                )}
+
+                {section.decisions && section.decisions.length > 0 && (
+                  <div className={styles.decisionsList}>
+                    {section.decisions.map((decision, decisionIndex) => (
+                      <div key={decisionIndex} className={styles.decision}>
+                        <div className={styles.decisionHeader}>
+                          <span className={styles.decisionNumber}>{decisionIndex + 1}</span>
+                          <h4 className={styles.decisionTitle}>{decision.title}</h4>
+                        </div>
+                        <div className={styles.decisionBody}>
+                          <div className={styles.decisionRow}>
+                            <span className={styles.decisionLabel}>Decision</span>
+                            <p className={styles.decisionText}>{decision.decision}</p>
+                          </div>
+                          <div className={styles.decisionRow}>
+                            <span className={styles.decisionLabel}>Why</span>
+                            <div>
+                              <p className={styles.decisionText}>{decision.why}</p>
+                              {decision.whyBullets && decision.whyBullets.length > 0 && (
+                                <ul className={styles.decisionBullets}>
+                                  {decision.whyBullets.map((bullet, bulletIndex) => (
+                                    <li key={bulletIndex}>{bullet}</li>
+                                  ))}
+                                </ul>
+                              )}
+                            </div>
+                          </div>
+                          <div className={styles.decisionRow}>
+                            <span className={styles.decisionLabel}>Trade-off</span>
+                            <ul className={styles.decisionBullets}>
+                              {decision.tradeoffs.map((tradeoff, tradeoffIndex) => (
+                                <li key={tradeoffIndex}>{tradeoff}</li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div className={styles.decisionRow}>
+                            <span className={styles.decisionLabel}>Outcome</span>
+                            <ul className={styles.decisionBullets}>
+                              {decision.outcomes.map((outcome, outcomeIndex) => (
+                                <li key={outcomeIndex}>{outcome}</li>
+                              ))}
+                            </ul>
                           </div>
                         </div>
-                        <div className={styles.decisionRow}>
-                          <span className={styles.decisionLabel}>Trade-off</span>
-                          <ul className={styles.decisionBullets}>
-                            {decision.tradeoffs.map((tradeoff, tradeoffIndex) => (
-                              <li key={tradeoffIndex}>{tradeoff}</li>
-                            ))}
-                          </ul>
-                        </div>
-                        <div className={styles.decisionRow}>
-                          <span className={styles.decisionLabel}>Outcome</span>
-                          <ul className={styles.decisionBullets}>
-                            {decision.outcomes.map((outcome, outcomeIndex) => (
-                              <li key={outcomeIndex}>{outcome}</li>
-                            ))}
-                          </ul>
-                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              )}
+                    ))}
+                  </div>
+                )}
 
-              {section.closingNote && (
-                <div className={styles.closingNote}>
-                  <p>{section.closingNote}</p>
-                </div>
-              )}
+                {section.closingNote && (
+                  <div className={styles.closingNote}>
+                    <p>{section.closingNote}</p>
+                  </div>
+                )}
 
-              {section.note && (
-                <p className={styles.sectionNote}>{section.note}</p>
-              )}
-            </div>
-          ))}
-        </div>
-      )}
-
-      {study.technologies.length > 0 && (
-        <div className={styles.technologies}>
-          <h3 className={styles.techTitle}>Technologies</h3>
-          <div className={styles.techList}>
-            {study.technologies.map((tech, index) => (
-              <span key={index} className={styles.techTag}>{tech}</span>
+                {section.note && (
+                  <p className={styles.sectionNote}>{section.note}</p>
+                )}
+              </div>
             ))}
           </div>
-        </div>
-      )}
+        )}
+
+        {study.technologies.length > 0 && (
+          <div className={styles.technologies}>
+            <h3 className={styles.techTitle}>Technologies</h3>
+            <div className={styles.techList}>
+              {study.technologies.map((tech, index) => (
+                <span key={index} className={styles.techTag}>{tech}</span>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Mobile FAB */}
