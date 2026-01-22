@@ -29,7 +29,7 @@ const skillCategories: SkillCategory[] = [
   },
   {
     label: "Databases & Cloud",
-    skills: ["MongoDB", "Firebase", "Supabase", "REST API Integration", "MySQL"]
+    skills: ["MongoDB", "Firebase", "Supabase", "POSTGRES", "REST API Integration", "MySQL"]
   },
   {
     label: "Frameworks & Libraries",
@@ -67,16 +67,16 @@ const workExperience: WorkExperience[] = [
       "Provided feedback from clients and prospects to the product team, contributing to continuous product improvement."
     ]
   },
-  {
-    title: "Library Assistant",
-    company: "Hochschule für Musik \"Hanns Eisler\" (Part Time)",
-    duration: "Oct 2017 – Nov 2022",
-    bullets: [
-      "Helped manage day-to-day operations, including cataloging, shelving, and circulation tasks.",
-      "Cataloguing and cleaning the digital database using WINIBW, ensuring consistency across records.",
-      "Took on leadership responsibilities in the absence of the head librarian, overseeing workflow distribution and ensuring continuity of operations."
-    ]
-  },
+  // {
+  //   title: "Library Assistant",
+  //   company: "Hochschule für Musik \"Hanns Eisler\" (Part Time)",
+  //   duration: "Oct 2017 – Nov 2022",
+  //   bullets: [
+  //     "Helped manage day-to-day operations, including cataloging, shelving, and circulation tasks.",
+  //     "Cataloguing and cleaning the digital database using WINIBW, ensuring consistency across records.",
+  //     "Took on leadership responsibilities in the absence of the head librarian, overseeing workflow distribution and ensuring continuity of operations."
+  //   ]
+  // },
   {
     title: "Laboratory Researcher & Science Gallery Educator",
     company: "CRANN, Trinity College Dublin",
