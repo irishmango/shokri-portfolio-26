@@ -40,7 +40,7 @@ export default function ContactPage() {
       <div className={styles.contactInfo}>
         <div className={styles.contactItem}>
           <LocationIcon />
-          <span>Dublin / Berlin</span>
+          <span>Berlin / Dublin</span>
         </div>
         <div className={styles.contactItem}>
           <PhoneIcon />
