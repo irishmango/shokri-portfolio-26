@@ -9,7 +9,7 @@
 .tableOfContents {
   position: fixed;
   top: 50%;
-  left: 2rem;
+  left: calc(50% - 450px - 220px - 2rem);
   transform: translateY(-50%);
   width: 200px;
   max-height: 70vh;
