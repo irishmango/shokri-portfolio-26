@@ -31,7 +31,7 @@ export default function Home() {
             onStudySelect={setSelectedCaseStudy}
           />
         );
-      case "My Work":
+      case "mywork":
         return <MyWork />;
       case "cv":
         return <CVPage />;
@@ -42,7 +42,7 @@ export default function Home() {
     }
   };
 
-  const isCompact = activeSection === "cv" || selectedCaseStudy !== null;
+  const isCompact = activeSection === "cv" || activeSection === "mywork" || selectedCaseStudy !== null;
 
   return (
     <main className={styles.main}>
