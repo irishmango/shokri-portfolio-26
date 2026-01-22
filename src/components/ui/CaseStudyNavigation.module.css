@@ -1,0 +1,240 @@
+/* Container */
+.nav {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  transition: min-height 0.6s ease, border 0.6s ease, padding 0.6s ease;
+}
+
+.nav.expanded {
+  min-height: 50vh;
+  border-bottom: 1px solid var(--foreground);
+  border-left: 1px solid var(--foreground);
+  border-right: 1px solid var(--foreground);
+}
+
+.nav.collapsed {
+  min-height: auto;
+  border: none;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 2rem 0 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Nav items list */
+.navItems {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  transition: justify-content 0.6s ease;
+}
+
+.collapsed .navItems {
+  justify-content: space-between;
+}
+
+/* Item wrapper */
+.navItemWrapper {
+  display: flex;
+  transition: flex 0.6s ease, border 0.6s ease;
+}
+
+.wrapperExpanded {
+  flex: 1;
+}
+
+.wrapperExpanded:not(:last-child) {
+  border-right: 1px solid var(--foreground);
+}
+
+.wrapperCollapsed {
+  flex: 0 0 auto;
+  border-right: none;
+}
+
+/* Nav item button */
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--foreground);
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.6s ease;
+}
+
+.itemExpanded {
+  flex: 1;
+  gap: 0.25rem;
+  padding: 1.5rem;
+  min-height: 100px;
+}
+
+.itemExpanded:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.itemCollapsed {
+  padding: 0.5rem 1.25rem;
+  min-height: auto;
+  border: 1px solid var(--foreground);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.itemCollapsed:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.itemActive {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.itemActive:hover {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+/* Default content (icon, name, subtitle) */
+.defaultContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.contentHidden {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+/* Icon */
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  max-height: 24px;
+  opacity: 1;
+  transition: opacity 0.5s ease, max-height 0.5s ease, margin 0.5s ease;
+}
+
+.iconHidden {
+  opacity: 0;
+  max-height: 0;
+  margin-bottom: 0;
+  overflow: hidden;
+}
+
+/* Name */
+.name {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: font-size 0.6s ease, font-weight 0.6s ease;
+}
+
+.itemCollapsed .name {
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.125rem;
+  max-height: 20px;
+  opacity: 1;
+  transition: opacity 0.5s ease, max-height 0.5s ease, margin 0.5s ease;
+}
+
+.subtitleHidden {
+  opacity: 0;
+  max-height: 0;
+  margin-top: 0;
+  overflow: hidden;
+}
+
+/* Preview content (hover state in expanded) */
+.previewContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+}
+
+.previewVisible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.previewDescription {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--foreground);
+  margin: 0;
+  text-align: center;
+}
+
+/* Mobile styles */
+@media (max-width: 640px) {
+  .itemExpanded {
+    padding: 1rem;
+    min-height: 80px;
+  }
+
+  .name {
+    font-size: 0.875rem;
+  }
+
+  .subtitle {
+    font-size: 0.625rem;
+  }
+
+  .previewContent {
+    padding: 1rem;
+  }
+
+  .previewDescription {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .nav.collapsed {
+    padding: 0 1rem;
+  }
+
+  .itemCollapsed {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+  }
+}

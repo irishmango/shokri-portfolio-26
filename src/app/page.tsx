@@ -6,6 +6,7 @@ import en from "../locales/en.json";
 import de from "../locales/de.json";
 import CaseStudiesPage from "./case-studies/page";
 import ContactPage from "./contact/page";
+import CVPage from "./cv/page";
 
 type Translations = typeof en;
 
@@ -40,7 +41,7 @@ export default function Home() {
           />
         );
       case "cv":
-        return <div className={styles.cvSection}>CV content goes here.</div>;
+        return <CVPage />;
       case "contact":
         return <ContactPage />;
       default:

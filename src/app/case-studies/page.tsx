@@ -1,9 +1,8 @@
 "use client";
 
-import React from 'react'
 import styles from "./CaseStudiesPage.module.css";
-import CaseStudiesNav from '../../components/ui/caseStudiesNav';
-import CaseStudyDetail from './CaseStudyDetail';
+import CaseStudyNavigation from '../../components/ui/CaseStudyNavigation';
+import CaseStudyContent from './CaseStudyContent';
 
 interface CaseStudiesPageProps {
     selectedStudy?: string | null;
@@ -19,10 +18,13 @@ export default function CaseStudiesPage({ selectedStudy, onStudySelect }: CaseSt
 
     return (
         <div className={styles.caseStudiesPage}>
-            {selectedStudy ? (
-                <CaseStudyDetail studyId={selectedStudy} onStudyChange={handleStudySelect} />
-            ) : (
-                <CaseStudiesNav onStudyChange={handleStudySelect} />
+            <CaseStudyNavigation
+                isExpanded={!selectedStudy}
+                activeStudy={selectedStudy ?? null}
+                onStudySelect={handleStudySelect}
+            />
+            {selectedStudy && (
+                <CaseStudyContent studyId={selectedStudy} />
             )}
         </div>
     )
