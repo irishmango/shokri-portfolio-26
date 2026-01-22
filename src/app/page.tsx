@@ -74,35 +74,40 @@ export default function Home() {
           className={`${styles.navItem} ${activeSection === "profile" ? styles.navItemActive : ""}`}
           onClick={() => { setActiveSection("profile"); setSelectedCaseStudy(null); }}
         >
-          PROFILE
+          <span className={styles.navLabelFull}>PROFILE</span>
+          <span className={styles.navLabelShort}>PROFILE</span>
         </a>
         <a
           href="#casestudies"
           className={`${styles.navItem} ${activeSection === "casestudies" ? styles.navItemActive : ""}`}
           onClick={() => { setActiveSection("casestudies"); setSelectedCaseStudy(null); }}
         >
-          CASE STUDIES
+          <span className={styles.navLabelFull}>CASE STUDIES</span>
+          <span className={styles.navLabelShort}>CASES</span>
         </a>
         <a
           href="#cv"
           className={`${styles.navItem} ${activeSection === "cv" ? styles.navItemActive : ""}`}
           onClick={() => { setActiveSection("cv"); setSelectedCaseStudy(null); }}
         >
-          CV
+          <span className={styles.navLabelFull}>CV</span>
+          <span className={styles.navLabelShort}>CV</span>
         </a>
         <a
           href="#mywork"
           className={`${styles.navItem} ${activeSection === "mywork" ? styles.navItemActive : ""}`}
           onClick={() => { setActiveSection("mywork"); setSelectedCaseStudy(null); }}
         >
-          MY WORK
+          <span className={styles.navLabelFull}>MY WORK</span>
+          <span className={styles.navLabelShort}>WORK</span>
         </a>
         <a
           href="#contact"
           className={`${styles.navItem} ${activeSection === "contact" ? styles.navItemActive : ""}`}
           onClick={() => { setActiveSection("contact"); setSelectedCaseStudy(null); }}
         >
-          CONTACT
+          <span className={styles.navLabelFull}>CONTACT</span>
+          <span className={styles.navLabelShort}>CONTACT</span>
         </a>
       </nav>
 

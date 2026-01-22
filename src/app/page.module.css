@@ -114,9 +114,11 @@
   letter-spacing: clamp(0.02em, 0.15vw, 0.04em);
   outline: none;
 
-  /* allow labels to wrap instead of overflowing */
-  white-space: normal;
-  overflow-wrap: anywhere;
+  /* prevent wrapping and handle overflow */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: normal;
 }
 
 .navCompact .navItem {
@@ -138,6 +140,14 @@
   background: var(--foreground);
   color: var(--background);
   font-weight: 700;
+}
+
+.navLabelFull {
+  display: inline;
+}
+
+.navLabelShort {
+  display: none;
 }
 
 /* main content */
@@ -193,11 +203,28 @@
 }
 
 @media (max-width: 520px) {
+
+  /* keep a clean single-row nav on mobile */
   .nav {
-    height: auto;
+    height: 64px;
   }
 
   .navCompact {
-    height: auto;
+    height: 48px;
+  }
+
+  /* slightly tighter type + padding on very small screens */
+  .navItem {
+    font-size: 0.72rem;
+    padding: 0.6rem 0.45rem;
+    letter-spacing: 0.02em;
+  }
+
+  .navLabelFull {
+    display: none;
+  }
+
+  .navLabelShort {
+    display: inline;
   }
 }
