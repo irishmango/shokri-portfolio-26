@@ -53,3 +53,19 @@
   opacity: 0.7;
   transform: scale(1.1);
 }
+
+/* Mobile: stack vertically */
+@media (max-width: 480px) {
+  .contactInfo {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .contactItem {
+    font-size: 0.85rem;
+  }
+
+  .contactSocials {
+    margin-top: 0.5rem;
+  }
+}
