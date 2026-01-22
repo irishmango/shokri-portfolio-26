@@ -7,6 +7,7 @@ import de from "../locales/de.json";
 import CaseStudiesPage from "./case-studies/page";
 import ContactPage from "./contact/page";
 import CVPage from "./cv/page";
+import MyWork from "./my-work/page";
 
 type Translations = typeof en;
 
@@ -40,6 +41,8 @@ export default function Home() {
             onStudySelect={setSelectedCaseStudy}
           />
         );
+      case "My Work":
+        return <MyWork />;
       case "cv":
         return <CVPage />;
       case "contact":
@@ -86,6 +89,13 @@ export default function Home() {
           onClick={() => { setActiveSection("cv"); setSelectedCaseStudy(null); }}
         >
           CV
+        </a>
+        <a
+          href="#mywork"
+          className={`${styles.navItem} ${activeSection === "mywork" ? styles.navItemActive : ""}`}
+          onClick={() => { setActiveSection("mywork"); setSelectedCaseStudy(null); }}
+        >
+          MY WORK
         </a>
         <a
           href="#contact"
