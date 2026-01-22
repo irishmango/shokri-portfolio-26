@@ -45,40 +45,6 @@ export const projects: Project[] = [
     ],
     featured: true,
   },
-  {
-    id: "orbit",
-    title: "Orbit",
-    description: "Team coordination app that keeps distributed groups aligned without constant check-ins.",
-    bullets: [
-      "Defined shared task ownership model for multi-person accountability",
-      "Prioritized real-time sync to eliminate manual status updates",
-      "Scoped MVP to core coordination pain points",
-    ],
-    thumbnail: "/orbit_screenshot.webp",
-    tags: ["Side Project", "Mobile", "Flutter"],
-    category: "mobile",
-    links: [
-      { type: "demo", url: "#" },
-    ],
-    featured: true,
-  },
-  {
-    id: "moza",
-    title: "Moza",
-    description: "Music theory app that turns overwhelming content into daily 2-minute practice sessions.",
-    bullets: [
-      "Structured learning progression to prevent beginner overwhelm",
-      "Designed feedback loops that reinforce habit formation",
-      "Constrained scope to theory fundamentals for focused value",
-    ],
-    thumbnail: "/moza_screenshot.webp",
-    tags: ["Side Project", "Mobile", "Flutter"],
-    category: "mobile",
-    links: [
-      { type: "demo", url: "#" },
-    ],
-    featured: true,
-  },
   // Regular Projects
   {
     id: "jose-cortes",
@@ -143,6 +109,40 @@ export const projects: Project[] = [
     links: [
       { type: "live", url: "https://andrewgavintenor.com/" },
     ],
+  },
+  {
+    id: "orbit",
+    title: "Orbit",
+    description: "Team coordination app that keeps distributed groups aligned without constant check-ins.",
+    bullets: [
+      "Defined shared task ownership model for multi-person accountability",
+      "Prioritized real-time sync to eliminate manual status updates",
+      "Scoped MVP to core coordination pain points",
+    ],
+    thumbnail: "/orbit_screenshot.webp",
+    tags: ["Side Project", "Mobile", "Flutter"],
+    category: "mobile",
+    links: [
+      { type: "demo", url: "#" },
+    ],
+    featured: false,
+  },
+  {
+    id: "moza",
+    title: "Moza",
+    description: "Music theory app that turns overwhelming content into daily 2-minute practice sessions.",
+    bullets: [
+      "Structured learning progression to prevent beginner overwhelm",
+      "Designed feedback loops that reinforce habit formation",
+      "Constrained scope to theory fundamentals for focused value",
+    ],
+    thumbnail: "/moza_screenshot.webp",
+    tags: ["Side Project", "Mobile", "Flutter"],
+    category: "mobile",
+    links: [
+      { type: "demo", url: "#" },
+    ],
+    featured: false,
   },
   {
     id: "portfolio",
