@@ -40,7 +40,8 @@ export const projects: Project[] = [
     tags: ["Client", "Web App", "React"],
     category: "web-apps",
     links: [
-      { type: "case-study", url: "#" },
+      { type: "live", url: "https://www.docnotes.app/" },
+      { type: "case-study", url: "/case-studies/docnotes" },
     ],
     featured: true,
   },
@@ -92,7 +93,7 @@ export const projects: Project[] = [
     tags: ["Client", "Website"],
     category: "websites",
     links: [
-      { type: "live", url: "#" },
+      { type: "live", url: "https://www.josecortes.de/" },
     ],
   },
   {
@@ -108,7 +109,7 @@ export const projects: Project[] = [
     tags: ["Client", "Website"],
     category: "websites",
     links: [
-      { type: "live", url: "#" },
+      { type: "live", url: "https://www.anafonell.de/?lang=en" },
     ],
   },
   {
@@ -124,7 +125,7 @@ export const projects: Project[] = [
     tags: ["Client", "Website"],
     category: "websites",
     links: [
-      { type: "live", url: "#" },
+      { type: "live", url: "https://theansweringmachinefilm.com/" },
     ],
   },
   {
@@ -140,7 +141,7 @@ export const projects: Project[] = [
     tags: ["Client", "Website", "Webflow"],
     category: "websites",
     links: [
-      { type: "live", url: "#" },
+      { type: "live", url: "https://andrewgavintenor.com/" },
     ],
   },
   {
@@ -156,7 +157,7 @@ export const projects: Project[] = [
     tags: ["Personal", "Website", "Next.js"],
     category: "websites",
     links: [
-      { type: "github", url: "#" },
+      { type: "github", url: "https://github.com/irishmango/shokri-portfolio-26" },
     ],
   },
 ];
