@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import styles from "./page.module.css";
 import {
   Project,
@@ -64,7 +65,7 @@ function ProjectCard({ project, featured = false }: ProjectCardProps) {
                 rel="noopener noreferrer"
               >
                 {link.label || getLinkLabel(link.type)}
-                <span className={styles.linkIcon}>↗</span>
+                <Image src="/arrow_open.svg" alt="" width={12} height={12} className={styles.linkIcon} />
               </a>
             ))}
           </div>

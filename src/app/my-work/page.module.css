@@ -283,6 +283,7 @@
   font-size: 0.75rem;
   opacity: 0.7;
   transition: transform 0.2s ease;
+  filter: brightness(0) invert(1);
 }
 
 .link:hover .linkIcon {
