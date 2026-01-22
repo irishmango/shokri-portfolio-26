@@ -15,6 +15,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState("profile");
   const [language, setLanguage] = useState<"en" | "de">("en");
   const [viewport, setViewport] = useState({ width: 0, height: 0 });
+  const [selectedCaseStudy, setSelectedCaseStudy] = useState<string | null>(null);
 
   useEffect(() => {
     const updateViewport = () => {
@@ -32,7 +33,12 @@ export default function Home() {
       case "profile":
         return <div className={styles.profile}>{t.profile.content}</div>;
       case "casestudies":
-        return <CaseStudiesPage />;
+        return (
+          <CaseStudiesPage
+            selectedStudy={selectedCaseStudy}
+            onStudySelect={setSelectedCaseStudy}
+          />
+        );
       case "cv":
         return <div className={styles.cvSection}>CV content goes here.</div>;
       case "contact":
@@ -42,7 +48,7 @@ export default function Home() {
     }
   };
 
-  const isCompact = activeSection === "cv";
+  const isCompact = activeSection === "cv" || selectedCaseStudy !== null;
 
   return (
     <main className={styles.main}>
@@ -62,28 +68,28 @@ export default function Home() {
         <a
           href="#profile"
           className={`${styles.navItem} ${activeSection === "profile" ? styles.navItemActive : ""}`}
-          onClick={() => setActiveSection("profile")}
+          onClick={() => { setActiveSection("profile"); setSelectedCaseStudy(null); }}
         >
           PROFILE
         </a>
         <a
           href="#casestudies"
           className={`${styles.navItem} ${activeSection === "casestudies" ? styles.navItemActive : ""}`}
-          onClick={() => setActiveSection("casestudies")}
+          onClick={() => { setActiveSection("casestudies"); setSelectedCaseStudy(null); }}
         >
           CASE STUDIES
         </a>
         <a
           href="#cv"
           className={`${styles.navItem} ${activeSection === "cv" ? styles.navItemActive : ""}`}
-          onClick={() => setActiveSection("cv")}
+          onClick={() => { setActiveSection("cv"); setSelectedCaseStudy(null); }}
         >
           CV
         </a>
         <a
           href="#contact"
           className={`${styles.navItem} ${activeSection === "contact" ? styles.navItemActive : ""}`}
-          onClick={() => setActiveSection("contact")}
+          onClick={() => { setActiveSection("contact"); setSelectedCaseStudy(null); }}
         >
           CONTACT
         </a>
