@@ -44,18 +44,18 @@ const caseStudies: CaseStudy[] = [
     previewDescription: "Revolutionizing clinical workflows with AI-powered documentation that saves physicians hours of administrative work daily.",
   },
   {
-    id: "arfin",
-    name: "Arfin",
-    subtitle: "Financial analytics platform",
-    icon: <ArfinIcon />,
-    previewDescription: "A comprehensive financial analytics platform providing real-time insights and data visualization for informed decision-making.",
-  },
-  {
     id: "medcred",
     name: "MedCred",
     subtitle: "Medical credentialing",
     icon: <MedCredIcon />,
     previewDescription: "Streamlining medical credentialing with a secure, efficient platform that reduces verification time by 60%.",
+  },
+  {
+    id: "arfin",
+    name: "Arfin",
+    subtitle: "Financial analytics platform",
+    icon: <ArfinIcon />,
+    previewDescription: "A comprehensive financial analytics platform providing real-time insights and data visualization for informed decision-making.",
   },
 ];
 
