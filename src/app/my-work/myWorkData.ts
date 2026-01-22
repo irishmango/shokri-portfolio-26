@@ -54,7 +54,7 @@ export const projects: Project[] = [
       "Prioritized real-time sync to eliminate manual status updates",
       "Scoped MVP to core coordination pain points",
     ],
-    thumbnail: "/images/projects/orbit.jpg",
+    thumbnail: "/orbit_screenshot.webp",
     tags: ["Side Project", "Mobile", "Flutter"],
     category: "mobile",
     links: [
@@ -71,7 +71,7 @@ export const projects: Project[] = [
       "Designed feedback loops that reinforce habit formation",
       "Constrained scope to theory fundamentals for focused value",
     ],
-    thumbnail: "/images/projects/moza.jpg",
+    thumbnail: "/moza_screenshot.webp",
     tags: ["Side Project", "Mobile", "Flutter"],
     category: "mobile",
     links: [
