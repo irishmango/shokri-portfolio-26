@@ -12,6 +12,7 @@
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -121,11 +122,11 @@
   overflow: hidden;
 }
 
-.projectCard:hover {
+/* .projectCard:hover {
   border-color: rgba(255, 255, 255, 0.35);
   background: rgba(255, 255, 255, 0.05);
   transform: translateY(-2px);
-}
+} */
 
 .projectCard:focus-within {
   border-color: rgba(255, 255, 255, 0.4);
@@ -145,6 +146,7 @@
 }
 
 .thumbnail {
+  position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
   background: rgba(255, 255, 255, 0.04);

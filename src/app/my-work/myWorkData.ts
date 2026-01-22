@@ -36,7 +36,7 @@ export const projects: Project[] = [
       "Designed audit trail that satisfied healthcare compliance without adding friction",
       "Balanced clinician speed with regulatory requirements",
     ],
-    thumbnail: "/images/projects/docnotes.jpg",
+    thumbnail: "/docnotes_screenshot.webp",
     tags: ["Client", "Web App", "React"],
     category: "web-apps",
     links: [
@@ -89,7 +89,7 @@ export const projects: Project[] = [
       "Optimized for mobile—80% of traffic came from social links",
       "Simplified inquiry flow for theater programmers",
     ],
-    thumbnail: "/images/projects/jose-cortes.jpg",
+    thumbnail: "/jose_cortes_screenshot.webp",
     tags: ["Client", "Website"],
     category: "websites",
     links: [
@@ -105,7 +105,7 @@ export const projects: Project[] = [
       "Integrated press coverage and media to reinforce legitimacy",
       "Designed for emotional resonance over feature lists",
     ],
-    thumbnail: "/images/projects/ana-fonell.jpg",
+    thumbnail: "/ana_fonell_screenshot.webp",
     tags: ["Client", "Website"],
     category: "websites",
     links: [
@@ -113,7 +113,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "film-festival",
+    id: "answering-machine-film",
     title: "The Answering Machine – Feature Film",
     description: "Showcase site for an award-winning feature film, built to convey the film's tone and display festival accolades.",
     bullets: [
@@ -121,7 +121,7 @@ export const projects: Project[] = [
       "Prominent trailer playback with laurels showcasing 15+ festival awards",
       "Supported festival submission season with press kit and contact flow",
     ],
-    thumbnail: "/images/projects/film-festival.jpg",
+    thumbnail: "/answering_machine_screenshot.webp",
     tags: ["Client", "Website"],
     category: "websites",
     links: [
@@ -137,7 +137,7 @@ export const projects: Project[] = [
       "Built on Webflow for client self-management",
       "Designed inquiry flows for two distinct audiences",
     ],
-    thumbnail: "/images/projects/andrew-gavin.jpg",
+    thumbnail: "/andrew_gavin_screenshot.webp",
     tags: ["Client", "Website", "Webflow"],
     category: "websites",
     links: [
@@ -153,7 +153,7 @@ export const projects: Project[] = [
       "Separated case studies from shipped work for clarity",
       "Mobile-first layout for on-the-go review",
     ],
-    thumbnail: "/images/projects/portfolio.jpg",
+    thumbnail: "/portfolio_screenshot.webp",
     tags: ["Personal", "Website", "Next.js"],
     category: "websites",
     links: [

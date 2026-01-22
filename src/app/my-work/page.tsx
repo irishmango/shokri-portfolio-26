@@ -35,7 +35,16 @@ function ProjectCard({ project, featured = false }: ProjectCardProps) {
   return (
     <article className={featured ? styles.featuredCard : styles.projectCard}>
       <div className={styles.thumbnail}>
-        <span className={styles.thumbnailPlaceholder}>Thumbnail</span>
+        {project.thumbnail ? (
+          <Image
+            src={project.thumbnail}
+            alt={project.title}
+            fill
+            className={styles.thumbnailImage}
+          />
+        ) : (
+          <span className={styles.thumbnailPlaceholder}>Thumbnail</span>
+        )}
       </div>
       <div className={styles.cardContent}>
         <h3 className={styles.projectTitle}>{project.title}</h3>
