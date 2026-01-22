@@ -41,7 +41,7 @@ const skillCategories: SkillCategory[] = [
   },
   {
     label: "Tools & Platforms",
-    skills: ["Git/GitHub", "GitHub Copilot", "Clause Code", "n8n", "Figma", "VSCode"]
+    skills: ["Git/GitHub", "GitHub Copilot", "Claude Code", "n8n", "Figma", "VSCode"]
   }
 ];
 
