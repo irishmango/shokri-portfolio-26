@@ -26,7 +26,7 @@ function ProjectCard({ project, featured = false }: ProjectCardProps) {
       case "case-study":
         return "Read Case Study";
       case "github":
-        return "Source";
+        return "Github Repo";
       default:
         return type;
     }
@@ -94,9 +94,8 @@ export default function MyWork() {
         {categories.map((category) => (
           <button
             key={category.id}
-            className={`${styles.filterButton} ${
-              activeFilter === category.id ? styles.filterButtonActive : ""
-            }`}
+            className={`${styles.filterButton} ${activeFilter === category.id ? styles.filterButtonActive : ""
+              }`}
             onClick={() => setActiveFilter(category.id)}
             aria-pressed={activeFilter === category.id}
           >
