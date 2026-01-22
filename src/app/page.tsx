@@ -5,7 +5,7 @@ import styles from "./page.module.css";
 import en from "../locales/en.json";
 import de from "../locales/de.json";
 import CaseStudiesPage from "./case-studies/page";
-import { ContactSection } from "../components/contact";
+import ContactPage from "./contact/page";
 
 type Translations = typeof en;
 
@@ -36,7 +36,7 @@ export default function Home() {
       case "cv":
         return <div className={styles.cvSection}>CV content goes here.</div>;
       case "contact":
-        return <ContactSection />;
+        return <ContactPage />;
       default:
         return null;
     }
