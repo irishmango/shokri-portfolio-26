@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./page.module.css";
 import en from "../locales/en.json";
 import de from "../locales/de.json";
@@ -15,18 +15,8 @@ const translations: Record<"en" | "de", Translations> = { en, de };
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("profile");
-  const [language, setLanguage] = useState<"en" | "de">("en");
-  const [viewport, setViewport] = useState({ width: 0, height: 0 });
+  const [language] = useState<"en" | "de">("en");
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<string | null>(null);
-
-  useEffect(() => {
-    const updateViewport = () => {
-      setViewport({ width: window.innerWidth, height: window.innerHeight });
-    };
-    updateViewport();
-    window.addEventListener("resize", updateViewport);
-    return () => window.removeEventListener("resize", updateViewport);
-  }, []);
 
   const t = translations[language];
 
@@ -112,10 +102,6 @@ export default function Home() {
       </nav>
 
       <section className={styles.content}>{renderContent()}</section>
-
-      <div className={styles.viewportDebug}>
-        {viewport.width} x {viewport.height}
-      </div>
     </main>
   );
 }
