@@ -19,6 +19,7 @@ interface ProjectCardProps {
 function ProjectCard({ project, featured = false }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -30,6 +31,11 @@ function ProjectCard({ project, featured = false }: ProjectCardProps) {
     };
 
     mediaQuery.addEventListener("change", handleChange);
+
+    // Detect touch device
+    const touchQuery = window.matchMedia("(hover: none), (pointer: coarse)");
+    setIsTouchDevice(touchQuery.matches);
+
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
@@ -49,6 +55,7 @@ function ProjectCard({ project, featured = false }: ProjectCardProps) {
   };
 
   const handleMouseEnter = () => {
+    if (isTouchDevice) return;
     setIsHovered(true);
     if (videoRef.current && !prefersReducedMotion) {
       videoRef.current.play();
@@ -56,6 +63,7 @@ function ProjectCard({ project, featured = false }: ProjectCardProps) {
   };
 
   const handleMouseLeave = () => {
+    if (isTouchDevice) return;
     setIsHovered(false);
     if (videoRef.current && !prefersReducedMotion) {
       videoRef.current.pause();

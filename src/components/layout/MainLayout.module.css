@@ -12,6 +12,7 @@
 }
 
 .headerContainer {
+  position: relative;
   display: flex;
   width: 100%;
   min-height: 35vh;
@@ -71,6 +72,156 @@
   background-size: cover;
   background-position: center;
   border-left: 1px solid var(--foreground);
+}
+
+/* Secret button */
+.secretButton {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  background: transparent;
+  border: 1px solid var(--foreground);
+  color: var(--foreground);
+  cursor: pointer;
+  opacity: 0.4;
+  transition: opacity 0.2s, background 0.2s, color 0.2s;
+  z-index: 100;
+}
+
+.secretButton:hover {
+  opacity: 1;
+  background: var(--foreground);
+  color: var(--background);
+}
+
+/* Recruiter Modal */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal {
+  position: relative;
+  background: var(--background);
+  border: 1px solid var(--foreground);
+  padding: 2.5rem 3rem;
+  max-width: 400px;
+  width: 90%;
+  animation: slideUp 0.3s ease-out;
+}
+
+.modalClose {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--foreground);
+  font-size: 1.75rem;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  line-height: 1;
+}
+
+.modalClose:hover {
+  opacity: 1;
+}
+
+.modalTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+  color: var(--foreground);
+}
+
+.modalLabel {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  margin-bottom: 0.75rem;
+}
+
+.modalList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.modalList li {
+  font-size: 0.95rem;
+  padding: 0.4rem 0;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.modalList li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  opacity: 0.5;
+}
+
+.modalFooter {
+  font-size: 0.8rem;
+  opacity: 0.5;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+.modalContactButton {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  background: var(--foreground);
+  color: var(--background);
+  border: 1px solid var(--foreground);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.modalContactButton:hover {
+  background: transparent;
+  color: var(--foreground);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* nav */
@@ -174,6 +325,7 @@
     border-right: none;
     border-bottom: none;
   }
+
 }
 
 @media (max-width: 520px) {
@@ -200,5 +352,41 @@
 
   .navLabelShort {
     display: inline;
+  }
+
+  .content {
+    padding-bottom: 5rem;
+  }
+
+  .secretButton {
+    background: #ffffff !important;
+    color: #000000 !important;
+    opacity: 1;
+    padding: 0.8rem 1rem;
+  }
+
+  /* Disable all hover effects on mobile */
+  .secretButton:hover {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .navItem:hover {
+    background: transparent;
+    color: var(--foreground);
+  }
+
+  .navItemActive:hover {
+    background: var(--foreground);
+    color: var(--background);
+  }
+
+  .modalClose:hover {
+    opacity: 0.5;
+  }
+
+  .modalContactButton:hover {
+    background: var(--foreground);
+    color: var(--background);
   }
 }
