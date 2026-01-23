@@ -16,8 +16,7 @@ export default function DemoPage() {
     return (
       <div className={styles.demoPage}>
         <Link href="/my-work" className={styles.backButton}>
-          <Image src="/arrow_open.svg" alt="" width={12} height={12} className={styles.backIcon} />
-          Back to My Work
+          ← Back to My Work
         </Link>
         <div className={styles.notFound}>
           <h1>Demo not found</h1>
@@ -32,8 +31,7 @@ export default function DemoPage() {
   return (
     <div className={styles.demoPage}>
       <Link href="/my-work" className={styles.backButton}>
-        <Image src="/arrow_left.svg" alt="" width={12} height={12} className={styles.backIcon} />
-        Back to My Work
+        ← Back to My Work
       </Link>
 
       <header className={styles.header}>

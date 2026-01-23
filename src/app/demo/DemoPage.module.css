@@ -22,11 +22,6 @@
   opacity: 1;
 }
 
-.backIcon {
-  opacity: 0.7;
-  filter: invert(1);
-}
-
 .header {
   margin-bottom: 2rem;
   text-align: center;
