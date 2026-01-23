@@ -179,7 +179,7 @@ export const projects: Project[] = [
   {
     id: "moza",
     title: "Moza",
-    description: "Music theory app that turns overwhelming content into daily 2-minute practice sessions.",
+    description: "Music theory app that helps music students learn music theory.",
     bullets: [
       "Structured learning progression to prevent beginner overwhelm",
       "Designed feedback loops that reinforce habit formation",
