@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
 import {
@@ -18,7 +18,20 @@ interface ProjectCardProps {
 
 function ProjectCard({ project, featured = false }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleChange = (event: MediaQueryListEvent) => {
+      setPrefersReducedMotion(event.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
 
   const getLinkLabel = (type: string): string => {
     switch (type) {
@@ -37,26 +50,26 @@ function ProjectCard({ project, featured = false }: ProjectCardProps) {
 
   const handleMouseEnter = () => {
     setIsHovered(true);
-    if (videoRef.current) {
+    if (videoRef.current && !prefersReducedMotion) {
       videoRef.current.play();
     }
   };
 
   const handleMouseLeave = () => {
     setIsHovered(false);
-    if (videoRef.current) {
+    if (videoRef.current && !prefersReducedMotion) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
     }
   };
 
   return (
-    <article className={featured ? styles.featuredCard : styles.projectCard}>
-      <div
-        className={styles.thumbnail}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+    <article
+      className={featured ? styles.featuredCard : styles.projectCard}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div className={styles.thumbnail}>
         {project.thumbnail ? (
           <Image
             src={project.thumbnail}
@@ -67,7 +80,7 @@ function ProjectCard({ project, featured = false }: ProjectCardProps) {
         ) : (
           <span className={styles.thumbnailPlaceholder}>Thumbnail</span>
         )}
-        {project.demoVideo && (
+        {project.demoVideo && !prefersReducedMotion && (
           <video
             ref={videoRef}
             src={project.demoVideo}
@@ -75,6 +88,7 @@ function ProjectCard({ project, featured = false }: ProjectCardProps) {
             muted
             loop
             playsInline
+            preload="metadata"
           />
         )}
       </div>

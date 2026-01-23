@@ -75,7 +75,7 @@ export const caseStudyContent: Record<string, CaseStudyData> = {
     context: "Healthcare-adjacent, EU-focused",
     users: "Solo clinicians",
     status: "Beta / pilot",
-    platform: "Web",
+    platform: "Web-based Healthcare SaaS",
     sections: [
       {
         title: "Problem & Context",
@@ -476,6 +476,7 @@ export const caseStudyContent: Record<string, CaseStudyData> = {
       {
         title: "Technical Context",
         content: "This section provides high-level technical context for readers interested in how the product was implemented. It is included for completeness and is not required to understand the product decisions above.",
+        subsection: "Application Characteristics",
         bullets: [
           "Web-based application with authenticated, user-scoped workspaces",
           "Explicit separation of draft, approved, and amended document states",
@@ -483,11 +484,10 @@ export const caseStudyContent: Record<string, CaseStudyData> = {
           "Application-level protection of sensitive patient identifiers before persistence, designed to reduce accidental exposure through logs or operational tooling",
           "Security and operational logging for authentication events, access attempts, AI generation requests, approvals, and exports",
           "Data stored and processed within the EU"
-        ],
-        subsection: "Stack (for context):"
+        ]
       }
     ],
-    technologies: ["TypeScript", "React", "Server-side APIs", "Relational Database", "Third-party AI Services"]
+    technologies: ["React", "Next.js", "TypeScript", "Prisma", "PostgreSQL", "Redis", "Auth.js", "OpenAI API", "Resend", "Vitest"]
   },
   arfin: {
     title: "Arfin",
@@ -508,7 +508,7 @@ export const caseStudyContent: Record<string, CaseStudyData> = {
     duration: "2 years",
     context: "Regulated healthcare environments with multiple non-technical stakeholders (hospital staff, vendors, external representatives)",
     status: "Early-stage startup",
-    platform: "Healthcare SaaS",
+    platform: "Web-based Healthcare SaaS",
     sections: [
       {
         title: "Context & Problem",
@@ -687,9 +687,32 @@ export const caseStudyContent: Record<string, CaseStudyData> = {
         content: "This role reinforced my interest in product work that sits close to real users, real constraints, and real delivery trade-offs—particularly in regulated or high-trust environments.",
         note: "Operating in a fast-moving healthcare startup required comfort with ambiguity, strong judgment under pressure, and the ability to bridge technical and non-technical perspectives without relying on formal process or authority. Over time, this shaped how I approach product and operational responsibilities: prioritizing clarity over assumptions, credibility over speed, and delivery readiness over theoretical completeness.",
         closingNote: "The experience also confirmed the value of Product Owner and Technical Product Operations roles, where success depends on translating customer reality into well-scoped, actionable work and ensuring that engineering effort aligns with what can be responsibly delivered. These lessons continue to inform how I work today—especially when protecting product trust, managing scope in ambiguous environments, and designing workflows that connect customer needs with engineering execution."
+      },
+      {
+        title: "Technical Context",
+        content: "MedCred was implemented as a full-stack, web-based healthcare SaaS platform, designed to support multiple user roles and operate reliably in regulated environments.",
+        principles: [
+          {
+            name: "Backend",
+            description: "Node.js with Express.js (REST-based web application), MongoDB with Mongoose (document database), and Passport.js (local authentication strategy)."
+          },
+          {
+            name: "Frontend",
+            description: "EJS (server-side templating), jQuery (DOM manipulation and interaction handling), Bootstrap and Material Design for Bootstrap (MDB), and SCSS / Sass for styling."
+          },
+          {
+            name: "Key Integrations",
+            description: "AWS S3 for file storage (credentials, avatars), Stripe for payment processing, Nodemailer for transactional email notifications, and Chart.js and DataTables for reporting and data visualization."
+          },
+          {
+            name: "Architecture & Deployment",
+            description: "Role-based access model supporting three user types: Cardholder (primary users managing credentials and dashboards), Hospital (healthcare providers managing visitor access and zones), and Admin (system and platform management). Environment-based configuration with MongoDB, deployed via Heroku."
+          }
+        ],
+        closingNote: "This technical context informed many of the product and operational decisions described above, particularly around demo readiness, scope validation, integrations, and onboarding workflows."
       }
     ],
-    technologies: []
+    technologies: ["Node.js", "Express.js", "MongoDB", "Mongoose", "Passport.js", "EJS", "jQuery", "Bootstrap", "MDB", "SCSS", "AWS S3", "Stripe", "Nodemailer", "Chart.js", "DataTables", "Heroku"]
   }
 };
 

@@ -38,6 +38,7 @@ export const projects: Project[] = [
       "Balanced clinician speed with regulatory requirements",
     ],
     thumbnail: "/docnotes_screenshot.webp",
+    demoVideo: "/doc_notes_marketing_recording.mp4",
     tags: ["Client", "Web App", "React"],
     category: "web-apps",
     links: [
@@ -57,6 +58,7 @@ export const projects: Project[] = [
       "Simplified inquiry flow for theater programmers",
     ],
     thumbnail: "/jose_cortes_screenshot.webp",
+    demoVideo: "/jose_screen_recording.mp4",
     tags: ["Client", "Website"],
     category: "websites",
     links: [
@@ -73,6 +75,7 @@ export const projects: Project[] = [
       "Designed for emotional resonance over feature lists",
     ],
     thumbnail: "/ana_fonell_screenshot.webp",
+    demoVideo: "/ana_screen_recording.mp4",
     tags: ["Client", "Website"],
     category: "websites",
     links: [
@@ -89,6 +92,7 @@ export const projects: Project[] = [
       "Supported festival submission season with press kit and contact flow",
     ],
     thumbnail: "/answering_machine_screenshot.webp",
+    demoVideo: "/answering_machine_screen_recording.mp4",
     tags: ["Client", "Website"],
     category: "websites",
     links: [
@@ -105,6 +109,7 @@ export const projects: Project[] = [
       "Designed inquiry flows for two distinct audiences",
     ],
     thumbnail: "/andrew_gavin_screenshot.webp",
+    demoVideo: "/andrew_gavin_screen_recording.mp4",
     tags: ["Client", "Website", "Webflow"],
     category: "websites",
     links: [
