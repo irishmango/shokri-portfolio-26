@@ -6,6 +6,13 @@ export interface ProjectLink {
   label?: string;
 }
 
+export interface ProjectMeta {
+  subtitle?: string;
+  tools?: string[];
+  highlights?: string[];
+  lessons?: string[];
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -13,6 +20,8 @@ export interface Project {
   bullets: string[];
   thumbnail: string;
   demoVideo?: string; // Optional video that autoplays on hover
+  demoUrl?: string; // URL for iframe demo embed
+  meta?: ProjectMeta; // Extended metadata for demo page
   tags: string[];
   category: Exclude<ProjectCategory, "all">;
   links: ProjectLink[];
@@ -126,10 +135,44 @@ export const projects: Project[] = [
       "Scoped MVP to core coordination pain points",
     ],
     thumbnail: "/orbit_screenshot.webp",
+    demoUrl: "https://my-task-manager-app-2dcaa.web.app",
+    meta: {
+      subtitle: "Portfolio project",
+      tools: [
+        "Flutter", "Dart", "Firebase", "Firestore", "Google Auth",
+        "Provider", "State Management", "Responsive Design",
+        "Custom Widgets", "REST APIs", "JSON Serialization",
+        "Asset Management",
+      ],
+      highlights: [
+        "Centralized theming with custom theme.dart for colors, text, and decorations",
+        "Modular architecture: features, domain, presentation, shared",
+        "Authentication: Email/password, Google & anonymous sign-in via Firebase",
+        "Project, task, and collaboration management with Firestore backend",
+        "Dynamic dashboards with progress tracking and grid/list UIs",
+        "Reusable custom widgets (cards, buttons, avatars, etc.)",
+        "Profile system with settings, FAQ, and account management",
+        "Adaptive layouts for mobile and web",
+        "Navigation with custom AppBars, FABs, and bottom navigation",
+        "Chat feature with real-time messaging UI",
+      ],
+      lessons: [
+        "Designing scalable folder structure for large Flutter apps",
+        "Integrating Firebase Auth and Firestore with custom repositories",
+        "Building responsive UIs and adaptive layouts",
+        "Managing state and navigation in complex flows",
+        "Creating and testing custom widgets for maintainability",
+        "Handling async data, error states, and loading indicators",
+        "Organizing assets and localization for production apps",
+        "Implementing modular, testable code with clear separation of concerns",
+        "Debugging Dart/Flutter import and analysis issues",
+      ],
+    },
     tags: ["Side Project", "Mobile", "Flutter"],
     category: "mobile",
     links: [
-      { type: "demo", url: "#" },
+      { type: "demo", url: "/demo/orbit" },
+      { type: "github", url: "https://github.com/irishmango/orbit-portfolio" },
     ],
     featured: false,
   },
@@ -143,10 +186,41 @@ export const projects: Project[] = [
       "Constrained scope to theory fundamentals for focused value",
     ],
     thumbnail: "/moza_screenshot.webp",
+    demoUrl: "https://moza-972f4.web.app/",
+    meta: {
+      subtitle: "Portfolio project",
+      tools: [
+        "Flutter", "Dart", "Firebase", "Google Auth",
+        "Provider / State Management",
+        "Responsive Design", "Custom Widgets",
+        "Platform Channels", "REST APIs",
+        "JSON Serialization", "Asset Management",
+      ],
+      highlights: [
+        "Modular architecture: features, domain, presentation, shared",
+        "Authentication: Email/password & Google sign-in via Firebase",
+        "Dynamic dashboard with progress tracking and XP system",
+        "Interactive quizzes, lessons, and chapters with custom UI",
+        "Profile system with avatars and badges",
+        "Theming and adaptive layouts for mobile and web",
+        "Reusable custom widgets (cards, progress bars, toggles)",
+        "Asset management for images, icons, backgrounds",
+      ],
+      lessons: [
+        "Scalable folder structure for large Flutter apps",
+        "Integrating Firebase Auth and Firestore with custom repos",
+        "Building responsive UIs for multiple platforms",
+        "Managing state and navigation in complex flows",
+        "Creating and testing custom widgets for maintainability",
+        "Handling async data and error states gracefully",
+        "Organizing assets and localization for production apps",
+      ],
+    },
     tags: ["Side Project", "Mobile", "Flutter"],
     category: "mobile",
     links: [
-      { type: "demo", url: "#" },
+      { type: "demo", url: "/demo/moza" },
+      { type: "github", url: "https://github.com/irishmango/moza-portfolio" },
     ],
     featured: false,
   },

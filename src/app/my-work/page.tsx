@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
 import {
   Project,
@@ -119,18 +120,31 @@ function ProjectCard({ project, featured = false }: ProjectCardProps) {
         </div>
         {project.links.length > 0 && (
           <div className={styles.links}>
-            {project.links.map((link) => (
-              <a
-                key={link.type}
-                href={link.url}
-                className={styles.link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {link.label || getLinkLabel(link.type)}
-                <Image src="/arrow_open.svg" alt="" width={12} height={12} className={styles.linkIcon} />
-              </a>
-            ))}
+            {project.links.map((link) => {
+              const isInternal = link.type === "demo" || link.type === "case-study";
+              const linkContent = (
+                <>
+                  {link.label || getLinkLabel(link.type)}
+                  <Image src="/arrow_open.svg" alt="" width={12} height={12} className={styles.linkIcon} />
+                </>
+              );
+
+              return isInternal ? (
+                <Link key={link.type} href={link.url} className={styles.link}>
+                  {linkContent}
+                </Link>
+              ) : (
+                <a
+                  key={link.type}
+                  href={link.url}
+                  className={styles.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {linkContent}
+                </a>
+              );
+            })}
           </div>
         )}
       </div>

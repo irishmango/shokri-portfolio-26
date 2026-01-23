@@ -138,6 +138,22 @@
   margin-bottom: 0;
 }
 
+.caseStudyLink {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--foreground);
+  opacity: 0.8;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.caseStudyLink:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
 /* Education */
 .educationList {
   display: flex;

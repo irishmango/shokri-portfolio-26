@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import styles from "./CVPage.module.css";
 
 interface SkillCategory {
@@ -12,6 +13,7 @@ interface WorkExperience {
   company: string;
   duration: string;
   bullets: string[];
+  caseStudyLink?: string;
 }
 
 interface Education {
@@ -47,11 +49,25 @@ const skillCategories: SkillCategory[] = [
 
 const workExperience: WorkExperience[] = [
   {
+    title: "Technical Product Owner / Developer",
+    company: "DocNotes - Healthcare Documentation SaaS (In Beta)",
+    duration: "July 2025 – Present",
+    bullets: [
+      "Own the end-to-end product definition and delivery of DocNotes, a clinical documentation workspace currently in private beta with GPs and doctors across Ireland.",
+      "Defined product scope and guardrails to support AI-assisted clinical documentation without introducing diagnostic, regulatory, or patient-safety risk.",
+      "Worked directly with clinicians to understand real documentation workflows, constraints, and failure modes, shaping features around review, approval, and auditability.",
+      "Designed human-in-the-loop AI workflows where clinicians retain full control over drafting, approval, and amendments.",
+      "Made deliberate trade-offs to prioritize auditability, data minimization, and GDPR-aligned behavior over feature breadth or automation.",
+      "Own ongoing iteration based on clinician feedback during beta testing, balancing usability improvements with compliance and safety considerations."
+    ],
+    caseStudyLink: "/case-studies/docnotes"
+  },
+  {
     title: "Freelance Web Developer",
     company: "Software Development Projects",
     duration: "Dec 2024 – Present",
     bullets: [
-      "Designed and built portfolio websites for clients using HTML, CSS, JavaScript, and Webflow.",
+      "Designed and built portfolio websites for clients using HTML, CSS, JavaScript, React and Webflow.",
       "Focused on clean, accessible design and user-centered interfaces for creative professionals.",
       "Built full-stack applications with React, Node.js, Dart, Flutter Firebase, integrating auth, REST APIs, and real-time databases.",
       "Designed reusable UI components and responsive interfaces, applying UX best practices."
@@ -59,13 +75,17 @@ const workExperience: WorkExperience[] = [
   },
   {
     title: "Product Specialist",
-    company: "MedCred Ireland",
+    company: "MedCred",
     duration: "Jan 2022 – Jan 2024",
     bullets: [
-      "Served as the primary point of contact for potential buyers, delivering engaging presentations and product demonstrations that highlighted both the frontend and backend features of the MedCred platform.",
-      "Translated technical details into clear, accessible explanations for non-technical audiences, supporting customer understanding and sales conversion.",
-      "Provided feedback from clients and prospects to the product team, contributing to continuous product improvement."
-    ]
+      "Acted as the primary interface between prospective customers and the product team, owning product demonstrations and early discovery conversations.",
+      "Presented the MedCred platform end-to-end, explaining both frontend workflows and backend system behavior to technical and non-technical stakeholders.",
+      "Translated complex technical and compliance-related concepts into clear, decision-relevant explanations for clinicians, hospital staff, and buyers.",
+      "Collected structured feedback from sales conversations and demos, feeding insights back into the product team to inform prioritization and iteration.",
+      "Helped shape product positioning by identifying recurring objections, misunderstandings, and unmet needs during customer interactions.",
+      "Built a strong working understanding of a healthcare SaaS platform operating in regulated, high-trust environments."
+    ],
+    caseStudyLink: "/case-studies/medcred"
   },
   {
     title: "Library Assistant",
@@ -192,6 +212,11 @@ export default function CVPage() {
                   <li key={bulletIndex}>{bullet}</li>
                 ))}
               </ul>
+              {job.caseStudyLink && (
+                <Link href={job.caseStudyLink} className={styles.caseStudyLink}>
+                  View Case Study →
+                </Link>
+              )}
             </div>
           ))}
         </div>
