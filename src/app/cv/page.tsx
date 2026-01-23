@@ -74,16 +74,17 @@ const workExperience: WorkExperience[] = [
     ]
   },
   {
-    title: "Product Specialist",
+    title: "Product Specialist (Technical & Product Operations)",
     company: "MedCred",
     duration: "Jan 2022 – Jan 2024",
     bullets: [
-      "Acted as the primary interface between prospective customers and the product team, owning product demonstrations and early discovery conversations.",
-      "Presented the MedCred platform end-to-end, explaining both frontend workflows and backend system behavior to technical and non-technical stakeholders.",
-      "Translated complex technical and compliance-related concepts into clear, decision-relevant explanations for clinicians, hospital staff, and buyers.",
-      "Collected structured feedback from sales conversations and demos, feeding insights back into the product team to inform prioritization and iteration.",
-      "Helped shape product positioning by identifying recurring objections, misunderstandings, and unmet needs during customer interactions.",
-      "Built a strong working understanding of a healthcare SaaS platform operating in regulated, high-trust environments."
+      "Served as the primary interface between customers, sales, and the product team for a healthcare SaaS platform in regulated clinical environments.",
+      "Owned technical product demonstrations and onboarding support, requiring a working understanding of authentication, user roles, and system behavior.",
+      "Supported day-to-day product operations, including account setup, access issues, and cross-role workflow troubleshooting.",
+      "Triaged incoming product issues, feature requests, and edge cases, translating them into clear, reproducible tickets for the engineering team.",
+      "Created and maintained tickets with sufficient technical context, reproduction steps, and expected behavior to support efficient delivery.",
+      "Collaborated with product and engineering to surface recurring issues and help inform prioritization decisions.",
+      "Acted as a feedback loop between real-world usage and product delivery, identifying usability gaps and operational risks through hands-on exposure."
     ],
     caseStudyLink: "/case-studies/medcred"
   },
@@ -95,6 +96,17 @@ const workExperience: WorkExperience[] = [
       "Helped manage day-to-day operations, including cataloging, shelving, and circulation tasks.",
       "Cataloguing and cleaning the digital database using WINIBW, ensuring consistency across records.",
       "Took on leadership responsibilities in the absence of the head librarian, overseeing workflow distribution and ensuring continuity of operations."
+    ]
+  },
+  {
+    title: "Opera Singer & Music Studies",
+    company: "Professional Training & Performance",
+    duration: "2017 – 2022",
+    bullets: [
+      "Undertook advanced vocal training and academic study as an opera singer while working professionally in performance-based roles.",
+      "Performed in structured, high-pressure environments requiring sustained preparation, precision, and public delivery.",
+      "Developed strong communication, presentation, and interpretive skills through regular rehearsals and live performance.",
+      "Balanced long-term training commitments with part-time professional work alongside studies."
     ]
   },
   {
@@ -125,8 +137,6 @@ const education: Education[] = [
     duration: "Oct 2024 – Aug 2025",
     bullets: [
       "Earned Certified Flutter Developer status, specializing in Dart & Flutter for mobile and web apps.",
-      "Built full-stack apps with Firebase (Auth & Firestore), REST APIs, and state management (Provider).",
-      "Designed responsive UIs and custom reusable widgets, applying scalable folder structures."
     ]
   },
   {
