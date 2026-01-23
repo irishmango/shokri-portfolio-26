@@ -12,6 +12,7 @@ export interface Project {
   description: string;
   bullets: string[];
   thumbnail: string;
+  demoVideo?: string; // Optional video that autoplays on hover
   tags: string[];
   category: Exclude<ProjectCategory, "all">;
   links: ProjectLink[];

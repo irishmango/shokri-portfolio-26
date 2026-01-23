@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
 import {
@@ -17,6 +17,9 @@ interface ProjectCardProps {
 }
 
 function ProjectCard({ project, featured = false }: ProjectCardProps) {
+  const [isHovered, setIsHovered] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
   const getLinkLabel = (type: string): string => {
     switch (type) {
       case "live":
@@ -32,18 +35,47 @@ function ProjectCard({ project, featured = false }: ProjectCardProps) {
     }
   };
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
+
   return (
     <article className={featured ? styles.featuredCard : styles.projectCard}>
-      <div className={styles.thumbnail}>
+      <div
+        className={styles.thumbnail}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         {project.thumbnail ? (
           <Image
             src={project.thumbnail}
             alt={project.title}
             fill
-            className={styles.thumbnailImage}
+            className={`${styles.thumbnailImage} ${isHovered && project.demoVideo ? styles.thumbnailHidden : ""}`}
           />
         ) : (
           <span className={styles.thumbnailPlaceholder}>Thumbnail</span>
+        )}
+        {project.demoVideo && (
+          <video
+            ref={videoRef}
+            src={project.demoVideo}
+            className={`${styles.thumbnailVideo} ${isHovered ? styles.thumbnailVideoVisible : ""}`}
+            muted
+            loop
+            playsInline
+          />
         )}
       </div>
       <div className={styles.cardContent}>
