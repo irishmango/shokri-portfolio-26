@@ -74,10 +74,13 @@ const workExperience: WorkExperience[] = [
     ]
   },
   {
-    title: "Product Specialist (Technical & Product Operations)",
+    title: "Junior Full Stack Developer → Product Specialist(Technical and Product Operations)",
     company: "MedCred",
     duration: "Jan 2022 – Jan 2024",
     bullets: [
+      "Contributed to front-end development for the healthcare SaaS platform during the first year.",
+      "Built and connected API routes to support product functionality and data flow.",
+      "Worked with MongoDB backend for data integration and persistence.",
       "Operated in a fast-moving startup environment, balancing customer-facing demos with iterative delivery and frequent scope changes.",
       "Served as the primary interface between customers, sales, and the product team for a healthcare SaaS platform in regulated clinical environments.",
       "Owned technical product demonstrations and onboarding support, requiring a working understanding of authentication, user roles, and system behavior.",
