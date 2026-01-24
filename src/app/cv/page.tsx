@@ -147,7 +147,7 @@ const education: Education[] = [
     degree: "Bachelor of Science - Nanoscience",
     institution: "Trinity College, Dublin, Ireland",
     duration: "Sept 2010 – July 2013",
-    grade: "2,0",
+    // grade: "2,0",
     bullets: [
       "Interdisciplinary degree covering physics, chemistry, and materials science.",
       "Gained early experience with Python for data analysis and experimental automation."
