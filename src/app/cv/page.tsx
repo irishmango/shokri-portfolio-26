@@ -157,13 +157,13 @@ const education: Education[] = [
     degree: "Master of Music",
     institution: "Hochschule für Musik \"Hanns Eisler\", Berlin",
     duration: "Sept 2019 – Jul 2022",
-    grade: "1,3"
+    // grade: "1,3"
   },
   {
     degree: "Bachelor of Music",
     institution: "Hochschule für Musik \"Hanns Eisler\", Berlin",
     duration: "Sept 2015 – Jul 2019",
-    grade: "1,3"
+    // grade: "1,3"
   }
 ];
 
