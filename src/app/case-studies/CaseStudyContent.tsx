@@ -300,22 +300,26 @@ export default function CaseStudyContent({ studyId }: CaseStudyContentProps) {
                               )}
                             </div>
                           </div>
-                          <div className={styles.decisionRow}>
-                            <span className={styles.decisionLabel}>Trade-off</span>
-                            <ul className={styles.decisionBullets}>
-                              {decision.tradeoffs.map((tradeoff, tradeoffIndex) => (
-                                <li key={tradeoffIndex}>{tradeoff}</li>
-                              ))}
-                            </ul>
-                          </div>
-                          <div className={styles.decisionRow}>
-                            <span className={styles.decisionLabel}>Outcome</span>
-                            <ul className={styles.decisionBullets}>
-                              {decision.outcomes.map((outcome, outcomeIndex) => (
-                                <li key={outcomeIndex}>{outcome}</li>
-                              ))}
-                            </ul>
-                          </div>
+                          {decision.tradeoffs.length > 0 && (
+                            <div className={styles.decisionRow}>
+                              <span className={styles.decisionLabel}>Trade-off</span>
+                              <ul className={styles.decisionBullets}>
+                                {decision.tradeoffs.map((tradeoff, tradeoffIndex) => (
+                                  <li key={tradeoffIndex}>{tradeoff}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                          {decision.outcomes.length > 0 && (
+                            <div className={styles.decisionRow}>
+                              <span className={styles.decisionLabel}>Outcome</span>
+                              <ul className={styles.decisionBullets}>
+                                {decision.outcomes.map((outcome, outcomeIndex) => (
+                                  <li key={outcomeIndex}>{outcome}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
                         </div>
                       </div>
                     ))}
