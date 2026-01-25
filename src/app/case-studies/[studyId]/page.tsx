@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import CaseStudyContent from "../CaseStudyContent";
+import CaseStudySwitcher from "../CaseStudySwitcher";
 import { caseStudyIds } from "../caseStudyData";
 import styles from "../CaseStudiesPage.module.css";
 
@@ -25,18 +25,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
   return (
     <div className={styles.caseStudiesPage}>
-      <nav className={styles.studySwitcher}>
-        {caseStudies.map((study) => (
-          <Link
-            key={study.id}
-            href={`/case-studies/${study.id}`}
-            className={`${styles.switcherButton} ${studyId === study.id ? styles.switcherButtonActive : ""}`}
-            aria-current={studyId === study.id ? "page" : undefined}
-          >
-            {study.name}
-          </Link>
-        ))}
-      </nav>
+      <CaseStudySwitcher caseStudies={caseStudies} currentStudyId={studyId} />
       <CaseStudyContent studyId={studyId} />
     </div>
   );

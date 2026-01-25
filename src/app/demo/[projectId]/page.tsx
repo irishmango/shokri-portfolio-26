@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import posthog from "posthog-js";
 import { projects } from "../../my-work/myWorkData";
 import styles from "../DemoPage.module.css";
 
@@ -79,6 +80,14 @@ export default function DemoPage() {
             target="_blank"
             rel="noopener noreferrer"
             className={styles.externalLink}
+            onClick={() =>
+              posthog.capture("demo_external_link_clicked", {
+                project_id: project.id,
+                project_title: project.title,
+                link_type: "github",
+                destination_url: githubLink.url,
+              })
+            }
           >
             View on GitHub
             <Image src="/arrow_open.svg" alt="" width={12} height={12} className={styles.linkIcon} />

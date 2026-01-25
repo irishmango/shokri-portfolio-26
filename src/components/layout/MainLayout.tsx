@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import posthog from "posthog-js";
 import styles from "./MainLayout.module.css";
 
 interface MainLayoutProps {
@@ -32,7 +33,24 @@ export default function MainLayout({ children }: MainLayoutProps) {
   const isProfilePage = pathname === "/";
 
   const handleSecretButton = () => {
+    posthog.capture("recruiter_modal_opened", {
+      source_page: pathname,
+    });
     setShowRecruiterModal(true);
+  };
+
+  const handleRecruiterContactClick = () => {
+    posthog.capture("recruiter_contact_clicked", {
+      destination_url: "mailto:shokrifrancis.r@gmail.com",
+    });
+  };
+
+  const handleNavClick = (route: { href: string; label: string }) => {
+    posthog.capture("nav_clicked", {
+      from_page: pathname,
+      to_page: route.href,
+      nav_label: route.label,
+    });
   };
 
   return (
@@ -60,6 +78,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
               <a
                 href="mailto:shokrifrancis.r@gmail.com"
                 className={styles.modalContactButton}
+                onClick={handleRecruiterContactClick}
               >
                 Contact me
               </a>
@@ -86,6 +105,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
             key={route.href}
             href={route.href}
             className={`${styles.navItem} ${isActiveRoute(route.href) ? styles.navItemActive : ""}`}
+            onClick={() => handleNavClick(route)}
           >
             <span className={styles.navLabelFull}>{route.label}</span>
             <span className={styles.navLabelShort}>{route.shortLabel}</span>

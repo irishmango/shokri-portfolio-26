@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import posthog from "posthog-js";
 import styles from "./CVPage.module.css";
 
 interface SkillCategory {
@@ -178,6 +179,19 @@ const additionalInfo = {
 };
 
 export default function CVPage() {
+  const handleCaseStudyClick = (
+    caseStudyLink: string,
+    jobTitle: string,
+    company: string
+  ) => {
+    posthog.capture("case_study_link_clicked", {
+      source: "cv_page",
+      case_study_url: caseStudyLink,
+      job_title: jobTitle,
+      company: company,
+    });
+  };
+
   return (
     <div className={styles.cvPage}>
       {/* Summary */}
@@ -227,7 +241,13 @@ export default function CVPage() {
                 ))}
               </ul>
               {job.caseStudyLink && (
-                <Link href={job.caseStudyLink} className={styles.caseStudyLink}>
+                <Link
+                  href={job.caseStudyLink}
+                  className={styles.caseStudyLink}
+                  onClick={() =>
+                    handleCaseStudyClick(job.caseStudyLink!, job.title, job.company)
+                  }
+                >
                   View Case Study →
                 </Link>
               )}

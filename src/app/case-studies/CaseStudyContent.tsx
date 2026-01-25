@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import posthog from "posthog-js";
 import styles from "./CaseStudyContent.module.css";
 import { caseStudyContent } from "./caseStudyData";
 
@@ -64,9 +65,18 @@ export default function CaseStudyContent({ studyId }: CaseStudyContentProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  const scrollToSection = (id: string, closeMobile = false) => {
+  const scrollToSection = (id: string, title: string, closeMobile = false) => {
     const element = document.getElementById(id);
     if (element) {
+      // Capture TOC navigation event
+      posthog.capture("case_study_section_navigated", {
+        case_study_id: studyId,
+        case_study_title: study?.title,
+        section_id: id,
+        section_title: title,
+        navigation_source: closeMobile ? "mobile_toc" : "desktop_toc",
+      });
+
       const offset = 20;
       const elementPosition = element.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({
@@ -100,7 +110,7 @@ export default function CaseStudyContent({ studyId }: CaseStudyContentProps) {
             {sectionIds.map(({ id, title }) => (
               <li key={id} className={styles.tocItem}>
                 <button
-                  onClick={() => scrollToSection(id)}
+                  onClick={() => scrollToSection(id, title)}
                   className={`${styles.tocLink} ${activeSection === id ? styles.tocLinkActive : ""}`}
                 >
                   {title}
@@ -385,7 +395,7 @@ export default function CaseStudyContent({ studyId }: CaseStudyContentProps) {
           {sectionIds.map(({ id, title }) => (
             <li key={id} className={styles.tocMobileItem}>
               <button
-                onClick={() => scrollToSection(id, true)}
+                onClick={() => scrollToSection(id, title, true)}
                 className={`${styles.tocMobileLink} ${activeSection === id ? styles.tocMobileLinkActive : ""}`}
               >
                 {title}

@@ -3,10 +3,12 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import posthog from "posthog-js";
 import styles from "./page.module.css";
 import {
   Project,
   ProjectCategory,
+  ProjectLink,
   categories,
   getFeaturedProjects,
   getFilteredProjects,
@@ -15,9 +17,10 @@ import {
 interface ProjectCardProps {
   project: Project;
   featured?: boolean;
+  onLinkClick: (project: Project, link: ProjectLink) => void;
 }
 
-function ProjectCard({ project, featured = false }: ProjectCardProps) {
+function ProjectCard({ project, featured = false, onLinkClick }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
@@ -130,7 +133,12 @@ function ProjectCard({ project, featured = false }: ProjectCardProps) {
               );
 
               return isInternal ? (
-                <Link key={link.type} href={link.url} className={styles.link}>
+                <Link
+                  key={link.type}
+                  href={link.url}
+                  className={styles.link}
+                  onClick={() => onLinkClick(project, link)}
+                >
                   {linkContent}
                 </Link>
               ) : (
@@ -140,6 +148,7 @@ function ProjectCard({ project, featured = false }: ProjectCardProps) {
                   className={styles.link}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => onLinkClick(project, link)}
                 >
                   {linkContent}
                 </a>
@@ -158,6 +167,23 @@ export default function MyWork() {
   const featuredProjects = getFeaturedProjects();
   const filteredProjects = getFilteredProjects(activeFilter);
 
+  const handleFilterChange = (categoryId: ProjectCategory) => {
+    setActiveFilter(categoryId);
+    posthog.capture("project_filter_applied", {
+      filter_category: categoryId,
+    });
+  };
+
+  const handleProjectLinkClick = (project: Project, link: ProjectLink) => {
+    posthog.capture("project_link_clicked", {
+      project_id: project.id,
+      project_title: project.title,
+      link_type: link.type,
+      destination_url: link.url,
+      is_featured: project.featured ?? false,
+    });
+  };
+
   return (
     <div className={styles.wrapper}>
       <header className={styles.header}>
@@ -173,7 +199,7 @@ export default function MyWork() {
             key={category.id}
             className={`${styles.filterButton} ${activeFilter === category.id ? styles.filterButtonActive : ""
               }`}
-            onClick={() => setActiveFilter(category.id)}
+            onClick={() => handleFilterChange(category.id)}
             aria-pressed={activeFilter === category.id}
           >
             {category.label}
@@ -186,7 +212,12 @@ export default function MyWork() {
           <h3 className={styles.sectionTitle}>Featured</h3>
           <div className={styles.featuredGrid}>
             {featuredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} featured />
+              <ProjectCard
+                key={project.id}
+                project={project}
+                featured
+                onLinkClick={handleProjectLinkClick}
+              />
             ))}
           </div>
         </section>
@@ -204,7 +235,11 @@ export default function MyWork() {
         <div className={styles.projectsGrid}>
           {filteredProjects.length > 0 ? (
             filteredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard
+                key={project.id}
+                project={project}
+                onLinkClick={handleProjectLinkClick}
+              />
             ))
           ) : (
             <div className={styles.emptyState}>

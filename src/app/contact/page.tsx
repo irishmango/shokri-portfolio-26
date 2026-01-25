@@ -1,5 +1,6 @@
 "use client";
 
+import posthog from "posthog-js";
 import styles from "./ContactPage.module.css";
 
 const LocationIcon = () => (
@@ -35,6 +36,16 @@ const GitHubIcon = () => (
 );
 
 export default function ContactPage() {
+  const handleContactClick = (
+    linkType: "email" | "phone" | "linkedin" | "github",
+    url: string
+  ) => {
+    posthog.capture("contact_link_clicked", {
+      link_type: linkType,
+      destination_url: url,
+    });
+  };
+
   return (
     <div className={styles.contactPage}>
       <div className={styles.contactInfo}>
@@ -45,18 +56,49 @@ export default function ContactPage() {
         <div className={styles.contactRow}>
           <div className={styles.contactItem}>
             <EmailIcon />
-            <a href="mailto:shokrifrancis.r@gmail.com">shokrifrancis.r@gmail.com</a>
+            <a
+              href="mailto:shokrifrancis.r@gmail.com"
+              onClick={() =>
+                handleContactClick("email", "mailto:shokrifrancis.r@gmail.com")
+              }
+            >
+              shokrifrancis.r@gmail.com
+            </a>
           </div>
           <div className={styles.contactItem}>
             <PhoneIcon />
-            <a href="tel:+491717486242">+49 171 748 6242</a>
+            <a
+              href="tel:+491717486242"
+              onClick={() => handleContactClick("phone", "tel:+491717486242")}
+            >
+              +49 171 748 6242
+            </a>
           </div>
         </div>
         <div className={styles.contactSocials}>
-          <a href="https://www.linkedin.com/in/shokri-francis-raoof-2b3b5535/" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+          <a
+            href="https://www.linkedin.com/in/shokri-francis-raoof-2b3b5535/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.socialLink}
+            onClick={() =>
+              handleContactClick(
+                "linkedin",
+                "https://www.linkedin.com/in/shokri-francis-raoof-2b3b5535/"
+              )
+            }
+          >
             <LinkedInIcon />
           </a>
-          <a href="https://github.com/irishmango" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+          <a
+            href="https://github.com/irishmango"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.socialLink}
+            onClick={() =>
+              handleContactClick("github", "https://github.com/irishmango")
+            }
+          >
             <GitHubIcon />
           </a>
         </div>
