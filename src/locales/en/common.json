@@ -1,0 +1,29 @@
+{
+  "nav": {
+    "profile": "PROFILE",
+    "profileShort": "PROFILE",
+    "caseStudies": "CASE STUDIES",
+    "caseStudiesShort": "CASES",
+    "cv": "CV",
+    "cvShort": "CV",
+    "myWork": "MY WORK",
+    "myWorkShort": "WORK",
+    "contact": "CONTACT",
+    "contactShort": "CONTACT"
+  },
+  "header": {
+    "role": "TECHNICAL PRODUCT OWNER / DEVELOPER"
+  },
+  "recruiterModal": {
+    "title": "Recruiter mode activated.",
+    "tldr": "TL;DR:",
+    "bullets": [
+      "I ship",
+      "I make decisions",
+      "I work well with engineers",
+      "I don't overbuild"
+    ],
+    "contactButton": "Contact me"
+  },
+  "recruiterButton": "Recruiter?"
+}

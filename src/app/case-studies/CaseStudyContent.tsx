@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 import posthog from "posthog-js";
 import styles from "./CaseStudyContent.module.css";
 import { caseStudyContent } from "./caseStudyData";
@@ -21,6 +22,7 @@ export default function CaseStudyContent({ studyId }: CaseStudyContentProps) {
   const study = caseStudyContent[studyId];
   const [activeSection, setActiveSection] = useState<string>("");
   const [isMobileTocOpen, setIsMobileTocOpen] = useState(false);
+  const [expandedImage, setExpandedImage] = useState<string | null>(null);
 
   // Generate section IDs for TOC
   const sectionIds = study?.sections.map((section) => ({
@@ -245,6 +247,26 @@ export default function CaseStudyContent({ studyId }: CaseStudyContentProps) {
                         <div className={styles.principleContent}>
                           <h4 className={styles.principleName}>{principle.name}</h4>
                           <p className={styles.principleDescription}>{principle.description}</p>
+                          {principle.image && (
+                            <button
+                              className={styles.principleImageButton}
+                              onClick={() => setExpandedImage(principle.image!)}
+                              aria-label={`Expand ${principle.name} image`}
+                            >
+                              <div className={styles.principleImage}>
+                                <Image
+                                  src={principle.image}
+                                  alt={`${principle.name} illustration`}
+                                  width={400}
+                                  height={225}
+                                  className={styles.principleImageImg}
+                                />
+                                <div className={styles.expandHint}>
+                                  <span>Click to expand</span>
+                                </div>
+                              </div>
+                            </button>
+                          )}
                         </div>
                       </div>
                     ))}
@@ -404,6 +426,32 @@ export default function CaseStudyContent({ studyId }: CaseStudyContentProps) {
           ))}
         </ul>
       </nav>
+
+      {/* Image Lightbox */}
+      {expandedImage && (
+        <>
+          <div
+            className={styles.lightboxOverlay}
+            onClick={() => setExpandedImage(null)}
+          />
+          <div className={styles.lightbox}>
+            <button
+              className={styles.lightboxClose}
+              onClick={() => setExpandedImage(null)}
+              aria-label="Close image"
+            >
+              ×
+            </button>
+            <Image
+              src={expandedImage}
+              alt="Expanded view"
+              width={1200}
+              height={675}
+              className={styles.lightboxImage}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 }

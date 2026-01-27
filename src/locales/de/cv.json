@@ -1,0 +1,164 @@
+{
+  "sectionTitles": {
+    "summary": "Zusammenfassung",
+    "technicalSkills": "Technische Kenntnisse",
+    "workExperience": "Berufserfahrung",
+    "education": "Ausbildung",
+    "additionalInfo": "Weitere Informationen"
+  },
+  "summary": [
+    "Technisch versierter und kommunikationsstarker Profi mit Hintergrund in Wissenschaft, Vertrieb, Softwareentwicklung und sieben Jahren als professioneller Opernsänger. Ich bringe eine einzigartige Perspektive mit, die praktische technische Erfahrung mit starkem Nutzerverständnis, beratender Vertriebserfahrung und den Präsentationsfähigkeiten eines ausgebildeten Künstlers verbindet.",
+    "Durch meine Arbeit als Product Specialist und Full Stack Developer habe ich praktische Erfahrung mit API-Integrationen, agiler Zusammenarbeit und der Umsetzung von Geschäftsanforderungen in umsetzbare Produktanforderungen gesammelt."
+  ],
+  "skillCategories": [
+    {
+      "label": "Programmiersprachen"
+    },
+    {
+      "label": "Datenbanken & Cloud"
+    },
+    {
+      "label": "Frameworks & Bibliotheken"
+    },
+    {
+      "label": "Kernkonzepte"
+    },
+    {
+      "label": "Tools & Plattformen"
+    }
+  ],
+  "workExperience": [
+    {
+      "title": "Technical Product Owner / Developer",
+      "company": "DocNotes - Healthcare Documentation SaaS (In Beta)",
+      "duration": "Juli 2025 – Heute",
+      "bullets": [
+        "Verantwortung für die End-to-End-Produktdefinition und -bereitstellung von DocNotes, einem klinischen Dokumentationsarbeitsbereich, der sich derzeit in der privaten Beta mit Hausärzten und Ärzten in Irland befindet.",
+        "Definition des Produktumfangs und der Leitplanken zur Unterstützung KI-gestützter klinischer Dokumentation ohne Einführung diagnostischer, regulatorischer oder Patientensicherheitsrisiken.",
+        "Direkte Zusammenarbeit mit Klinikern, um reale Dokumentationsworkflows, Einschränkungen und Fehlermodi zu verstehen und Funktionen rund um Überprüfung, Genehmigung und Nachvollziehbarkeit zu gestalten.",
+        "Entwurf von Human-in-the-Loop-KI-Workflows, bei denen Kliniker die volle Kontrolle über Entwurf, Genehmigung und Änderungen behalten.",
+        "Bewusste Kompromisse zur Priorisierung von Nachvollziehbarkeit, Datenminimierung und DSGVO-konformem Verhalten gegenüber Funktionsbreite oder Automatisierung.",
+        "Verantwortung für die laufende Iteration basierend auf Kliniker-Feedback während des Beta-Tests, Abwägung von Usability-Verbesserungen mit Compliance- und Sicherheitsaspekten."
+      ]
+    },
+    {
+      "title": "Freiberuflicher Webentwickler",
+      "company": "Softwareentwicklungsprojekte",
+      "duration": "Dez 2024 – Heute",
+      "bullets": [
+        "Entwurf und Erstellung von Portfolio-Websites für Kunden mit HTML, CSS, JavaScript, React und Webflow.",
+        "Fokus auf sauberes, barrierefreies Design und nutzerzentrierte Schnittstellen für kreative Fachleute.",
+        "Erstellung von Full-Stack-Anwendungen mit React, Node.js, Dart, Flutter Firebase, Integration von Auth, REST APIs und Echtzeit-Datenbanken.",
+        "Entwurf wiederverwendbarer UI-Komponenten und responsiver Schnittstellen unter Anwendung von UX-Best-Practices."
+      ]
+    },
+    {
+      "title": "Junior Full Stack Developer → Product Specialist (Technischer und Produktbetrieb)",
+      "company": "MedCred",
+      "duration": "Jan 2022 – Jan 2024",
+      "bullets": [
+        "Beitrag zur Front-End-Entwicklung für die Healthcare-SaaS-Plattform im ersten Jahr.",
+        "Erstellung und Verbindung von API-Routen zur Unterstützung der Produktfunktionalität und des Datenflusses.",
+        "Arbeit mit MongoDB-Backend für Datenintegration und Persistenz.",
+        "Arbeit in einem schnelllebigen Startup-Umfeld, Ausbalancierung von kundenorientierten Demos mit iterativer Lieferung und häufigen Scope-Änderungen.",
+        "Primäre Schnittstelle zwischen Kunden, Vertrieb und Produktteam für eine Healthcare-SaaS-Plattform in regulierten klinischen Umgebungen.",
+        "Verantwortung für technische Produktdemonstrationen und Onboarding-Support, erforderte Verständnis von Authentifizierung, Benutzerrollen und Systemverhalten.",
+        "Unterstützung des täglichen Produktbetriebs, einschließlich Kontoeinrichtung, Zugriffsprobleme und workflow-übergreifende Fehlerbehebung.",
+        "Triage eingehender Produktprobleme, Feature-Anfragen und Grenzfälle, Übersetzung in klare, reproduzierbare Tickets für das Engineering-Team.",
+        "Erstellung und Pflege von Tickets mit ausreichendem technischem Kontext, Reproduktionsschritten und erwartetem Verhalten zur Unterstützung effizienter Lieferung.",
+        "Zusammenarbeit mit Produkt und Engineering zur Aufdeckung wiederkehrender Probleme und Unterstützung bei Priorisierungsentscheidungen.",
+        "Feedback-Schleife zwischen realem Einsatz und Produktlieferung, Identifizierung von Usability-Lücken und operativen Risiken durch praktische Erfahrung."
+      ]
+    },
+    {
+      "title": "Bibliotheksassistent",
+      "company": "Hochschule für Musik \"Hanns Eisler\" (Teilzeit)",
+      "duration": "Okt 2017 – Nov 2022",
+      "bullets": [
+        "Unterstützung bei der Verwaltung des täglichen Betriebs, einschließlich Katalogisierung, Regalpflege und Ausleihaufgaben.",
+        "Katalogisierung und Bereinigung der digitalen Datenbank mit WINIBW, Sicherstellung der Konsistenz über alle Datensätze.",
+        "Übernahme von Führungsaufgaben in Abwesenheit der Bibliotheksleitung, Überwachung der Arbeitsverteilung und Sicherstellung der Betriebskontinuität."
+      ]
+    },
+    {
+      "title": "Opernsänger & Musikstudium",
+      "company": "Professionelle Ausbildung & Aufführungen",
+      "duration": "2017 – 2022",
+      "bullets": [
+        "Fortgeschrittene Gesangsausbildung und akademisches Studium als Opernsänger bei gleichzeitiger professioneller Arbeit in aufführungsbasierten Rollen.",
+        "Auftritte in strukturierten, druckintensiven Umgebungen, die anhaltende Vorbereitung, Präzision und öffentliche Präsentation erforderten.",
+        "Entwicklung starker Kommunikations-, Präsentations- und Interpretationsfähigkeiten durch regelmäßige Proben und Live-Aufführungen.",
+        "Ausbalancierung langfristiger Ausbildungsverpflichtungen mit Teilzeit-Berufstätigkeit neben dem Studium."
+      ]
+    },
+    {
+      "title": "Laborwissenschaftler & Science Gallery Educator",
+      "company": "CRANN, Trinity College Dublin",
+      "duration": "Sept 2013 – Apr 2015",
+      "bullets": [
+        "Durchführung von Nanowissenschafts-Laborforschung, Unterstützung bei experimentellem Design und Datenerfassung in Materialien, Spektroskopie und dynamischer Lichtstreuung.",
+        "Entwicklung von Protokollen für Studentendemonstrationen und Workshops, Übersetzung komplexer Nanowissenschaftskonzepte in zugängliche Aktivitäten.",
+        "Mitverfasser interner Berichte und Präsentation von Ergebnissen vor Vorgesetzten und Kollegen."
+      ]
+    },
+    {
+      "title": "Praktikant - UK Sales Team",
+      "company": "DotCom / IBM",
+      "duration": "Juli 2011 – Sept 2011",
+      "bullets": [
+        "Begleitung von Senior Account Managern bei Kundengesprächen und Produktpräsentationen, Einblick in lösungsbasierten Vertrieb und Kundenbeziehungsmanagement.",
+        "Aktualisierung von CRM-Datensätzen und Pflege der Kundendokumentation zur Unterstützung des Teambetriebs."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Software/App Developer Bootcamp",
+      "institution": "App Akademie, Berlin",
+      "duration": "Okt 2024 – Aug 2025",
+      "bullets": [
+        "Zertifizierter Flutter Developer Status erworben, Spezialisierung auf Dart & Flutter für mobile und Web-Apps."
+      ]
+    },
+    {
+      "degree": "Bachelor of Science - Nanowissenschaften",
+      "institution": "Trinity College, Dublin, Irland",
+      "duration": "Sept 2010 – Juli 2013",
+      "bullets": [
+        "Interdisziplinärer Studiengang mit Physik, Chemie und Materialwissenschaften.",
+        "Erste Erfahrungen mit Python für Datenanalyse und experimentelle Automatisierung."
+      ]
+    },
+    {
+      "degree": "Master of Music",
+      "institution": "Hochschule für Musik \"Hanns Eisler\", Berlin",
+      "duration": "Sept 2019 – Jul 2022"
+    },
+    {
+      "degree": "Bachelor of Music",
+      "institution": "Hochschule für Musik \"Hanns Eisler\", Berlin",
+      "duration": "Sept 2015 – Jul 2019"
+    }
+  ],
+  "additionalInfo": {
+    "languagesLabel": "Sprachen",
+    "languages": [
+      "Englisch (Muttersprache)",
+      "Deutsch (C2)"
+    ],
+    "certificationsLabel": "Zertifikate",
+    "certifications": [
+      "IBM Product Owner Professional Certificate",
+      "Google UX Design Professional Certificate",
+      "AppAkademie Flutter Developer Certificate"
+    ],
+    "interestsLabel": "Interessen",
+    "interests": [
+      "Cloud Computing",
+      "Flutter-Entwicklung",
+      "KI-Integration",
+      "Skalierbare Web-Architekturen"
+    ]
+  },
+  "viewCaseStudy": "Zur Fallstudie →"
+}

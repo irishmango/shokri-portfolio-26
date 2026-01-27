@@ -1,0 +1,29 @@
+{
+  "nav": {
+    "profile": "PROFIL",
+    "profileShort": "PROFIL",
+    "caseStudies": "Case Studies",
+    "caseStudiesShort": "FALLE",
+    "cv": "LEBENSLAUF",
+    "cvShort": "CV",
+    "myWork": "MEINE ARBEIT",
+    "myWorkShort": "ARBEIT",
+    "contact": "KONTAKT",
+    "contactShort": "KONTAKT"
+  },
+  "header": {
+    "role": "TECHNISCHER PRODUCT OWNER / ENTWICKLER"
+  },
+  "recruiterModal": {
+    "title": "Recruiter-Modus aktiviert.",
+    "tldr": "Kurzfassung:",
+    "bullets": [
+      "Ich liefere ab",
+      "Ich treffe Entscheidungen",
+      "Ich arbeite gut mit Entwicklern zusammen",
+      "Ich baue nicht über das Ziel hinaus"
+    ],
+    "contactButton": "Kontakt aufnehmen"
+  },
+  "recruiterButton": "Recruiter?"
+}

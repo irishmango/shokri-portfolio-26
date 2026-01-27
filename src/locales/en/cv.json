@@ -1,0 +1,164 @@
+{
+  "sectionTitles": {
+    "summary": "Summary",
+    "technicalSkills": "Technical Skills",
+    "workExperience": "Work Experience",
+    "education": "Education",
+    "additionalInfo": "Additional Information"
+  },
+  "summary": [
+    "Technically minded and communication-driven professional with a background in science, sales, software development, and seven years as a professional opera singer. I bring a unique perspective that blends hands-on technical experience with strong user empathy, consultative sales experience, and the presentation skills of a trained performer.",
+    "Through my work as a Product Specialist and Full Stack Developer, I've gained practical experience with API integrations, agile collaboration, and turning business needs into actionable product requirements."
+  ],
+  "skillCategories": [
+    {
+      "label": "Languages"
+    },
+    {
+      "label": "Databases & Cloud"
+    },
+    {
+      "label": "Frameworks & Libraries"
+    },
+    {
+      "label": "Core Concepts"
+    },
+    {
+      "label": "Tools & Platforms"
+    }
+  ],
+  "workExperience": [
+    {
+      "title": "Technical Product Owner / Developer",
+      "company": "DocNotes - Healthcare Documentation SaaS (In Beta)",
+      "duration": "July 2025 – Present",
+      "bullets": [
+        "Own the end-to-end product definition and delivery of DocNotes, a clinical documentation workspace currently in private beta with GPs and doctors across Ireland.",
+        "Defined product scope and guardrails to support AI-assisted clinical documentation without introducing diagnostic, regulatory, or patient-safety risk.",
+        "Worked directly with clinicians to understand real documentation workflows, constraints, and failure modes, shaping features around review, approval, and auditability.",
+        "Designed human-in-the-loop AI workflows where clinicians retain full control over drafting, approval, and amendments.",
+        "Made deliberate trade-offs to prioritize auditability, data minimization, and GDPR-aligned behavior over feature breadth or automation.",
+        "Own ongoing iteration based on clinician feedback during beta testing, balancing usability improvements with compliance and safety considerations."
+      ]
+    },
+    {
+      "title": "Freelance Web Developer",
+      "company": "Software Development Projects",
+      "duration": "Dec 2024 – Present",
+      "bullets": [
+        "Designed and built portfolio websites for clients using HTML, CSS, JavaScript, React and Webflow.",
+        "Focused on clean, accessible design and user-centered interfaces for creative professionals.",
+        "Built full-stack applications with React, Node.js, Dart, Flutter Firebase, integrating auth, REST APIs, and real-time databases.",
+        "Designed reusable UI components and responsive interfaces, applying UX best practices."
+      ]
+    },
+    {
+      "title": "Junior Full Stack Developer → Product Specialist (Technical and Product Operations)",
+      "company": "MedCred",
+      "duration": "Jan 2022 – Jan 2024",
+      "bullets": [
+        "Contributed to front-end development for the healthcare SaaS platform during the first year.",
+        "Built and connected API routes to support product functionality and data flow.",
+        "Worked with MongoDB backend for data integration and persistence.",
+        "Operated in a fast-moving startup environment, balancing customer-facing demos with iterative delivery and frequent scope changes.",
+        "Served as the primary interface between customers, sales, and the product team for a healthcare SaaS platform in regulated clinical environments.",
+        "Owned technical product demonstrations and onboarding support, requiring a working understanding of authentication, user roles, and system behavior.",
+        "Supported day-to-day product operations, including account setup, access issues, and cross-role workflow troubleshooting.",
+        "Triaged incoming product issues, feature requests, and edge cases, translating them into clear, reproducible tickets for the engineering team.",
+        "Created and maintained tickets with sufficient technical context, reproduction steps, and expected behavior to support efficient delivery.",
+        "Collaborated with product and engineering to surface recurring issues and help inform prioritization decisions.",
+        "Acted as a feedback loop between real-world usage and product delivery, identifying usability gaps and operational risks through hands-on exposure."
+      ]
+    },
+    {
+      "title": "Library Assistant",
+      "company": "Hochschule für Musik \"Hanns Eisler\" (Part Time)",
+      "duration": "Oct 2017 – Nov 2022",
+      "bullets": [
+        "Helped manage day-to-day operations, including cataloging, shelving, and circulation tasks.",
+        "Cataloguing and cleaning the digital database using WINIBW, ensuring consistency across records.",
+        "Took on leadership responsibilities in the absence of the head librarian, overseeing workflow distribution and ensuring continuity of operations."
+      ]
+    },
+    {
+      "title": "Opera Singer & Music Studies",
+      "company": "Professional Training & Performance",
+      "duration": "2017 – 2022",
+      "bullets": [
+        "Undertook advanced vocal training and academic study as an opera singer while working professionally in performance-based roles.",
+        "Performed in structured, high-pressure environments requiring sustained preparation, precision, and public delivery.",
+        "Developed strong communication, presentation, and interpretive skills through regular rehearsals and live performance.",
+        "Balanced long-term training commitments with part-time professional work alongside studies."
+      ]
+    },
+    {
+      "title": "Laboratory Researcher & Science Gallery Educator",
+      "company": "CRANN, Trinity College Dublin",
+      "duration": "Sept 2013 – Apr 2015",
+      "bullets": [
+        "Conducted nanoscience laboratory research, supporting experimental design and data collection in materials, spectroscopy and dynamic light scattering.",
+        "Developed protocols for student demonstrations and workshops, translating complex nanoscience concepts into accessible activities.",
+        "Co-authored internal reports and presented findings to supervisors and peers."
+      ]
+    },
+    {
+      "title": "Student Intern - UK Sales Team",
+      "company": "DotCom / IBM",
+      "duration": "July 2011 – Sept 2011",
+      "bullets": [
+        "Shadowed senior account managers during client calls and product presentations, gaining insight into solution-based sales and customer relationship management.",
+        "Updated CRM records and maintained client documentation to support team operations."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Software/App Developer Bootcamp",
+      "institution": "App Akademie, Berlin",
+      "duration": "Oct 2024 – Aug 2025",
+      "bullets": [
+        "Earned Certified Flutter Developer status, specializing in Dart & Flutter for mobile and web apps."
+      ]
+    },
+    {
+      "degree": "Bachelor of Science - Nanoscience",
+      "institution": "Trinity College, Dublin, Ireland",
+      "duration": "Sept 2010 – July 2013",
+      "bullets": [
+        "Interdisciplinary degree covering physics, chemistry, and materials science.",
+        "Gained early experience with Python for data analysis and experimental automation."
+      ]
+    },
+    {
+      "degree": "Master of Music",
+      "institution": "Hochschule für Musik \"Hanns Eisler\", Berlin",
+      "duration": "Sept 2019 – Jul 2022"
+    },
+    {
+      "degree": "Bachelor of Music",
+      "institution": "Hochschule für Musik \"Hanns Eisler\", Berlin",
+      "duration": "Sept 2015 – Jul 2019"
+    }
+  ],
+  "additionalInfo": {
+    "languagesLabel": "Languages",
+    "languages": [
+      "English (Native)",
+      "German (C2)"
+    ],
+    "certificationsLabel": "Certifications",
+    "certifications": [
+      "IBM Product Owner Professional Certificate",
+      "Google UX Design Professional Certificate",
+      "AppAkademie Flutter Developer Certificate"
+    ],
+    "interestsLabel": "Interests",
+    "interests": [
+      "Cloud computing",
+      "Flutter development",
+      "AI integration",
+      "Scalable web architectures"
+    ]
+  },
+  "viewCaseStudy": "View Case Study →"
+}

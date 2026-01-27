@@ -4,23 +4,26 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import posthog from "posthog-js";
+import { useLanguage } from "@/context/LanguageContext";
+import { LanguageToggle } from "@/components/LanguageToggle";
 import styles from "./MainLayout.module.css";
 
 interface MainLayoutProps {
   children: React.ReactNode;
 }
 
-const ROUTES = [
-  { href: "/", label: "PROFILE", shortLabel: "PROFILE" },
-  { href: "/case-studies", label: "CASE STUDIES", shortLabel: "CASES" },
-  { href: "/cv", label: "CV", shortLabel: "CV" },
-  { href: "/my-work", label: "MY WORK", shortLabel: "WORK" },
-  { href: "/contact", label: "CONTACT", shortLabel: "CONTACT" },
-];
-
 export default function MainLayout({ children }: MainLayoutProps) {
   const pathname = usePathname();
   const [showRecruiterModal, setShowRecruiterModal] = useState(false);
+  const { t } = useLanguage();
+
+  const ROUTES = [
+    { href: "/", label: t.common.nav.profile, shortLabel: t.common.nav.profileShort },
+    { href: "/case-studies", label: t.common.nav.caseStudies, shortLabel: t.common.nav.caseStudiesShort },
+    { href: "/cv", label: t.common.nav.cv, shortLabel: t.common.nav.cvShort },
+    { href: "/my-work", label: t.common.nav.myWork, shortLabel: t.common.nav.myWorkShort },
+    { href: "/contact", label: t.common.nav.contact, shortLabel: t.common.nav.contactShort },
+  ];
 
   const isActiveRoute = (href: string) => {
     if (href === "/") {
@@ -66,21 +69,20 @@ export default function MainLayout({ children }: MainLayoutProps) {
             >
               ×
             </button>
-            <h2 className={styles.modalTitle}>Recruiter mode activated.</h2>
+            <h2 className={styles.modalTitle}>{t.common.recruiterModal.title}</h2>
             <div>
-              <p className={styles.modalLabel}>TL;DR:</p>
+              <p className={styles.modalLabel}>{t.common.recruiterModal.tldr}</p>
               <ul className={styles.modalList}>
-                <li>I ship</li>
-                <li>I make decisions</li>
-                <li>I work well with engineers</li>
-                <li>I don&apos;t overbuild</li>
+                {t.common.recruiterModal.bullets.map((bullet, index) => (
+                  <li key={index}>{bullet}</li>
+                ))}
               </ul>
               <a
                 href="mailto:shokrifrancis.r@gmail.com"
                 className={styles.modalContactButton}
                 onClick={handleRecruiterContactClick}
               >
-                Contact me
+                {t.common.recruiterModal.contactButton}
               </a>
             </div>
           </div>
@@ -89,11 +91,12 @@ export default function MainLayout({ children }: MainLayoutProps) {
 
       <section className={styles.page}>
         <div className={`${styles.headerContainer} ${isCompact ? styles.headerCompact : ""}`}>
+          <LanguageToggle />
           <div className={styles.header}>
             <h1 className={`${styles.title} ${isCompact ? styles.titleCompact : ""}`}>
               SHOKRI FRANCIS<br className={`${styles.titleBreak} ${isCompact ? styles.titleBreakHidden : ""}`} /> RAOOF
             </h1>
-            <h3 className={`${styles.subtitle} ${isCompact ? styles.subtitleCompact : ""}`}>TECHNICAL PRODUCT OWNER / DEVELOPER</h3>
+            <h3 className={`${styles.subtitle} ${isCompact ? styles.subtitleCompact : ""}`}>Technical Product Owner / Developer</h3>
           </div>
           <div className={styles.avatar}></div>
         </div>
@@ -117,7 +120,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
 
       {isProfilePage && (
         <button className={styles.secretButton} onClick={handleSecretButton}>
-          Recruiter?
+          {t.common.recruiterButton}
         </button>
       )}
     </main>

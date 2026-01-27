@@ -1,6 +1,9 @@
+"use client";
+
+import { useLanguage } from "@/context/LanguageContext";
 import styles from "./page.module.css";
-import en from "../locales/en.json";
 
 export default function Home() {
-  return <div className={styles.profile}>{en.profile.content}</div>;
+  const { t } = useLanguage();
+  return <div className={styles.profile}>{t.profile.content}</div>;
 }

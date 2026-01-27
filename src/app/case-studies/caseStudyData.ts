@@ -3,6 +3,7 @@
 export interface Principle {
   name: string;
   description: string;
+  image?: string;
 }
 
 export interface TwoColumnData {
@@ -329,15 +330,18 @@ export const caseStudyContent: Record<string, CaseStudyData> = {
         principles: [
           {
             name: "Roadmap & Sequencing",
-            description: "The roadmap focused on reducing uncertainty early, rather than delivering a broad feature set. Initial milestones prioritized establishing a safe core workflow (draft → review → approval), defining non-negotiable boundaries around AI usage, validating that the product remained usable without automation, and introducing auditability and data protection before expansion. This sequencing ensured that later features were built on a stable and defensible foundation, rather than retrofitted onto unsafe assumptions."
+            description: "The roadmap focused on reducing uncertainty early, rather than delivering a broad feature set. Initial milestones prioritized establishing a safe core workflow (draft → review → approval), defining non-negotiable boundaries around AI usage, validating that the product remained usable without automation, and introducing auditability and data protection before expansion. This sequencing ensured that later features were built on a stable and defensible foundation, rather than retrofitted onto unsafe assumptions.",
+            image: "/roadmap.webp"
           },
           {
             name: "Backlog & Prioritization",
-            description: "Work was managed through a lightweight backlog that emphasized clear problem statements, explicit acceptance criteria, and scope boundaries and non-goals. Backlog items were ordered to isolate higher-risk changes (AI, authentication, data handling), keep iterations small and reversible, and avoid coupling unrelated concerns. This allowed steady progress while maintaining confidence in system behavior."
+            description: "Work was managed through a lightweight backlog that emphasized clear problem statements, explicit acceptance criteria, and scope boundaries and non-goals. Backlog items were ordered to isolate higher-risk changes (AI, authentication, data handling), keep iterations small and reversible, and avoid coupling unrelated concerns. This allowed steady progress while maintaining confidence in system behavior.",
+            image: "/tickets.webp"
           },
           {
             name: "Acceptance-Criteria–Driven Delivery",
-            description: "To keep implementation aligned with product intent, individual backlog items were written with clear acceptance criteria. A typical ticket included the user problem being addressed, preconditions and constraints, explicit success criteria, and out-of-scope clarifications. This helped prevent scope creep and ensured that \"done\" meant meeting product intent, not just shipping code."
+            description: "To keep implementation aligned with product intent, individual backlog items were written with clear acceptance criteria. A typical ticket included the user problem being addressed, preconditions and constraints, explicit success criteria, and out-of-scope clarifications. This helped prevent scope creep and ensured that \"done\" meant meeting product intent, not just shipping code.",
+            image: "/ticket_02.webp"
           },
           {
             name: "Managing Risk While Building Solo",
