@@ -201,7 +201,7 @@ export default function CVPage() {
           Technically minded and communication-driven professional with a background in science, sales, software development, and seven years as a professional opera singer. I bring a unique perspective that blends hands-on technical experience with strong user empathy, consultative sales experience, and the presentation skills of a trained performer.
         </p>
         <p className={styles.summary}>
-          Through my work as a Product Specialist and Junior Full Stack Developer, I&apos;ve gained practical experience with API integrations, agile collaboration, and turning business needs into actionable product requirements.
+          Through my work as a Product Specialist and Full Stack Developer, I&apos;ve gained practical experience with API integrations, agile collaboration, and turning business needs into actionable product requirements.
         </p>
       </section>
 
