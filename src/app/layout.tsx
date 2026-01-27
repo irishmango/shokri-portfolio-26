@@ -17,6 +17,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Shokri Francis Raoof - Technical Product Owner",
   description: "Portfolio of Shokri Francis Raoof, Technical Product Owner based in Berlin",
+  icons: {
+    icon: "/preview_icon.png",
+    apple: "/preview_icon.png",
+  },
 };
 
 export default function RootLayout({
