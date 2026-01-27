@@ -96,7 +96,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
             <h1 className={`${styles.title} ${isCompact ? styles.titleCompact : ""}`}>
               SHOKRI FRANCIS<br className={`${styles.titleBreak} ${isCompact ? styles.titleBreakHidden : ""}`} /> RAOOF
             </h1>
-            <h3 className={`${styles.subtitle} ${isCompact ? styles.subtitleCompact : ""}`}>Technical Product Owner / Developer</h3>
+            <h3 className={`${styles.subtitle} ${isCompact ? styles.subtitleCompact : ""}`}>Technical Product Owner / Software Developer</h3>
           </div>
           <div className={styles.avatar}></div>
         </div>
