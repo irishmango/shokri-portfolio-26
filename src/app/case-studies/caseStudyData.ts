@@ -46,6 +46,7 @@ export interface CaseStudySection {
   };
   decisions?: ProductDecision[];
   closingNote?: string;
+  video?: string;
 }
 
 export interface CaseStudyData {
@@ -148,6 +149,7 @@ export const caseStudyContent: Record<string, CaseStudyData> = {
         title: "Primary User Workflow",
         content: "DocNotes is designed around a single, explicit clinical documentation workflow. The goal is to support clinicians from first draft to final record without collapsing responsibility or control.",
         note: "The workflow intentionally mirrors how clinicians already work — while adding structure, traceability, and clear state transitions.",
+        video: "/docnotes_demo_recording.mp4",
         subsection: "End-to-End Flow",
         workflowSteps: [
           {

@@ -194,6 +194,19 @@
   opacity: 0.9;
 }
 
+.videoContainer {
+  margin: 1.5rem 0;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.sectionVideo {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 .subsection {
   font-size: 0.95rem;
   line-height: 1.7;

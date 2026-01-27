@@ -1,10 +1,53 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import posthog from "posthog-js";
 import styles from "./CaseStudyContent.module.css";
 import { caseStudyContent } from "./caseStudyData";
+
+// Video component with autoplay on scroll
+function AutoplayVideo({ src, className }: { src: string; className?: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play().catch(() => {
+              // Autoplay was prevented, ignore
+            });
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(video);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  return (
+    <video
+      ref={videoRef}
+      src={src}
+      className={className}
+      muted
+      loop
+      playsInline
+      preload="metadata"
+    />
+  );
+}
 
 // Helper to generate slug from title
 function slugify(text: string): string {
@@ -204,6 +247,12 @@ export default function CaseStudyContent({ studyId }: CaseStudyContentProps) {
 
                 {section.content && (
                   <p className={styles.sectionContent}>{section.content}</p>
+                )}
+
+                {section.video && (
+                  <div className={styles.videoContainer}>
+                    <AutoplayVideo src={section.video} className={styles.sectionVideo} />
+                  </div>
                 )}
 
                 {section.subsection && (
