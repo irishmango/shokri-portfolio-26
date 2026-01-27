@@ -249,6 +249,27 @@ export default function CaseStudyContent({ studyId }: CaseStudyContentProps) {
                   <p className={styles.sectionContent}>{section.content}</p>
                 )}
 
+                {section.image && (
+                  <button
+                    className={styles.sectionImageButton}
+                    onClick={() => setExpandedImage(section.image!)}
+                    aria-label={`Expand ${section.title} image`}
+                  >
+                    <div className={styles.sectionImage}>
+                      <Image
+                        src={section.image}
+                        alt={`${section.title} illustration`}
+                        width={600}
+                        height={338}
+                        className={styles.sectionImageImg}
+                      />
+                      <div className={styles.expandHint}>
+                        <span>Click to expand</span>
+                      </div>
+                    </div>
+                  </button>
+                )}
+
                 {section.video && (
                   <div className={styles.videoContainer}>
                     <AutoplayVideo src={section.video} className={styles.sectionVideo} />

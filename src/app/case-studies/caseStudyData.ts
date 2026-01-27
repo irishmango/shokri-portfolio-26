@@ -37,6 +37,7 @@ export interface CaseStudySection {
   subsection?: string;
   bullets?: string[];
   note?: string;
+  image?: string;
   twoColumn?: TwoColumnData;
   principles?: Principle[];
   workflowSteps?: WorkflowStep[];
@@ -519,6 +520,7 @@ export const caseStudyContent: Record<string, CaseStudyData> = {
       {
         title: "Context & Problem",
         content: "The product was explored in collaboration with Irish healthcare stakeholders, including alignment with HSE environments, which increased the importance of scope clarity, reliability, and conservative demos.",
+        image: "/medcred_screenshot.webp",
         note: "As with many startups, there was no strict separation between sales, product, operations, and engineering. Live demos to potential buyers often doubled as real-world product validation, and misalignment between what was shown, what was technically feasible, and what was production-ready carried significant risk.",
         subsection: "The core challenge was not just building features, but managing the gap between:",
         bullets: [

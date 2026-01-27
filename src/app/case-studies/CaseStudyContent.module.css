@@ -194,6 +194,39 @@
   opacity: 0.9;
 }
 
+.sectionImageButton {
+  display: block;
+  margin: 1rem 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  max-width: 480px;
+}
+
+.sectionImage {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.sectionImageButton:hover .sectionImage {
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.02);
+}
+
+.sectionImageImg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.sectionImageButton:hover .expandHint {
+  opacity: 1;
+}
+
 .videoContainer {
   margin: 1.5rem 0;
   border-radius: 4px;
