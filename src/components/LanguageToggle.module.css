@@ -1,4 +1,5 @@
 .toggle {
+  display: none; /* TODO: Re-enable when translations are complete */
   position: absolute;
   top: 1rem;
   right: 1rem;
