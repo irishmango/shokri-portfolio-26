@@ -13,7 +13,7 @@ interface CaseStudyPageProps {
 const caseStudies = [
   { id: "docnotes", name: "DocNotes" },
   { id: "medcred", name: "MedCred" },
-  { id: "arfin", name: "Arfin" },
+  { id: "clearsight", name: "ClearSight" },
 ];
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
