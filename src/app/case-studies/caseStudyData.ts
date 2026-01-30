@@ -496,8 +496,8 @@ export const caseStudyContent: Record<string, CaseStudyData> = {
     ],
     technologies: ["React", "Next.js", "TypeScript", "Prisma", "PostgreSQL", "Redis", "Auth.js", "OpenAI API", "Resend", "Vitest"]
   },
-  arfin: {
-    title: "Arfin",
+  clearsight: {
+    title: "ClearSight",
     subtitle: "Under Construction",
     overview: "",
     role: "",
