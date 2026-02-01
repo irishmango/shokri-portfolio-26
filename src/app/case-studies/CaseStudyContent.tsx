@@ -338,6 +338,9 @@ export default function CaseStudyContent({ studyId }: CaseStudyContentProps) {
                               </div>
                             </button>
                           )}
+                          {principle.imageCaption && (
+                            <p className={styles.principleImageCaption}>{principle.imageCaption}</p>
+                          )}
                         </div>
                       </div>
                     ))}

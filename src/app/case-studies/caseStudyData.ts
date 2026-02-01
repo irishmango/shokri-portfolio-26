@@ -4,6 +4,7 @@ export interface Principle {
   name: string;
   description: string;
   image?: string;
+  imageCaption?: string;
 }
 
 export interface TwoColumnData {
@@ -785,6 +786,37 @@ export const caseStudyContent: Record<string, CaseStudyData> = {
           ],
           caption: "ClearSight translates screening outputs into completed follow-up actions by orchestrating programme-defined workflows and closing the loop with confirmation and aggregated insight."
         }
+      },
+      {
+        title: "Interface Design",
+        content: "The following screens are illustrative design concepts developed in collaboration with a product designer. They demonstrate how ClearSight's scope, responsibility model, and analytics focus are expressed visually. Metrics shown are representative placeholders used to explore clarity and interpretability, not live production data.",
+        principles: [
+          {
+            name: "Patient-facing experience",
+            description: "",
+            image: "/patient_view.webp",
+            imageCaption: "This screen reflects the decision to present screening results in plain, non-alarming language with a single recommended next action. The interface avoids diagnostic interpretation and makes responsibility explicit: the patient is responsible for arranging follow-up. This mirrors the design intent of a digitally readable letter rather than a dashboard."
+          },
+          {
+            name: "Follow-up overview",
+            description: "",
+            image: "/overview.webp",
+            imageCaption: "The follow-up overview provides a high-level view of completion rates, median follow-up time, and distribution by screening outcome. This supports programme oversight without creating patient-level operational responsibility."
+          },
+          {
+            name: "Risk & drop-off analysis",
+            description: "",
+            image: "/analysis.webp",
+            imageCaption: "This view explores where follow-up failure occurs and how risk is distributed across cohorts. These insights are used to inform reminder policy and programme configuration, not to intervene on individual patients."
+          },
+          {
+            name: "Policy change and impact review",
+            description: "",
+            image: "/review.webp",
+            imageCaption: "Policy impact views allow operators to assess the effect of configuration changes (e.g. reminder timing) on adherence outcomes over time. This supports evidence-based programme decisions without expanding the system into case management."
+          }
+        ],
+        note: "Operator interfaces are intentionally limited to population-level visibility. ClearSight does not provide patient-level task lists, alerts, or case management tools."
       },
       {
         title: "Metrics & Impact Model (Pre-Pilot)",
