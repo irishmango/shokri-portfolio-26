@@ -547,7 +547,7 @@ export const caseStudyContent: Record<string, CaseStudyData> = {
     role: "Product Lead / Developer",
     context: "Healthcare, EU-Focused",
     users: "Screening programs, public health systems",
-    status: "Under construction",
+    status: "In development",
     platform: "Web-based Healthcare",
     sections: [
       {
