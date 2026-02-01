@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -98,7 +99,9 @@ export default function MainLayout({ children }: MainLayoutProps) {
             </h1>
             <h3 className={`${styles.subtitle} ${isCompact ? styles.subtitleCompact : ""}`}>Technical Product Owner / Software Developer</h3>
           </div>
-          <div className={styles.avatar}></div>
+          <div className={styles.avatar}>
+            <Image src="/profile_01.jpg" alt="Shokri Francis Raoof" fill style={{ objectFit: "cover" }} />
+          </div>
         </div>
       </section>
 
@@ -116,7 +119,14 @@ export default function MainLayout({ children }: MainLayoutProps) {
         ))}
       </nav>
 
-      <section className={styles.content}>{children}</section>
+      <section className={styles.content}>
+        {children}
+        {isProfilePage && (
+          <div className={styles.mobileAvatar}>
+            <Image src="/profile_01.jpg" alt="Shokri Francis Raoof" fill style={{ objectFit: "contain" }} />
+          </div>
+        )}
+      </section>
 
       {isProfilePage && (
         <button className={styles.secretButton} onClick={handleSecretButton}>

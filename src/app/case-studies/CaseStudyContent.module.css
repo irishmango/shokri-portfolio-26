@@ -477,6 +477,400 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* Responsibility Boundary Diagram */
+.responsibilityDiagram {
+  margin-top: 1.5rem;
+}
+
+.responsibilityActors {
+  display: flex;
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.responsibilityActor {
+  flex: 1;
+  padding: 1.5rem;
+  background: var(--background);
+}
+
+.responsibilityActorExcluded {
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+  opacity: 0.65;
+}
+
+.responsibilityActorTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 0.15rem 0;
+  letter-spacing: 0.02em;
+}
+
+.responsibilityActorSubtitle {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 400;
+  opacity: 0.5;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.25rem;
+}
+
+.responsibilityList {
+  margin-top: 0.75rem;
+}
+
+.responsibilityLabel {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.45;
+  margin-bottom: 0.4rem;
+}
+
+.responsibilityLabelNot {
+  margin-top: 0.75rem;
+}
+
+.responsibilityList ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.responsibilityList li {
+  font-size: 0.8rem;
+  font-weight: 300;
+  line-height: 1.7;
+  opacity: 0.85;
+}
+
+.responsibilityNotes {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.responsibilityNotes p {
+  font-size: 0.75rem;
+  font-style: italic;
+  font-weight: 300;
+  opacity: 0.55;
+  margin: 0;
+}
+
+.responsibilityCaption {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 300;
+  opacity: 0.5;
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .responsibilityActors {
+    flex-direction: column;
+  }
+}
+
+/* Solution Flow Diagram */
+.solutionFlow {
+  margin-top: 1.5rem;
+  overflow-x: auto;
+}
+
+.solutionFlowSteps {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  min-width: min-content;
+}
+
+.solutionFlowItem {
+  display: flex;
+  align-items: flex-start;
+}
+
+.solutionFlowBox {
+  flex-shrink: 0;
+  width: 150px;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--background);
+}
+
+.solutionFlowTitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+.solutionFlowItems {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.5rem 0;
+}
+
+.solutionFlowItems li {
+  font-size: 0.7rem;
+  font-weight: 300;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
+.solutionFlowAnnotation {
+  display: block;
+  font-size: 0.6rem;
+  font-style: italic;
+  font-weight: 300;
+  opacity: 0.45;
+  margin-top: 0.4rem;
+  padding-top: 0.4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.solutionFlowArrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem 0.35rem 0;
+  flex-shrink: 0;
+}
+
+.solutionFlowArrowLine {
+  font-size: 0.85rem;
+  opacity: 0.35;
+  line-height: 1;
+}
+
+.solutionFlowArrowLabel {
+  font-size: 0.55rem;
+  font-weight: 400;
+  opacity: 0.4;
+  white-space: nowrap;
+  margin-top: 0.2rem;
+  letter-spacing: 0.03em;
+}
+
+.solutionFlowCaption {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 300;
+  opacity: 0.5;
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .solutionFlowSteps {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .solutionFlowItem {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .solutionFlowBox {
+    width: 100%;
+  }
+
+  .solutionFlowArrow {
+    padding: 0.5rem 0;
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  .solutionFlowArrowLine {
+    transform: rotate(90deg);
+  }
+}
+
+/* Architecture Diagram */
+.archDiagram {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.archLayer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.archLayerTitle {
+  font-size: 0.6rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.35;
+  margin-top: 0.75rem;
+  margin-bottom: 0.4rem;
+  align-self: flex-start;
+}
+
+.archLayerWithSide {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+}
+
+.archLayerBoxes {
+  display: flex;
+  gap: 1px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.archLayerBoxesMain {
+  flex: 2;
+}
+
+.archLayerBoxesSide {
+  flex: 1;
+}
+
+.archSideArrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.5rem;
+  flex-shrink: 0;
+}
+
+.archSideArrowLine {
+  font-size: 0.75rem;
+  opacity: 0.3;
+  letter-spacing: 0.15em;
+  white-space: nowrap;
+}
+
+.archSideArrowLabel {
+  font-size: 0.55rem;
+  font-weight: 400;
+  opacity: 0.4;
+  white-space: nowrap;
+  margin-top: 0.15rem;
+  letter-spacing: 0.02em;
+}
+
+.archBox {
+  flex: 1;
+  padding: 1.25rem;
+  background: var(--background);
+}
+
+.archBoxFull {
+  flex: 1;
+}
+
+.archBoxOptional {
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+  opacity: 0.7;
+}
+
+.archBoxTitle {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 0.01em;
+}
+
+.archBoxItems {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.4rem 0;
+}
+
+.archBoxItems li {
+  font-size: 0.72rem;
+  font-weight: 300;
+  line-height: 1.65;
+  opacity: 0.8;
+}
+
+.archBoxAnnotation {
+  display: block;
+  font-size: 0.6rem;
+  font-style: italic;
+  font-weight: 300;
+  opacity: 0.4;
+  margin-top: 0.4rem;
+  padding-top: 0.4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.archConnection {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0;
+}
+
+.archArrow {
+  font-size: 0.8rem;
+  opacity: 0.3;
+  line-height: 1;
+}
+
+.archArrowLabel {
+  font-size: 0.6rem;
+  font-weight: 400;
+  opacity: 0.4;
+  letter-spacing: 0.02em;
+}
+
+.archFooter {
+  font-size: 0.65rem;
+  font-weight: 300;
+  opacity: 0.35;
+  font-style: italic;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.archCaption {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 300;
+  opacity: 0.5;
+  margin-top: 0.5rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .archLayerWithSide {
+    flex-direction: column;
+  }
+
+  .archSideArrow {
+    flex-direction: row;
+    padding: 0.4rem 0;
+    gap: 0.5rem;
+  }
+
+  .archSideArrowLine {
+    transform: rotate(90deg);
+  }
+
+  .archLayerBoxes {
+    flex-direction: column;
+  }
+}
+
 .workflowSteps {
   display: flex;
   flex-direction: column;
@@ -667,6 +1061,114 @@
   font-weight: 300;
   font-style: italic;
   opacity: 0.9;
+}
+
+/* Sources */
+.sourcesContainer {
+  position: relative;
+  margin-top: 1rem;
+}
+
+.sourcesButton {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--foreground);
+  padding: 0.35rem 0.75rem;
+  font-size: 0.75rem;
+  font-family: inherit;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s, background 0.2s;
+  border-radius: 2px;
+}
+
+.sourcesButton:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.sourcesOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 399;
+}
+
+.sourcesDialog {
+  position: absolute;
+  bottom: calc(100% + 0.5rem);
+  left: 0;
+  background: var(--background);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem 1.25rem;
+  z-index: 400;
+  min-width: 320px;
+  max-width: 480px;
+  animation: fadeIn 0.15s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.sourcesDialogHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sourcesDialogTitle {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+  font-weight: 500;
+}
+
+.sourcesDialogClose {
+  background: none;
+  border: none;
+  color: var(--foreground);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.sourcesDialogClose:hover {
+  opacity: 1;
+}
+
+.sourcesList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sourcesList li {
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.sourceLink {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: rgba(255, 255, 255, 0.3);
+  opacity: 0.8;
+  transition: opacity 0.2s, text-decoration-color 0.2s;
+  word-break: break-word;
+}
+
+.sourceLink:hover {
+  opacity: 1;
+  text-decoration-color: rgba(255, 255, 255, 0.7);
 }
 
 .technologies {

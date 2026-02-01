@@ -37,6 +37,7 @@ export interface CaseStudySection {
   subsection?: string;
   bullets?: string[];
   note?: string;
+  noteImage?: string;
   image?: string;
   twoColumn?: TwoColumnData;
   principles?: Principle[];
@@ -46,8 +47,50 @@ export interface CaseStudySection {
     placeholder?: boolean;
   };
   decisions?: ProductDecision[];
+  responsibilityDiagram?: {
+    actors: {
+      title: string;
+      subtitle?: string;
+      excluded?: boolean;
+      does?: string[];
+      doesNot?: string[];
+      notes?: string[];
+    }[];
+    caption?: string;
+  };
+  solutionFlow?: {
+    steps: {
+      title: string;
+      items?: string[];
+      annotation?: string;
+    }[];
+    arrowLabels?: { after: number; label: string }[];
+    caption?: string;
+  };
+  architectureDiagram?: {
+    layers: {
+      id: string;
+      title?: string;
+      side?: boolean;
+      boxes: {
+        title: string;
+        items?: string[];
+        annotation?: string;
+        optional?: boolean;
+      }[];
+    }[];
+    connections: {
+      from: string;
+      to: string;
+      label?: string;
+      bidirectional?: boolean;
+    }[];
+    footer?: string;
+    caption?: string;
+  };
   closingNote?: string;
   video?: string;
+  sources?: { label: string; url: string }[];
 }
 
 export interface CaseStudyData {
@@ -498,13 +541,555 @@ export const caseStudyContent: Record<string, CaseStudyData> = {
   },
   clearsight: {
     title: "ClearSight",
-    subtitle: "Under Construction",
-    overview: "",
-    role: "",
-    duration: "",
-    team: "",
-    sections: [],
-    technologies: []
+    subtitle: "Improving Follow-Up Adherence After Diabetic Retinopathy Screening",
+    overview: "ClearSight is an AI-assisted adherence platform designed to support public diabetic retinopathy screening programs across the EU. It focuses on what happens after screening: helping patients understand their results, complete the appropriate next step, and reducing avoidable drop-off, without adding workload for clinicians or expanding regulatory scope.\n\nClearSight does not diagnose disease, interpret retinal images, or replace clinical systems. It operates as a lightweight layer between existing screening infrastructure and patients, with the explicit goal of improving follow-up completion in a safe, auditable, and privacy-respecting way.",
+    role: "Product Lead / Developer",
+    context: "Healthcare, EU-Focused",
+    users: "Screening programs, public health systems",
+    status: "Under construction",
+    platform: "Web-based Healthcare",
+    sections: [
+      {
+        title: "Context & Problem",
+        content: "Diabetic retinopathy screening programs across Europe achieve high participation rates and generate large volumes of screening data. However, screening alone does not prevent vision loss. The critical failure point often occurs after the screening result is delivered.\n\nIn practice, a significant proportion of patients do not complete recommended follow-up actions after screening, particularly when results are borderline, non-urgent, or require self-initiated booking. These missed follow-ups can lead to delayed treatment, avoidable vision loss, and increased long-term healthcare costs.\n\nThe core issue is not diagnostic accuracy or image interpretation. It is a systems-level gap between:",
+        bullets: [
+          "Screening outcomes",
+          "Patient understanding",
+          "Completed follow-up actions"
+        ],
+        note: "In many programs, abnormal results are communicated via letters or portals, after which responsibility for follow-up shifts implicitly to the patient. At this point, screening systems often lose visibility into whether action was taken.\n\nClearSight was conceived to address this gap — not by changing how screening is performed, but by improving how results are translated into clear, completed next steps."
+      },
+      {
+        title: "Discovery & Stakeholder Evidence",
+        content: "ClearSight's problem framing and constraints are grounded in qualitative discovery across the diabetic retinopathy screening pathway.\n\nInterviews were conducted with:",
+        bullets: [
+          "A screening ophthalmologist involved in clinical governance",
+          "A diabetes clinic consultant responsible for downstream care",
+          "A screening program nurse / coordinator managing operational follow-up"
+        ],
+        subsection: "Across these conversations, consistent patterns emerged:",
+        principles: [
+          {
+            name: "Follow-up failures occur after screening results are issued",
+            description: "During the handover to patient action."
+          },
+          {
+            name: "Responsibility for follow-up is diffuse and poorly observable",
+            description: "Clinicians lack closed-loop confirmation and often discover missed follow-up retrospectively."
+          },
+          {
+            name: "Patients frequently misunderstand results",
+            description: "Both the urgency of results and who is responsible for initiating follow-up."
+          },
+          {
+            name: "Stakeholders explicitly resisted new clinician-facing tools",
+            description: "Dashboards, inboxes, or alerting systems were resisted due to workload and liability concerns."
+          }
+        ],
+        note: "Interviews were used to identify unacceptable system behaviors and responsibility risks, rather than to validate feature desirability.",
+        closingNote: "These findings directly informed ClearSight's scope boundaries, responsibility model, and decision to prioritise clarity, reinforcement, and population-level insight over escalation or automation."
+      },
+      {
+        title: "Why Existing Approaches Fall Short",
+        content: "Most screening programs already communicate results to patients, typically via letters, PDFs, or basic patient portals. While these approaches technically \"close the loop,\" they often fail to support action in practice.\n\nCommon limitations include:",
+        principles: [
+          {
+            name: "Ambiguous communication",
+            description: "Results may be clinically correct but difficult to interpret for patients, especially when risk is neither clearly normal nor clearly urgent."
+          },
+          {
+            name: "Unclear responsibility",
+            description: "Patients are often unsure whether follow-up is automatic, optional, or their responsibility to initiate."
+          },
+          {
+            name: "Static reminders",
+            description: "Reminder systems, where they exist, tend to be one-size-fits-all, policy blind and don't adapt to drop-off risk."
+          },
+          {
+            name: "Lack of population visibility",
+            description: "Screening programs may know how many people were screened, but have limited insight into where and why follow-up breaks down."
+          }
+        ],
+        note: "These gaps are rarely due to negligence. They emerge from fragmented systems, unclear ownership, and tools that were not designed to support adherence as a first-class outcome.",
+        closingNote: "ClearSight is intended to complement existing screening infrastructure by addressing these specific weaknesses — not by replacing it."
+      },
+      {
+        title: "Product Intent & Boundaries",
+        content: "ClearSight is deliberately scoped to remain a non-diagnostic, non-clinical system.",
+        twoColumn: {
+          left: {
+            heading: "What ClearSight Is",
+            items: [
+              "An adherence-focused layer that sits downstream of screening",
+              "A patient-facing system that explains results in plain language",
+              "A tool that presents a single, clear recommended next action",
+              "An analytics surface for screening programs to understand follow-up completion at a population level",
+              "An AI-assisted system that prioritizes explainability, auditability, and safe failure modes"
+            ]
+          },
+          right: {
+            heading: "What ClearSight Is Not",
+            items: [
+              "Not a diagnostic device",
+              "Not an image analysis or computer vision system",
+              "Not a clinical decision-making tool",
+              "Not an EHR or patient record system",
+              "Not a clinician task manager or inbox",
+              "Not a replacement for existing screening workflows"
+            ]
+          }
+        },
+        noteImage: "/product_intent_boundaries_image.webp",
+        note: "These boundaries are intentional. They reduce regulatory risk, avoid shifting clinical responsibility, and ensure the product remains compatible with real-world public screening programs.",
+        closingNote: "ClearSight's success is not measured by how much it automates, but by whether more patients complete the follow-up actions that screening programs already recommend."
+      },
+      {
+        title: "Users & Responsibility Model",
+        content: "ClearSight is designed around a deliberately narrow set of users and responsibilities. In a public screening context, ambiguity around \"who is responsible for what\" is a common source of failure. This section defines those boundaries explicitly.",
+        principles: [
+          {
+            name: "Primary User: Screening Program Operators",
+            description: "Screening program operators are the primary users of ClearSight, configuring workflows and using aggregated insights to improve follow-up adherence at scale. Their responsibilities include: defining follow-up workflows for different screening outcomes, configuring reminder rules and escalation logic, monitoring follow-up adherence at a population level, identifying where drop-off occurs across cohorts or regions, and exporting aggregated data for care coordination or reporting. Importantly, operators interact with aggregated data only. ClearSight does not create patient-level task lists, inboxes, or case management queues for program staff."
+          },
+          {
+            name: "Secondary User: Patients",
+            description: "Patients are the only individual-level users of ClearSight. Their needs are intentionally simple: receive their screening outcome in clear, non-alarming language, understand what the result means at a high level, see one recommended next action, receive reminders until that action is completed or they opt out, and confirm follow-up completion themselves. Patients do not \"use\" ClearSight as an application. They receive a single, program-defined digital result page and reminders designed to support follow-up action. ClearSight is designed to reduce uncertainty rather than provide medical guidance."
+          },
+          {
+            name: "Explicit Non-User: Clinicians",
+            description: "Clinicians are intentionally not operational users of ClearSight. They do not log into the system daily, do not manage patients within ClearSight, do not receive tasks, alerts, or reminders, and are not responsible for follow-up execution via the platform. This is a deliberate design decision. In many screening programs, clinicians are already operating at capacity. Introducing additional systems, inboxes, or follow-up responsibilities risks increasing burnout and creating parallel workflows that are difficult to sustain. ClearSight is designed to support clinicians indirectly by improving follow-up completion rates — without requiring their ongoing interaction."
+          },
+          {
+            name: "Responsibility Boundaries",
+            description: "ClearSight does not change clinical responsibility. It makes responsibility visible. Clinical decisions remain with clinicians and existing healthcare systems. Follow-up ownership remains with patients, as defined by the screening program. System configuration and oversight remain with program operators. The platform itself does not assume clinical judgment or care coordination roles. By explicitly separating these responsibilities, ClearSight avoids silently shifting accountability while still addressing a real, systemic gap in screening outcomes."
+          }
+        ],
+        responsibilityDiagram: {
+          actors: [
+            {
+              title: "Patients",
+              subtitle: "Primary users",
+              does: [
+                "Receives screening results",
+                "Understands recommended next action",
+                "Initiates follow-up",
+                "Confirms follow-up completion",
+                "Can opt out of reminders"
+              ],
+              doesNot: [
+                "Receive medical advice",
+                "Manage care pathways",
+                "Interact with clinicians via ClearSight"
+              ]
+            },
+            {
+              title: "Screening Program Operators",
+              subtitle: "Configuration & oversight",
+              does: [
+                "Define follow-up workflows",
+                "Configure reminder rules",
+                "Monitor aggregate adherence",
+                "Review cohort-level trends"
+              ],
+              doesNot: [
+                "Manage individual patients",
+                "Send manual reminders",
+                "Own clinical decisions",
+                "Receive patient-level task lists"
+              ]
+            },
+            {
+              title: "Clinicians",
+              subtitle: "Explicit non-users",
+              excluded: true,
+              doesNot: [
+                "Log into ClearSight",
+                "Receive alerts or inbox items",
+                "Track follow-up completion",
+                "Manage patients within the system"
+              ],
+              notes: [
+                "Clinical responsibility remains unchanged"
+              ]
+            }
+          ],
+          caption: "ClearSight enforces clear responsibility boundaries to avoid shifting clinical accountability or creating hidden operational workload."
+        }
+      },
+      {
+        title: "Solution Overview",
+        content: "ClearSight is designed as a lightweight, downstream layer that translates screening outputs into completed follow-up actions. It does not change how screening is performed or how clinical decisions are made. Instead, it focuses on the narrow but critical gap between results delivery and patient action.\n\nAt a high level, the system operates in five steps.",
+        workflowSteps: [
+          {
+            name: "Structured Screening Inputs",
+            description: "ClearSight ingests structured outputs from existing screening systems. These inputs are intentionally minimal and standardized to avoid scope creep and regulatory risk. Typical inputs include: screening result category (e.g. no retinopathy, mild findings, referral recommended), screening date, and optional contextual bands (e.g. age band, diabetes duration band, prior screening history). ClearSight does not ingest raw retinal images, free-text clinical notes, diagnoses, or treatment plans."
+          },
+          {
+            name: "Risk Tier Assignment",
+            description: "Based on the screening output and limited contextual data, ClearSight assigns the patient to a coarse risk tier (e.g. low, medium, high). These tiers are not clinical judgments. They are used solely to determine follow-up urgency, tailor reminder timing and frequency, and support population-level analysis. Risk tiering is designed to be explainable and auditable."
+          },
+          {
+            name: "Single Recommended Next Action",
+            description: "For each patient, ClearSight presents one primary recommended next action. Examples include: \"Book an eye clinic appointment within X weeks,\" \"Repeat screening at the next scheduled interval,\" or \"Contact your GP or screening provider.\" The platform deliberately avoids presenting multiple competing options. Reducing choice overload is treated as a core adherence strategy. ClearSight does not provide medical advice or alternative care pathways."
+          },
+          {
+            name: "Reminder & Follow-Up Support",
+            description: "ClearSight supports patients through reminders that are time-bound, risk-aware, and adaptive to likelihood of drop-off. Reminder logic is designed to optimize timing and frequency rather than message content. Messages remain standardized, neutral, and non-alarming. Patients can opt out at any time. If AI-assisted optimization is unavailable or disabled, ClearSight falls back to static, rule-based reminder schedules without loss of core functionality."
+          },
+          {
+            name: "Confirmation Loop & Outcome Visibility",
+            description: "Patients can confirm when they have completed the recommended follow-up action. This confirmation closes the loop for the patient, stops further reminders, and feeds aggregated adherence data back to the screening program. Program operators gain visibility into follow-up completion rates, drop-off points, and adherence trends across cohorts. ClearSight does not verify clinical outcomes or treatment details. Its role ends at confirming that the follow-up action occurred."
+          }
+        ],
+        solutionFlow: {
+          steps: [
+            {
+              title: "Screening Output",
+              items: ["Result category", "Screening date", "Contextual bands"],
+              annotation: "Structured data only"
+            },
+            {
+              title: "Risk Tier Assignment",
+              items: ["Low / Medium / High"],
+              annotation: "Explainable, non-clinical"
+            },
+            {
+              title: "Single Recommended Next Action",
+              items: ["Programme-defined workflow"],
+              annotation: "Book appointment / Repeat screening / Contact provider"
+            },
+            {
+              title: "Follow-Up Orchestration",
+              items: ["Reminder timing logic", "Drop-off sensitivity"],
+              annotation: "Signals, not messages"
+            },
+            {
+              title: "Programme Messaging System",
+              items: ["SMS / letters / portal notifications"],
+              annotation: "System of record for communications"
+            },
+            {
+              title: "Follow-Up Confirmation",
+              items: ["Patient confirms action", "Reminders stop"],
+              annotation: "Opt-out supported"
+            },
+            {
+              title: "Aggregated Adherence Insights",
+              items: ["Completion rates", "Drop-off points", "Cohort trends"],
+              annotation: "No patient task lists"
+            }
+          ],
+          arrowLabels: [
+            { after: 3, label: "Reminder signals" },
+            { after: 5, label: "Anonymised outcomes" }
+          ],
+          caption: "ClearSight translates screening outputs into completed follow-up actions by orchestrating programme-defined workflows and closing the loop with confirmation and aggregated insight."
+        }
+      },
+      {
+        title: "Metrics & Impact Model (Pre-Pilot)",
+        content: "ClearSight is designed to improve follow-up adherence rather than screening participation. At this stage, impact is framed using explicit assumptions rather than observed outcomes.",
+        principles: [
+          {
+            name: "Baseline Assumptions",
+            description: "Based on public screening program reports and stakeholder interviews, follow-up completion after abnormal diabetic retinopathy screening is typically estimated at ~65–75%, with significant variation by risk category and region."
+          },
+          {
+            name: "Target Outcome",
+            description: "ClearSight is designed to improve follow-up completion within the recommended window by approximately 10–20 percentage points, primarily by reducing missed or delayed follow-up among medium- and high-risk cohorts."
+          },
+          {
+            name: "Adherence Funnel",
+            description: "ClearSight explicitly operates between: Screened → Result delivered → Result understood → Action initiated → Follow-up completed. The platform intervenes only between \"result delivered\" and \"action initiated.\""
+          }
+        ],
+        subsection: "Key Metrics",
+        bullets: [
+          "North Star: % of patients completing follow-up within the target window",
+          "Leading Indicators: reminder open rate, reminder response latency, follow-up confirmation rate, opt-out rate",
+          "Risk & Quality Metrics: reminder fatigue indicators, false urgency rate, demographic bias in risk tier assignment"
+        ],
+        note: "These metrics are designed to support program-level evaluation rather than individual clinical decision-making.",
+        sources: [
+          { label: "Follow-Up After Diabetic Retinopathy Screening (ScienceDirect)", url: "https://www.sciencedirect.com/science/article/pii/S0002939424003350" },
+          { label: "Diabetic Retinopathy Screening in Europe — Narrative Review (ResearchGate)", url: "https://www.researchgate.net/publication/352517106_Diabetic_Retinopathy_Screening_and_Registration_in_Europe-Narrative_Review" }
+        ]
+      },
+      {
+        title: "AI Scope & Explainability",
+        content: "ClearSight uses AI as a constrained, supporting capability — not as the core product and not as a source of clinical authority. From the outset, AI was treated as a dependency with clearly defined inputs, outputs, and failure modes, rather than as an autonomous system.",
+        twoColumn: {
+          left: {
+            heading: "What AI Is Used For",
+            items: [
+              "Risk Stratification: AI assigns patients to coarse risk tiers based on structured screening outputs and minimal contextual data — not to make or infer diagnoses",
+              "Drop-Off Prediction: AI estimates the likelihood that a patient will miss or delay follow-up, used to adjust reminder timing and frequency",
+              "Reminder Optimization: AI optimizes when reminders are sent, not what they say. Message content remains standardized, pre-approved, and non-alarming"
+            ]
+          },
+          right: {
+            heading: "What AI Is Explicitly Not Used For",
+            items: [
+              "Diagnosing disease",
+              "Interpreting retinal images",
+              "Inferring treatment pathways",
+              "Generating free-text medical advice",
+              "Personalizing message content",
+              "Replacing program-defined workflows"
+            ]
+          }
+        },
+        principles: [
+          {
+            name: "Model Choices & Explainability",
+            description: "ClearSight prioritizes interpretable, auditable models over opaque or highly complex approaches. Model selection favors logistic regression or gradient boosting, clearly defined feature sets, and stable, bounded outputs (e.g. tiers, probabilities). For every AI-influenced decision, the system can surface which input factors were considered, how they influenced the outcome at a high level, and what the AI output was used for. This explainability is designed for two audiences: patients, who need reassurance and clarity, and program operators, who need confidence in system behavior and oversight capability."
+          },
+          {
+            name: "AI as an Optional Dependency",
+            description: "AI is not a hard requirement for ClearSight to function. If AI services are unavailable, disabled, or deliberately excluded: risk tiering falls back to rule-based logic defined by the screening program, reminders follow static, predefined schedules, and core patient workflows remain fully usable. This design ensures that AI failure does not block patient communication or follow-up support. It also allows programs to adopt ClearSight incrementally, without committing to AI from day one."
+          },
+          {
+            name: "Failure Modes & Safety Considerations",
+            description: "AI systems are probabilistic and can fail in unpredictable ways. ClearSight is designed so that AI failures are visible, contained, and non-blocking. Key safety measures include: bounded outputs (no open-ended generation), explicit confidence thresholds, human-defined workflows that AI cannot override, and monitoring of AI behavior at an aggregate level rather than per-patient intervention. The guiding principle is that AI should improve efficiency and targeting without introducing silent failure modes or shifting responsibility."
+          }
+        ],
+        closingNote: "While ClearSight can operate safely without AI, its ability to generate population-level insight and inform program optimisation depends on AI-assisted analysis."
+      },
+      {
+        title: "Known Failure Scenarios & Escalation Boundaries",
+        content: "ClearSight deliberately avoids automated clinical escalation in early versions. This is an intentional boundary informed by stakeholder concerns around implied responsibility and resourcing.\n\nIn cases where high-risk patients repeatedly fail to complete follow-up:",
+        bullets: [
+          "ClearSight treats this as a population-level signal rather than an individual clinical trigger",
+          "Patterns of repeated non-adherence are surfaced to program operators for policy review",
+          "Any escalation beyond reminder reinforcement must be explicitly defined, resourced, and owned by the screening program"
+        ],
+        note: "ClearSight is designed to highlight where escalation may be required, not to silently assume clinical responsibility.",
+        closingNote: "This boundary is intended to preserve trust with clinicians, patients, and program operators by avoiding false assurances or silent handoffs."
+      },
+      {
+        title: "Data, Privacy & GDPR Posture",
+        content: "ClearSight is designed for use within EU public screening programs, where data protection, patient trust, and regulatory clarity are non-negotiable. From the outset, data handling was treated as a product design problem, not a compliance afterthought.\n\nRather than attempting to store or centralize medical records, ClearSight adopts a data-minimization–first posture aligned with GDPR principles and public-sector expectations.",
+        principles: [
+          {
+            name: "Data Minimization by Design",
+            description: "ClearSight ingests and stores only the minimum data required to support follow-up adherence: a pseudonymized patient identifier, screening result category, screening date, and optional contextual bands (e.g. age range, diabetes duration band, prior screening history). ClearSight explicitly does not ingest raw retinal images, diagnoses or treatment plans, free-text clinical notes, or detailed demographic or identity data. By constraining data inputs early, the platform reduces both regulatory exposure and the blast radius of potential failures. This posture aligns with GDPR principles of data minimisation, purpose limitation, and storage limitation."
+          },
+          {
+            name: "Pseudonymization & Identity Separation",
+            description: "All patient-facing workflows operate on pseudonymized identifiers. ClearSight does not act as a system of record for patient identity. Where identity resolution is required (e.g. message delivery), it is handled via controlled interfaces with existing program infrastructure, rather than replicated inside the platform. This separation limits the amount of identifiable data stored, reduces accidental exposure through logs or analytics, and simplifies data retention and deletion."
+          },
+          {
+            name: "Consent, Transparency & Opt-Out",
+            description: "ClearSight assumes explicit patient consent as a prerequisite for participation. Patients are informed why they are receiving messages, can opt out at any time, and can complete follow-up without continued platform engagement. Opting out stops reminders immediately, does not block care, and does not require clinician intervention. This ensures that adherence support remains voluntary and proportionate."
+          },
+          {
+            name: "Controller / Processor Clarity",
+            description: "ClearSight is designed to operate as a data processor, not a data controller. Screening programs retain ownership of patient data, program operators configure workflows and retention policies, and ClearSight processes data strictly within those defined boundaries. This separation is important not only for GDPR alignment, but also for maintaining trust with public-sector operators and avoiding silent scope expansion."
+          },
+          {
+            name: "Retention & Deletion Principles",
+            description: "Data retention is limited by default and driven by purpose. Typical principles include: retaining patient-level data only as long as needed to support follow-up, aggregating and anonymizing data for longer-term reporting, and supporting deletion requests in line with program policies. ClearSight avoids indefinite storage of patient-linked data and does not repurpose data beyond adherence support."
+          },
+          {
+            name: "Privacy as a Product Constraint",
+            description: "Rather than treating privacy as a compliance checklist, ClearSight treats it as a design constraint that shapes system architecture. A formal Data Protection Impact Assessment (DPIA) would be required prior to pilot deployment. This posture influenced decisions such as avoiding free-text inputs, limiting personalization, preferring coarse risk tiers over granular scores, and prioritizing aggregate insights over individual tracking. These constraints reduce complexity, improve explainability, and make the system easier to operate responsibly at scale."
+          }
+        ]
+      },
+      {
+        title: "Key Product Decisions",
+        content: "ClearSight is intentionally shaped by a small number of high-impact product decisions made before full implementation. These decisions were driven less by feature ambition and more by risk management, system clarity, and long-term operability in a public healthcare context.\n\nRather than deferring difficult trade-offs, ClearSight treats early constraint-setting as a core product responsibility.",
+        decisions: [
+          {
+            title: "Do Not Create Clinician Task Lists or Inboxes",
+            decision: "ClearSight does not generate patient-level task lists, alerts, or inboxes for clinicians.",
+            why: "In many screening programs, follow-up breakdowns are attributed to \"communication gaps,\" but introducing new clinician-facing tools often worsens the problem by adding parallel workflows. This risks:",
+            whyBullets: [
+              "Increasing clinician workload",
+              "Fragmenting responsibility",
+              "Creating implicit expectations that clinicians will manage follow-up within yet another system"
+            ],
+            tradeoffs: [
+              "Reduced ability to intervene on individual cases",
+              "Less perceived control at the clinician level"
+            ],
+            outcomes: [
+              "No additional daily burden on clinicians",
+              "Clear responsibility boundaries",
+              "Higher likelihood of adoption within existing screening programs"
+            ]
+          },
+          {
+            title: "One Recommended Next Action per Patient",
+            decision: "ClearSight presents a single primary next action for each patient, rather than multiple options or branching pathways.",
+            why: "Patients receiving screening results are often uncertain, anxious, or unfamiliar with the healthcare system. Presenting multiple actions can increase cognitive load and decision paralysis. ClearSight prioritizes clarity over flexibility, adherence over optionality. The recommended action reflects the screening program's predefined workflow, not system-generated medical advice.",
+            tradeoffs: [
+              "Reduced personalization",
+              "Fewer alternative pathways surfaced in-app"
+            ],
+            outcomes: [
+              "Improved follow-up completion rates",
+              "Lower patient confusion",
+              "Simpler, more auditable patient flows"
+            ]
+          },
+          {
+            title: "Ingest Structured Outputs Only",
+            decision: "ClearSight ingests only structured screening outputs and minimal contextual data.",
+            why: "Allowing raw images, free-text notes, or diagnoses into the system would:",
+            whyBullets: [
+              "Significantly expand regulatory scope",
+              "Increase data protection risk",
+              "Blur the boundary between adherence support and clinical decision-making"
+            ],
+            tradeoffs: [
+              "Loss of potentially rich clinical detail",
+              "Reduced ability to fine-tune AI models using unstructured data"
+            ],
+            outcomes: [
+              "Reduced regulatory exposure",
+              "Easier integration with existing systems",
+              "Clear, defensible system boundaries"
+            ]
+          },
+          {
+            title: "Population Metrics Over Individual Case Management",
+            decision: "ClearSight prioritizes aggregated adherence metrics rather than individual patient tracking for program operators.",
+            why: "Screening programs operate at scale. Their ability to improve outcomes depends on understanding where drop-off occurs, which cohorts are at higher risk, and which interventions are effective overall. Individual case management introduces operational complexity and responsibility shifts that ClearSight explicitly avoids.",
+            tradeoffs: [
+              "Less granularity for one-off interventions",
+              "Reduced visibility into single-patient journeys"
+            ],
+            outcomes: [
+              "Actionable insights at the program level",
+              "Better support for policy and workflow adjustments",
+              "Lower operational burden on staff"
+            ]
+          },
+          {
+            title: "Treat AI as Optional Infrastructure",
+            decision: "ClearSight is designed to function fully even when AI components are unavailable or disabled.",
+            why: "AI services introduce operational risk, dependency complexity, and procurement barriers in public-sector environments. Making AI optional reduces single points of failure, allows incremental adoption, and avoids positioning AI as a prerequisite for value. Fallback behavior is rule-based and program-defined.",
+            tradeoffs: [
+              "Slower optimization without AI",
+              "Less dynamic reminder behavior in fallback mode"
+            ],
+            outcomes: [
+              "Greater system resilience",
+              "Easier pilot and rollout",
+              "Clear separation between core functionality and optimization layers"
+            ]
+          },
+          {
+            title: "Avoid Early Optimization and Automation",
+            decision: "ClearSight deliberately avoids early optimization of workflows, reminders, or AI models.",
+            why: "Before optimizing, the system must be understandable, explainable, and behave predictably. Premature optimization risks locking in incorrect assumptions and increasing rollback costs in a regulated environment.",
+            tradeoffs: [
+              "Fewer \"smart\" behaviors early on",
+              "Slower perceived innovation"
+            ],
+            outcomes: [
+              "Safer iteration",
+              "Easier auditing and adjustment",
+              "Stronger foundation for future complexity"
+            ]
+          }
+        ],
+        closingNote: "Across all decisions, the guiding question was: \"Does this reduce ambiguity and risk, or does it quietly shift responsibility?\" When the answer was unclear, decisions consistently defaulted toward restraint.",
+        noteImage: "/Reasoning Diagram for Decisions.webp"
+      },
+      {
+        title: "Current Status & Progress",
+        content: "ClearSight is an early-stage, design-led product initiative. At this stage, the focus has been on problem framing, scope definition, and risk reduction rather than feature completeness or rapid implementation.\n\nThis work was approached deliberately as a foundation-setting phase, recognizing that in a regulated healthcare context, early decisions around boundaries and responsibility have a disproportionate impact on long-term viability.",
+        principles: [
+          {
+            name: "What Is Defined Today",
+            description: "The following elements are intentionally locked before deeper implementation: problem scope and non-goals (ClearSight is explicitly positioned as a non-diagnostic, non-clinical, downstream adherence platform), user roles and responsibility boundaries (patients, screening program operators, and clinicians are clearly separated), data boundaries and privacy posture (structured inputs only, pseudonymization by default, explicit consent, and controller/processor clarity), AI scope and failure behavior (AI is constrained to risk stratification and optimization, with rule-based fallbacks and explainability built in), and high-level system flow (from screening output to patient action to aggregated outcome visibility). These decisions are treated as prerequisites for implementation, not artifacts to be retrofitted later."
+          },
+          {
+            name: "What Exists in Practice",
+            description: "At the time of writing, ClearSight consists of: a defined product scope and responsibility model, documented product decisions and constraints, drafted end-to-end system flows, initial technical architecture planning, and a structured case study capturing assumptions, trade-offs, and rationale. While user interfaces and production code are not yet complete, the core product intent and system behavior are sufficiently defined to support informed implementation and iteration."
+          },
+          {
+            name: "What Is Intentionally Deferred",
+            description: "Certain elements are deliberately postponed until the foundation proves sound: detailed UI design and interaction refinement, reminder optimization tuning and model training, performance metrics and outcome benchmarking, and integrations with live screening program infrastructure. Deferring these elements avoids premature optimization and reduces the cost of revisiting early assumptions."
+          },
+          {
+            name: "How Progress Is Evaluated at This Stage",
+            description: "Success at this stage is measured qualitatively rather than through delivery metrics. Key signals include: clarity of responsibility and system boundaries, internal consistency of decisions across product, data, and AI usage, ability to explain and defend trade-offs, and readiness for safe pilot implementation. This framing reflects the reality of early-stage work in regulated domains, where correctness and trust are prerequisites for scale."
+          }
+        ],
+        closingNote: "At this stage, ClearSight is positioned to support a limited pilot focused on validating assumptions rather than demonstrating scale. This staging reflects feedback from stakeholders who emphasised the cost of revisiting responsibility and data decisions once systems are deployed."
+      },
+      {
+        title: "What's Next",
+        content: "Future work on ClearSight is intentionally framed around earned complexity, not feature expansion for its own sake. The next phase focuses on validating assumptions, testing system behavior in realistic conditions, and preparing for a safe pilot, rather than scaling functionality prematurely.",
+        principles: [
+          {
+            name: "Near-Term Focus: Making the Core Real",
+            description: "The immediate priority is to make the defined system concrete while preserving the boundaries established so far. This includes: prototyping the patient-facing flow from screening result to follow-up confirmation, validating that \"one recommended next action\" is understandable and actionable across different result categories, implementing the reminder system with rule-based logic before introducing optimization, and ensuring opt-out, fallback, and failure scenarios are fully supported from day one. The goal of this phase is not polish, but confidence: confirming that the core flow works without relying on AI or complex integrations."
+          },
+          {
+            name: "Preparing for a Pilot Context",
+            description: "ClearSight is designed to be piloted within an existing public screening program rather than launched as a standalone product. Preparation for such a pilot would include: defining minimal integration points with screening systems (structured outputs only), aligning reminder workflows with program-defined follow-up policies, validating consent, opt-out, and retention behavior with real operational constraints, and ensuring that aggregated adherence metrics answer questions program operators actually care about. This work prioritizes operational fit and trust over scale."
+          },
+          {
+            name: "Introducing AI Incrementally",
+            description: "AI-assisted capabilities are treated as optional enhancements, not prerequisites. Only after the core system proves stable would the next steps include: training and validating interpretable risk stratification models, introducing drop-off prediction to refine reminder timing, and monitoring AI behavior at an aggregate level to detect drift or unintended effects. AI would be introduced gradually, with clear rollback paths and rule-based fallbacks always available."
+          },
+          {
+            name: "What Is Intentionally Out of Scope (For Now)",
+            description: "Several areas are deliberately excluded from near-term plans: clinician-facing dashboards or task management, patient-level case management by program staff, free-text personalization or generative messaging, automated clinical escalation pathways, and deep integration with EHRs or imaging systems. These exclusions are treated as active decisions, not missing features. Each would materially change the responsibility and regulatory profile of the system."
+          },
+          {
+            name: "Long-Term Direction (If Earned)",
+            description: "If ClearSight proves valuable and operable in a pilot context, longer-term evolution could include: deeper population-level analytics to support program planning, cross-program benchmarking using fully anonymized data, and adaptation to adjacent screening programs with similar adherence challenges. Any such expansion would be driven by demonstrated need and institutional trust, not by product ambition alone."
+          }
+        ],
+        closingNote: "ClearSight is intentionally built as a conservative system that earns complexity over time. Progress is measured not by how much the system does, but by how clearly responsibility is defined and how safely it operates in a real healthcare context. This approach reflects how high-impact systems are built in public and regulated environments — incrementally, transparently, and with restraint."
+      },
+      {
+        title: "Technical Context",
+        content: "This section provides high-level technical context for ClearSight. It is included to illustrate architectural intent and delivery considerations, not as an implementation specification.\n\nTechnology choices were guided by reliability, explainability, and compatibility with EU public-sector environments, rather than novelty or optimization.",
+        principles: [
+          {
+            name: "System Architecture Overview",
+            description: "ClearSight is designed as a modular, service-oriented system with clear separation between: patient-facing experience, program configuration and analytics, AI-assisted optimization, and external screening system integrations. This separation supports independent evolution of components, clear responsibility boundaries, and safer iteration in a regulated context."
+          },
+          {
+            name: "Integration & Data Flow Considerations",
+            description: "ClearSight is designed to integrate with national or regional screening systems via event-based ingestion of structured screening results. Key design considerations include: asynchronous ingestion of screening events rather than polling, idempotent processing to avoid duplicate reminders, upstream identity resolution with ClearSight operating on pseudonymized keys, and explicit rejection of unstructured or free-text payloads. The system is compatible with HL7 / FHIR-style payloads without requiring deep EHR integration."
+          },
+          {
+            name: "Frontend",
+            description: "React + TypeScript with clean, restrained UI design focused on clarity and accessibility over visual density. The frontend is intentionally thin: no complex client-side logic, no medical decision-making, and minimal state persistence. This reduces risk and simplifies auditing and testing."
+          },
+          {
+            name: "Backend",
+            description: "Node.js + TypeScript with REST-based APIs with explicit versioning and structured logging for operational visibility. Backend services are responsible for enforcing workflow rules, applying configuration defined by screening programs, coordinating reminder logic and confirmation events, and enforcing data minimization and access boundaries."
+          },
+          {
+            name: "Reliability & Failure Handling",
+            description: "ClearSight is designed to tolerate partial failures without blocking patient communication. Examples include: retryable message delivery failures, delayed or missing confirmation events, and temporary downstream outages. Reminder workflows are idempotent and resumable, and failure states are observable at an aggregate level for operational review."
+          },
+          {
+            name: "Data Layer",
+            description: "PostgreSQL with relational schema and strong data integrity constraints. The data model favors explicit relationships, minimal patient-linked data, and easy deletion and aggregation. ClearSight is intentionally not a document store or medical record repository."
+          },
+          {
+            name: "AI / ML Service",
+            description: "Separate Python service using FastAPI and scikit-learn with interpretable models only. AI services are loosely coupled, optional, and replaceable without affecting core workflows. This allows ClearSight to degrade gracefully and avoids hard dependencies on AI availability."
+          },
+          {
+            name: "Infrastructure & Deployment",
+            description: "Containerized using Docker with EU-based managed hosting, HTTPS everywhere, and environment separation (dev / test / prod). The system is designed to be deployable by public screening bodies, public–private partnerships, or managed service providers. No reliance on proprietary or opaque infrastructure components."
+          }
+        ],
+        image: "/technical_context_diagram.webp",
+        closingNote: "The stack was chosen to minimize operational risk, favor long-term maintainability, support auditability and explainability, and avoid lock-in and unnecessary complexity. The technology supports the product's constraints — not the other way around."
+      }
+    ],
+    technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "Python", "FastAPI", "scikit-learn", "Docker"]
   },
   medcred: {
     title: "MedCred",

@@ -67,11 +67,19 @@
 }
 
 .avatar {
-  flex: 0.5;
+  position: relative;
+  overflow: hidden;
+  flex: 0.35;
   align-self: stretch;
-  background-size: cover;
-  background-position: center;
   border-left: 1px solid var(--foreground);
+}
+
+.avatar img {
+  object-position: 100% center;
+}
+
+.mobileAvatar {
+  display: none;
 }
 
 /* Secret button */
@@ -318,6 +326,23 @@
 @media (max-width: 964px) {
   .avatar {
     display: none;
+  }
+
+  .content {
+    flex-direction: column;
+  }
+
+  .mobileAvatar {
+    display: block;
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+    margin: 0 2rem 2rem;
+  }
+
+  .mobileAvatar img {
+    object-position: center center;
+    transform: none;
   }
 
   .content {

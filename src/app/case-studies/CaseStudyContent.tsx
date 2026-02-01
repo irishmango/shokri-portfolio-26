@@ -66,6 +66,7 @@ export default function CaseStudyContent({ studyId }: CaseStudyContentProps) {
   const [activeSection, setActiveSection] = useState<string>("");
   const [isMobileTocOpen, setIsMobileTocOpen] = useState(false);
   const [expandedImage, setExpandedImage] = useState<string | null>(null);
+  const [openSourcesIndex, setOpenSourcesIndex] = useState<number | null>(null);
 
   // Generate section IDs for TOC
   const sectionIds = study?.sections.map((section) => ({
@@ -343,6 +344,54 @@ export default function CaseStudyContent({ studyId }: CaseStudyContentProps) {
                   </div>
                 )}
 
+                {section.responsibilityDiagram && (
+                  <div className={styles.responsibilityDiagram}>
+                    <div className={styles.responsibilityActors}>
+                      {section.responsibilityDiagram.actors.map((actor, actorIndex) => (
+                        <div
+                          key={actorIndex}
+                          className={`${styles.responsibilityActor} ${actor.excluded ? styles.responsibilityActorExcluded : ""}`}
+                        >
+                          <h4 className={styles.responsibilityActorTitle}>{actor.title}</h4>
+                          {actor.subtitle && (
+                            <span className={styles.responsibilityActorSubtitle}>{actor.subtitle}</span>
+                          )}
+                          {actor.does && actor.does.length > 0 && (
+                            <div className={styles.responsibilityList}>
+                              <span className={styles.responsibilityLabel}>Does</span>
+                              <ul>
+                                {actor.does.map((item, i) => (
+                                  <li key={i}>{item}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                          {actor.doesNot && actor.doesNot.length > 0 && (
+                            <div className={styles.responsibilityList}>
+                              <span className={`${styles.responsibilityLabel} ${styles.responsibilityLabelNot}`}>Does not</span>
+                              <ul>
+                                {actor.doesNot.map((item, i) => (
+                                  <li key={i}>{item}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                          {actor.notes && actor.notes.length > 0 && (
+                            <div className={styles.responsibilityNotes}>
+                              {actor.notes.map((note, i) => (
+                                <p key={i}>{note}</p>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                    {section.responsibilityDiagram.caption && (
+                      <p className={styles.responsibilityCaption}>{section.responsibilityDiagram.caption}</p>
+                    )}
+                  </div>
+                )}
+
                 {section.workflowSteps && section.workflowSteps.length > 0 && (
                   <div className={styles.workflowSteps}>
                     {section.workflowSteps.map((step, stepIndex) => (
@@ -375,6 +424,131 @@ export default function CaseStudyContent({ studyId }: CaseStudyContentProps) {
                     ) : null}
                   </div>
                 )}
+
+                {section.solutionFlow && (
+                  <div className={styles.solutionFlow}>
+                    <div className={styles.solutionFlowSteps}>
+                      {section.solutionFlow.steps.map((step, stepIndex) => {
+                        const arrowLabel = section.solutionFlow!.arrowLabels?.find(
+                          (a) => a.after === stepIndex
+                        );
+                        const isLast = stepIndex === section.solutionFlow!.steps.length - 1;
+                        return (
+                          <div key={stepIndex} className={styles.solutionFlowItem}>
+                            <div className={styles.solutionFlowBox}>
+                              <h4 className={styles.solutionFlowTitle}>{step.title}</h4>
+                              {step.items && step.items.length > 0 && (
+                                <ul className={styles.solutionFlowItems}>
+                                  {step.items.map((item, i) => (
+                                    <li key={i}>{item}</li>
+                                  ))}
+                                </ul>
+                              )}
+                              {step.annotation && (
+                                <span className={styles.solutionFlowAnnotation}>{step.annotation}</span>
+                              )}
+                            </div>
+                            {!isLast && (
+                              <div className={styles.solutionFlowArrow}>
+                                <span className={styles.solutionFlowArrowLine}>→</span>
+                                {arrowLabel && (
+                                  <span className={styles.solutionFlowArrowLabel}>{arrowLabel.label}</span>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                    {section.solutionFlow.caption && (
+                      <p className={styles.solutionFlowCaption}>{section.solutionFlow.caption}</p>
+                    )}
+                  </div>
+                )}
+
+                {section.architectureDiagram && (() => {
+                  const diagram = section.architectureDiagram!;
+                  const mainLayers = diagram.layers.filter((l) => !l.side);
+                  const sideLayers = diagram.layers.filter((l) => l.side);
+
+                  const renderBox = (box: typeof diagram.layers[0]["boxes"][0], boxIndex: number, isSingle: boolean) => (
+                    <div
+                      key={boxIndex}
+                      className={`${styles.archBox} ${box.optional ? styles.archBoxOptional : ""} ${isSingle ? styles.archBoxFull : ""}`}
+                    >
+                      <h4 className={styles.archBoxTitle}>{box.title}</h4>
+                      {box.items && box.items.length > 0 && (
+                        <ul className={styles.archBoxItems}>
+                          {box.items.map((item, i) => (
+                            <li key={i}>{item}</li>
+                          ))}
+                        </ul>
+                      )}
+                      {box.annotation && (
+                        <span className={styles.archBoxAnnotation}>{box.annotation}</span>
+                      )}
+                    </div>
+                  );
+
+                  return (
+                    <div className={styles.archDiagram}>
+                      {mainLayers.map((layer, layerIndex) => {
+                        const sideLayer = layer.id === "core" ? sideLayers[0] : undefined;
+                        const sideConn = sideLayer
+                          ? diagram.connections.find((c) =>
+                              sideLayer.boxes.some((b) => b.title === c.to || b.title === c.from)
+                            )
+                          : undefined;
+                        const downConns = diagram.connections.filter(
+                          (c) =>
+                            layer.boxes.some((b) => b.title === c.from) &&
+                            !sideLayers.some((sl) => sl.boxes.some((b) => b.title === c.to))
+                        );
+                        const isLastMain = layerIndex === mainLayers.length - 1;
+
+                        return (
+                          <div key={layer.id} className={styles.archLayer}>
+                            {layer.title && (
+                              <span className={styles.archLayerTitle}>{layer.title}</span>
+                            )}
+                            <div className={sideLayer ? styles.archLayerWithSide : undefined}>
+                              <div className={`${styles.archLayerBoxes} ${sideLayer ? styles.archLayerBoxesMain : ""}`}>
+                                {layer.boxes.map((box, bi) => renderBox(box, bi, layer.boxes.length === 1))}
+                              </div>
+                              {sideLayer && (
+                                <>
+                                  <div className={styles.archSideArrow}>
+                                    <span className={styles.archSideArrowLine}>- - →</span>
+                                    {sideConn?.label && (
+                                      <span className={styles.archSideArrowLabel}>{sideConn.label}</span>
+                                    )}
+                                  </div>
+                                  <div className={`${styles.archLayerBoxes} ${styles.archLayerBoxesSide}`}>
+                                    {sideLayer.boxes.map((box, bi) => renderBox(box, bi, true))}
+                                  </div>
+                                </>
+                              )}
+                            </div>
+                            {!isLastMain && downConns.length > 0 && (
+                              <div className={styles.archConnection}>
+                                <span className={styles.archArrow}>↓</span>
+                                {downConns[0]?.label && (
+                                  <span className={styles.archArrowLabel}>{downConns[0].label}</span>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                      {diagram.footer && (
+                        <p className={styles.archFooter}>{diagram.footer}</p>
+                      )}
+                      {diagram.caption && (
+                        <p className={styles.archCaption}>{diagram.caption}</p>
+                      )}
+                    </div>
+                  );
+                })()}
 
                 {section.decisions && section.decisions.length > 0 && (
                   <div className={styles.decisionsList}>
@@ -434,8 +608,74 @@ export default function CaseStudyContent({ studyId }: CaseStudyContentProps) {
                   </div>
                 )}
 
+                {section.noteImage && (
+                  <button
+                    className={styles.sectionImageButton}
+                    onClick={() => setExpandedImage(section.noteImage!)}
+                    aria-label={`Expand ${section.title} image`}
+                  >
+                    <div className={styles.sectionImage}>
+                      <Image
+                        src={section.noteImage}
+                        alt={`${section.title} illustration`}
+                        width={600}
+                        height={338}
+                        className={styles.sectionImageImg}
+                      />
+                      <div className={styles.expandHint}>
+                        <span>Click to expand</span>
+                      </div>
+                    </div>
+                  </button>
+                )}
+
                 {section.note && (
                   <p className={styles.sectionNote}>{section.note}</p>
+                )}
+
+                {section.sources && section.sources.length > 0 && (
+                  <div className={styles.sourcesContainer}>
+                    <button
+                      className={styles.sourcesButton}
+                      onClick={() => setOpenSourcesIndex(openSourcesIndex === index ? null : index)}
+                    >
+                      Sources
+                    </button>
+                    {openSourcesIndex === index && (
+                      <>
+                        <div
+                          className={styles.sourcesOverlay}
+                          onClick={() => setOpenSourcesIndex(null)}
+                        />
+                        <div className={styles.sourcesDialog}>
+                          <div className={styles.sourcesDialogHeader}>
+                            <span className={styles.sourcesDialogTitle}>Sources</span>
+                            <button
+                              className={styles.sourcesDialogClose}
+                              onClick={() => setOpenSourcesIndex(null)}
+                              aria-label="Close sources"
+                            >
+                              ×
+                            </button>
+                          </div>
+                          <ul className={styles.sourcesList}>
+                            {section.sources.map((source, sourceIndex) => (
+                              <li key={sourceIndex}>
+                                <a
+                                  href={source.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className={styles.sourceLink}
+                                >
+                                  {source.label}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </>
+                    )}
+                  </div>
                 )}
               </div>
             ))}
