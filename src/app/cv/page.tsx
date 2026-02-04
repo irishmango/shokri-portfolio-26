@@ -71,7 +71,9 @@ const workExperience: WorkExperience[] = [
       "Designed and built portfolio websites for clients using HTML, CSS, JavaScript, React and Webflow.",
       "Focused on clean, accessible design and user-centered interfaces for creative professionals.",
       "Built full-stack applications with React, Node.js, Dart, Flutter Firebase, integrating auth, REST APIs, and real-time databases.",
-      "Designed reusable UI components and responsive interfaces, applying UX best practices."
+      "Designed reusable UI components and responsive interfaces, applying UX best practices.",
+      "Built frontend and backend components, including API integrations, authentication, and real-time features.",
+      "Worked directly with stakeholders to scope requirements, make technical trade-offs, and ship pragmatic solutions under time constraints."
     ]
   },
   {
