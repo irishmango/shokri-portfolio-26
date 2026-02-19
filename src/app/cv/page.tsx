@@ -77,7 +77,7 @@ const workExperience: WorkExperience[] = [
     ]
   },
   {
-    title: "Junior Full Stack Developer → Product Specialist(Technical and Product Operations)",
+    title: "Junior Full Stack Developer → Product Specialist",
     company: "MedCred",
     duration: "Jan 2022 – Jan 2024",
     bullets: [
