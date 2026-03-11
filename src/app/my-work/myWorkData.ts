@@ -19,6 +19,7 @@ export interface Project {
   description: string;
   bullets: string[];
   thumbnail: string;
+  screenshots?: string[]; // Optional array of images to cycle through on hover
   demoVideo?: string; // Optional video that autoplays on hover
   demoUrl?: string; // URL for iframe demo embed
   meta?: ProjectMeta; // Extended metadata for demo page
@@ -55,6 +56,24 @@ export const projects: Project[] = [
       { type: "case-study", url: "/case-studies/docnotes" },
     ],
     featured: true,
+  },
+  {
+    id: "clawdesk",
+    title: "ClawDesk",
+    description: "TPM signal intelligence desk that centralizes cross-functional inputs, detects convergence, and turns noise into evidence-backed roadmap decisions—without polluting Jira.",
+    bullets: [
+      "Aggregated signals from Eng/Ops/Sales/Design/Users into a single Intake workflow",
+      "Clustered repeating issues into decision briefs with linked evidence and trends",
+      "Modeled tech debt with a principal + interest framework to quantify urgency and tradeoffs",
+      "Designed an OpenClaw agent layer to draft classifications/briefs with human-in-the-loop approval and activity logging",
+    ],
+    thumbnail: "/clawdesk_01.png",
+    screenshots: ["/clawdesk_01.png", "/clawdesk_02.png", "/clawdesk_03.png"],
+    tags: ["Project", "Web App", "Next.js", "TypeScript", "Tailwind"],
+    category: "web-apps",
+    links: [
+      { type: "github", url: "https://github.com/irishmango/clawdesk" },
+    ],
   },
   // Regular Projects
   {

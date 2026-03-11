@@ -24,7 +24,9 @@ function ProjectCard({ project, featured = false, onLinkClick }: ProjectCardProp
   const [isHovered, setIsHovered] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [screenshotIndex, setScreenshotIndex] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const screenshotIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -40,7 +42,12 @@ function ProjectCard({ project, featured = false, onLinkClick }: ProjectCardProp
     const touchQuery = window.matchMedia("(hover: none), (pointer: coarse)");
     setIsTouchDevice(touchQuery.matches);
 
-    return () => mediaQuery.removeEventListener("change", handleChange);
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+      if (screenshotIntervalRef.current) {
+        clearInterval(screenshotIntervalRef.current);
+      }
+    };
   }, []);
 
   const getLinkLabel = (type: string): string => {
@@ -64,6 +71,12 @@ function ProjectCard({ project, featured = false, onLinkClick }: ProjectCardProp
     if (videoRef.current && !prefersReducedMotion) {
       videoRef.current.play();
     }
+    if (project.screenshots && project.screenshots.length > 1 && !prefersReducedMotion) {
+      setScreenshotIndex(0);
+      screenshotIntervalRef.current = setInterval(() => {
+        setScreenshotIndex((prev) => (prev + 1) % project.screenshots!.length);
+      }, 900);
+    }
   };
 
   const handleMouseLeave = () => {
@@ -73,6 +86,11 @@ function ProjectCard({ project, featured = false, onLinkClick }: ProjectCardProp
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
     }
+    if (screenshotIntervalRef.current) {
+      clearInterval(screenshotIntervalRef.current);
+      screenshotIntervalRef.current = null;
+    }
+    setScreenshotIndex(0);
   };
 
   return (
@@ -84,7 +102,7 @@ function ProjectCard({ project, featured = false, onLinkClick }: ProjectCardProp
       <div className={styles.thumbnail}>
         {project.thumbnail ? (
           <Image
-            src={project.thumbnail}
+            src={project.screenshots ? project.screenshots[screenshotIndex] : project.thumbnail}
             alt={project.title}
             fill
             className={`${styles.thumbnailImage} ${isHovered && project.demoVideo ? styles.thumbnailHidden : ""}`}
