@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import posthog from "posthog-js";
@@ -25,8 +25,11 @@ function ProjectCard({ project, featured = false, onLinkClick }: ProjectCardProp
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
   const [screenshotIndex, setScreenshotIndex] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
   const screenshotIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -93,11 +96,51 @@ function ProjectCard({ project, featured = false, onLinkClick }: ProjectCardProp
     setScreenshotIndex(0);
   };
 
+  const openLightbox = useCallback(() => {
+    if (!project.screenshots) return;
+    setLightboxIndex(screenshotIndex);
+    setLightboxOpen(true);
+  }, [project.screenshots, screenshotIndex]);
+
+  const closeLightbox = useCallback(() => {
+    setLightboxOpen(false);
+  }, []);
+
+  const lightboxPrev = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    setLightboxIndex((prev) => (prev - 1 + (project.screenshots?.length ?? 1)) % (project.screenshots?.length ?? 1));
+  }, [project.screenshots]);
+
+  const lightboxNext = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    setLightboxIndex((prev) => (prev + 1) % (project.screenshots?.length ?? 1));
+  }, [project.screenshots]);
+
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") setLightboxIndex((prev) => (prev - 1 + (project.screenshots?.length ?? 1)) % (project.screenshots?.length ?? 1));
+      if (e.key === "ArrowRight") setLightboxIndex((prev) => (prev + 1) % (project.screenshots?.length ?? 1));
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [lightboxOpen, closeLightbox, project.screenshots]);
+
+  // Sync scroll position when lightboxIndex changes
+  useEffect(() => {
+    if (!scrollContainerRef.current || !lightboxOpen) return;
+    const container = scrollContainerRef.current;
+    container.scrollTo({ left: lightboxIndex * container.clientWidth, behavior: "smooth" });
+  }, [lightboxIndex, lightboxOpen]);
+
   return (
+    <>
     <article
-      className={featured ? styles.featuredCard : styles.projectCard}
+      className={`${featured ? styles.featuredCard : styles.projectCard} ${project.screenshots ? styles.cardClickable : ""}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={project.screenshots ? openLightbox : undefined}
     >
       <div className={styles.thumbnail}>
         {project.thumbnail ? (
@@ -140,7 +183,7 @@ function ProjectCard({ project, featured = false, onLinkClick }: ProjectCardProp
           ))}
         </div>
         {project.links.length > 0 && (
-          <div className={styles.links}>
+          <div className={styles.links} onClick={(e) => e.stopPropagation()}>
             {project.links.map((link) => {
               const isInternal = link.type === "demo" || link.type === "case-study";
               const linkContent = (
@@ -176,6 +219,36 @@ function ProjectCard({ project, featured = false, onLinkClick }: ProjectCardProp
         )}
       </div>
     </article>
+
+    {lightboxOpen && project.screenshots && (
+      <div className={styles.lightboxOverlay} onClick={closeLightbox} role="dialog" aria-modal="true" aria-label={`${project.title} screenshots`}>
+        <button className={styles.lightboxClose} onClick={closeLightbox} aria-label="Close">✕</button>
+        <div className={styles.lightboxTrack} ref={scrollContainerRef} onClick={(e) => e.stopPropagation()}>
+          {project.screenshots.map((src, i) => (
+            <div key={i} className={styles.lightboxSlide}>
+              <Image src={src} alt={`${project.title} screenshot ${i + 1}`} fill className={styles.lightboxImage} />
+            </div>
+          ))}
+        </div>
+        {project.screenshots.length > 1 && (
+          <>
+            <button className={`${styles.lightboxArrow} ${styles.lightboxArrowLeft}`} onClick={lightboxPrev} aria-label="Previous">‹</button>
+            <button className={`${styles.lightboxArrow} ${styles.lightboxArrowRight}`} onClick={lightboxNext} aria-label="Next">›</button>
+            <div className={styles.lightboxDots} onClick={(e) => e.stopPropagation()}>
+              {project.screenshots.map((_, i) => (
+                <button
+                  key={i}
+                  className={`${styles.lightboxDot} ${i === lightboxIndex ? styles.lightboxDotActive : ""}`}
+                  onClick={(e) => { e.stopPropagation(); setLightboxIndex(i); }}
+                  aria-label={`Go to screenshot ${i + 1}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    )}
+    </>
   );
 }
 

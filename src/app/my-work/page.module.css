@@ -326,6 +326,124 @@
   margin: 0;
 }
 
+/* Clickable card cursor */
+.cardClickable {
+  cursor: pointer;
+}
+
+/* Lightbox */
+.lightboxOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+
+.lightboxTrack {
+  display: flex;
+  width: 90vw;
+  max-width: 1100px;
+  height: 70vh;
+  overflow: hidden;
+  scroll-snap-type: x mandatory;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.lightboxSlide {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
+  scroll-snap-align: start;
+}
+
+.lightboxImage {
+  object-fit: contain;
+}
+
+.lightboxClose {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--foreground);
+  font-size: 1rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+  z-index: 1001;
+}
+
+.lightboxClose:hover {
+  opacity: 1;
+}
+
+.lightboxArrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--foreground);
+  font-size: 1.75rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+  z-index: 1001;
+  line-height: 1;
+}
+
+.lightboxArrow:hover {
+  opacity: 1;
+}
+
+.lightboxArrowLeft {
+  left: 1.25rem;
+}
+
+.lightboxArrowRight {
+  right: 1.25rem;
+}
+
+.lightboxDots {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 1001;
+}
+
+.lightboxDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  padding: 0;
+}
+
+.lightboxDotActive {
+  background: var(--foreground);
+}
+
 /* Responsive: Tablet */
 @media (max-width: 768px) {
   .wrapper {
