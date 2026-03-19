@@ -75,6 +75,25 @@ export const projects: Project[] = [
       { type: "github", url: "https://github.com/irishmango/clawdesk" },
     ],
   },
+  {
+    id: "nanomind",
+    title: "NanoMind",
+    description: "Open-source AI-powered research co-pilot for nanoscience that unifies literature, experimental data, and domain tools into a single reasoning interface—turning scattered papers into actionable scientific insight.",
+    bullets: [
+      "Ingested and embedded scientific papers into a vector database (Supabase pgvector) to enable grounded, citation-aware RAG",
+      "Built a streaming chat interface (Next.js + Vercel AI SDK) that answers domain-specific questions with markdown, tables, and structured outputs",
+      "Integrated experimental data workflows (Raman/XRD spectra parsing + visualization) with AI-assisted peak identification and interpretation",
+      "Designed a LangChain agent layer with tool use (Materials Project API, HuggingFace models) for real-time materials data retrieval and scientific reasoning",
+      "Implemented an experiment notebook that extracts and logs structured findings (technique, confidence, source) from AI responses for traceable research memory",
+    ],
+    thumbnail: "/nanomind_01.png",
+    screenshots: ["/nanomind_01.png", "/nanomind_02.png", "/nanomind_03.png", "/nanomind_04.png", "/nanomind_05.png"],
+    tags: ["Project", "Web App", "Next.js", "TypeScript", "Tailwind", "Supabase", "LangChain", "OpenAI", "HuggingFace"],
+    category: "web-apps",
+    links: [
+      { type: "github", url: "https://github.com/irishmango/nanomind" },
+    ],
+  },
   // Regular Projects
   {
     id: "jose-cortes",
