@@ -88,7 +88,7 @@ export const projects: Project[] = [
     ],
     thumbnail: "/nanomind_01.png",
     screenshots: ["/nanomind_01.png", "/nanomind_02.png", "/nanomind_03.png", "/nanomind_04.png", "/nanomind_05.png"],
-    tags: ["Project", "Web App", "Next.js", "TypeScript", "Tailwind", "Supabase", "LangChain", "OpenAI", "HuggingFace"],
+    tags: ["Project", "Web App", "Next.js", "TypeScript", "Tailwind", "Supabase", "LangChain", "Anthropic", "HuggingFace"],
     category: "web-apps",
     links: [
       { type: "github", url: "https://github.com/irishmango/nanomind" },
