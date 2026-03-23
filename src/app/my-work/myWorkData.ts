@@ -93,6 +93,7 @@ export const projects: Project[] = [
     links: [
       { type: "github", url: "https://github.com/irishmango/nanomind" },
     ],
+    featured: true,
   },
   // Regular Projects
   {
